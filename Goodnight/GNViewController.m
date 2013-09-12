@@ -54,6 +54,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 	
+	_topView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+	_bottomView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+	
 #warning store last used mode in preferences and use below
 	[self setMode:GNViewControllerModeSetSleepTime];
 	
@@ -83,6 +86,7 @@
 
 #pragma IBActions
 
+#warning able to tap two buttons near simultaneously
 - (IBAction)tappedSleepButton:(id)sender
 {
 	[self setMode:GNViewControllerModeSetSleepTime];
