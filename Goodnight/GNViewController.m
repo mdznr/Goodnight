@@ -18,17 +18,22 @@
 @property (strong, nonatomic) IBOutlet UIButton *sleepButton;
 @property (strong, nonatomic) IBOutlet UIDatePicker *sleepPicker;
 @property (strong, nonatomic) IBOutlet UIScrollView *sleepScrollview;
+@property (strong, nonatomic) GNTimeCardView *sleepCardBad;
+@property (strong, nonatomic) GNTimeCardView *sleepCardPoor;
+@property (strong, nonatomic) GNTimeCardView *sleepCardFine;
+@property (strong, nonatomic) GNTimeCardView *sleepCardGood;
+@property (strong, nonatomic) GNTimeCardView *sleepCardGreat;
 
 // Bottom
 @property (strong, nonatomic) IBOutlet UIView *bottomView;
 @property (strong, nonatomic) IBOutlet UIButton *wakeButton;
 @property (strong, nonatomic) IBOutlet UIScrollView *wakeScrollview;
 @property (strong, nonatomic) IBOutlet UIDatePicker *wakePicker;
-@property (strong, nonatomic) GNTimeCardView *badCard;
-@property (strong, nonatomic) GNTimeCardView *poorCard;
-@property (strong, nonatomic) GNTimeCardView *fineCard;
-@property (strong, nonatomic) GNTimeCardView *goodCard;
-@property (strong, nonatomic) GNTimeCardView *greatCard;
+@property (strong, nonatomic) GNTimeCardView *wakeCardBad;
+@property (strong, nonatomic) GNTimeCardView *wakeCardPoor;
+@property (strong, nonatomic) GNTimeCardView *wakeCardFine;
+@property (strong, nonatomic) GNTimeCardView *wakeCardGood;
+@property (strong, nonatomic) GNTimeCardView *wakeCardGreat;
 
 @end
 
@@ -58,10 +63,11 @@
 		  forControlEvents:UIControlEventValueChanged];
 	
 	// Setup cards
-	_goodCard = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringGood];
-	[_wakeScrollview addSubview:_goodCard];
+	_wakeCardGood = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringGood];
+	[_wakeScrollview addSubview:_wakeCardGood];
 	
 	// Update cards
+	[self updateWakeCardTimes];
 	[self updateSleepCardTimes];
 }
 
@@ -73,7 +79,7 @@
 	[self setMode:GNViewControllerModeSetSleepTime];
 	
 	// Have to do this since UIDatePicker doesn't perform action for UIControlEventValueChanged when using setDate:Animated:
-	[self updateSleepCardTimes];
+	[self updateWakeCardTimes];
 }
 
 - (IBAction)tappedWakeButton:(id)sender
@@ -139,7 +145,7 @@
 
 - (void)updateWakeCardTimes
 {
-	_goodCard.date = [_sleepPicker.date dateByAddingTimeInterval:-GOOD_SLEEP_TIME];
+	_wakeCardGood.date = [_sleepPicker.date dateByAddingTimeInterval:GOOD_SLEEP_TIME];
 }
 
 
@@ -150,7 +156,7 @@
 
 - (void)updateSleepCardTimes
 {
-	_goodCard.date = [_sleepPicker.date dateByAddingTimeInterval:GOOD_SLEEP_TIME];
+	_sleepCardGood.date = [_sleepPicker.date dateByAddingTimeInterval:-GOOD_SLEEP_TIME];
 }
 
 
