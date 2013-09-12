@@ -50,7 +50,8 @@
 		[sender setTitle:@"Goodnight" forState:UIControlStateNormal];
 	}
 }
-	
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -58,15 +59,24 @@
 	_alarm = [[UILocalNotification alloc] init];
 }
 
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
 
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
 //	return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 	return YES;	// Support all rotations
 }
+
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+	return UIStatusBarStyleLightContent;
+}
+
 @end

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C93811141569E3BD007BF835 /* GNAlarm.m in Sources */ = {isa = PBXBuildFile; fileRef = C93811131569E3BD007BF835 /* GNAlarm.m */; };
+		C9E6CFCF17E1603800E65CE9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C9E6CFCE17E1603800E65CE9 /* Default-568h@2x.png */; };
 		C9ED790015549BCB002064B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9ED78FF15549BCB002064B2 /* UIKit.framework */; };
 		C9ED790215549BCB002064B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9ED790115549BCB002064B2 /* Foundation.framework */; };
 		C9ED790415549BCB002064B2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9ED790315549BCB002064B2 /* CoreGraphics.framework */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		C93811121569E3BD007BF835 /* GNAlarm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNAlarm.h; sourceTree = "<group>"; };
 		C93811131569E3BD007BF835 /* GNAlarm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNAlarm.m; sourceTree = "<group>"; };
+		C9E6CFCE17E1603800E65CE9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		C9ED78FB15549BCB002064B2 /* Goodnight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Goodnight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9ED78FF15549BCB002064B2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C9ED790115549BCB002064B2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -55,6 +57,7 @@
 		C9ED78F015549BCB002064B2 = {
 			isa = PBXGroup;
 			children = (
+				C9E6CFCE17E1603800E65CE9 /* Default-568h@2x.png */,
 				C9ED790515549BCB002064B2 /* Goodnight */,
 				C9ED78FE15549BCB002064B2 /* Frameworks */,
 				C9ED78FC15549BCB002064B2 /* Products */,
@@ -159,6 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9ED790A15549BCB002064B2 /* InfoPlist.strings in Resources */,
+				C9E6CFCF17E1603800E65CE9 /* Default-568h@2x.png in Resources */,
 				C9ED791215549BCB002064B2 /* Goodnight.entitlements in Resources */,
 				C9ED791515549BCB002064B2 /* MainStoryboard.storyboard in Resources */,
 			);
@@ -258,7 +262,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Goodnight/Goodnight-Prefix.pch";
 				INFOPLIST_FILE = "Goodnight/Goodnight-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "D3C7CEB9-E571-4230-9070-6628C27186BA";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4BB10AB1-AA5A-481B-B5DB-FA448062E5AB";
@@ -275,7 +279,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Goodnight/Goodnight-Prefix.pch";
 				INFOPLIST_FILE = "Goodnight/Goodnight-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "D3C7CEB9-E571-4230-9070-6628C27186BA";
 				"PROVISIONING_PROFILE[sdk=*]" = "4BB10AB1-AA5A-481B-B5DB-FA448062E5AB";

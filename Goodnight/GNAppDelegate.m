@@ -14,7 +14,7 @@
 {
     // Override point for customization after application launch.
 	
-	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
+	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 	
     return YES;
 }
