@@ -37,6 +37,8 @@
 
 @end
 
+#define NUMBER_OF_CARDS 5
+
 #define FALL_ASLEEP_TIME (14*60)
 #define SLEEP_CYCLE_TIME (90*60)
 #define GOOD_SLEEP_TIME (FALL_ASLEEP_TIME+(5*SLEEP_CYCLE_TIME))
@@ -64,7 +66,12 @@
 	
 	// Setup cards
 	_wakeCardGood = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringGood];
+	_wakeCardGood.center = _wakeScrollview.center;
 	[_wakeScrollview addSubview:_wakeCardGood];
+	
+	// Configure scrollview
+	_wakeScrollview.pagingEnabled = YES;
+	_wakeScrollview.contentSize = (CGSize){_wakeScrollview.frame.size.width * NUMBER_OF_CARDS, _wakeScrollview.frame.size.height};
 	
 	// Update cards
 	[self updateWakeCardTimes];

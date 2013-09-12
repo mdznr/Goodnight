@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nm6-tP-lsW" userLabel="Top View">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nm6-tP-lsW" userLabel="Top View">
                                 <rect key="frame" x="0.0" y="20" width="320" height="230"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -75,6 +75,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <constraint firstItem="GF7-S0-vaO" firstAttribute="centerX" secondItem="jLF-xf-rNk" secondAttribute="centerX" id="EfF-jS-cUd"/>
                                     <constraint firstItem="GF7-S0-vaO" firstAttribute="leading" secondItem="Nm6-tP-lsW" secondAttribute="leading" constant="20" symbolic="YES" id="Jf7-bW-Ld2"/>
                                     <constraint firstAttribute="trailing" secondItem="GF7-S0-vaO" secondAttribute="trailing" constant="20" symbolic="YES" id="aGc-h4-gEq"/>
+                                    <constraint firstAttribute="bottom" secondItem="jLF-xf-rNk" secondAttribute="bottom" constant="20" symbolic="YES" id="cMm-K9-uaM"/>
                                     <constraint firstItem="jLF-xf-rNk" firstAttribute="top" secondItem="GF7-S0-vaO" secondAttribute="bottom" constant="8" symbolic="YES" id="iLE-8B-Ive"/>
                                 </constraints>
                             </view>
@@ -100,7 +101,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <action selector="tappedWakeButton:" destination="2" eventType="touchUpInside" id="1B9-OB-cL6"/>
                                         </connections>
                                     </button>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QHl-Ec-FAk">
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QHl-Ec-FAk">
                                         <rect key="frame" x="0.0" y="58" width="320" height="162"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     </scrollView>
@@ -119,14 +120,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="G2H-oG-hYt" secondAttribute="bottom" id="QBQ-4M-r3t"/>
                             <constraint firstItem="Nm6-tP-lsW" firstAttribute="trailing" secondItem="G2H-oG-hYt" secondAttribute="trailing" id="SIr-wy-MkP"/>
                             <constraint firstItem="Nm6-tP-lsW" firstAttribute="width" secondItem="G2H-oG-hYt" secondAttribute="width" id="XxC-kt-gu2"/>
                             <constraint firstItem="Nm6-tP-lsW" firstAttribute="top" secondItem="3" secondAttribute="top" constant="20" symbolic="YES" id="dEh-ag-aDf"/>
                             <constraint firstItem="Nm6-tP-lsW" firstAttribute="leading" secondItem="G2H-oG-hYt" secondAttribute="leading" id="dkm-hj-CpD"/>
                             <constraint firstItem="Nm6-tP-lsW" firstAttribute="height" secondItem="G2H-oG-hYt" secondAttribute="height" id="epe-WW-Ojw"/>
+                            <constraint firstItem="Clt-wD-PdO" firstAttribute="top" secondItem="G2H-oG-hYt" secondAttribute="bottom" constant="20" symbolic="YES" id="llM-e7-snC"/>
                             <constraint firstItem="Nm6-tP-lsW" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="ntt-er-b4s"/>
-                            <constraint firstItem="G2H-oG-hYt" firstAttribute="top" secondItem="Nm6-tP-lsW" secondAttribute="bottom" id="tDx-UX-ggx"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
