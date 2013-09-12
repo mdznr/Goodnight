@@ -72,6 +72,7 @@
 	_timeLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 	_timeLabel.textAlignment = NSTextAlignmentCenter;
 	_timeLabel.textColor = [UIColor blackColor];
+	_timeLabel.font = [UIFont systemFontOfSize:24.0f];
 	[self addSubview:_timeLabel];
 	
 	_dateFormatter = [[NSDateFormatter alloc] init];
