@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C93811141569E3BD007BF835 /* GNAlarm.m in Sources */ = {isa = PBXBuildFile; fileRef = C93811131569E3BD007BF835 /* GNAlarm.m */; };
-		C9E6CFCF17E1603800E65CE9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C9E6CFCE17E1603800E65CE9 /* Default-568h@2x.png */; };
 		C9E6CFD217E16D3200E65CE9 /* GNTimeCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E6CFD117E16D3200E65CE9 /* GNTimeCardView.m */; };
+		C9E6CFD417E2326100E65CE9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9E6CFD317E2326100E65CE9 /* Images.xcassets */; };
 		C9ED790015549BCB002064B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9ED78FF15549BCB002064B2 /* UIKit.framework */; };
 		C9ED790215549BCB002064B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9ED790115549BCB002064B2 /* Foundation.framework */; };
 		C9ED790415549BCB002064B2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9ED790315549BCB002064B2 /* CoreGraphics.framework */; };
@@ -24,9 +24,9 @@
 /* Begin PBXFileReference section */
 		C93811121569E3BD007BF835 /* GNAlarm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNAlarm.h; sourceTree = "<group>"; };
 		C93811131569E3BD007BF835 /* GNAlarm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNAlarm.m; sourceTree = "<group>"; };
-		C9E6CFCE17E1603800E65CE9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		C9E6CFD017E16D3200E65CE9 /* GNTimeCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTimeCardView.h; sourceTree = "<group>"; };
 		C9E6CFD117E16D3200E65CE9 /* GNTimeCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTimeCardView.m; sourceTree = "<group>"; };
+		C9E6CFD317E2326100E65CE9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C9ED78FB15549BCB002064B2 /* Goodnight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Goodnight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9ED78FF15549BCB002064B2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C9ED790115549BCB002064B2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -60,7 +60,6 @@
 		C9ED78F015549BCB002064B2 = {
 			isa = PBXGroup;
 			children = (
-				C9E6CFCE17E1603800E65CE9 /* Default-568h@2x.png */,
 				C9ED790515549BCB002064B2 /* Goodnight */,
 				C9ED78FE15549BCB002064B2 /* Frameworks */,
 				C9ED78FC15549BCB002064B2 /* Products */,
@@ -97,6 +96,7 @@
 				C9E6CFD117E16D3200E65CE9 /* GNTimeCardView.m */,
 				C93811121569E3BD007BF835 /* GNAlarm.h */,
 				C93811131569E3BD007BF835 /* GNAlarm.m */,
+				C9E6CFD317E2326100E65CE9 /* Images.xcassets */,
 				C9ED790615549BCB002064B2 /* Supporting Files */,
 			);
 			path = Goodnight;
@@ -143,6 +143,11 @@
 				CLASSPREFIX = GN;
 				LastUpgradeCheck = 0440;
 				ORGANIZATIONNAME = Matt;
+				TargetAttributes = {
+					C9ED78FA15549BCB002064B2 = {
+						DevelopmentTeam = 3SZ7MS7NXC;
+					};
+				};
 			};
 			buildConfigurationList = C9ED78F515549BCB002064B2 /* Build configuration list for PBXProject "Goodnight" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -167,7 +172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9ED790A15549BCB002064B2 /* InfoPlist.strings in Resources */,
-				C9E6CFCF17E1603800E65CE9 /* Default-568h@2x.png in Resources */,
+				C9E6CFD417E2326100E65CE9 /* Images.xcassets in Resources */,
 				C9ED791215549BCB002064B2 /* Goodnight.entitlements in Resources */,
 				C9ED791515549BCB002064B2 /* MainStoryboard.storyboard in Resources */,
 			);
@@ -262,16 +267,17 @@
 		C9ED791C15549BCB002064B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = Goodnight/Goodnight.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Nicholas Pitt (2N7NR46UZ9)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Goodnight/Goodnight-Prefix.pch";
 				INFOPLIST_FILE = "Goodnight/Goodnight-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "D3C7CEB9-E571-4230-9070-6628C27186BA";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4BB10AB1-AA5A-481B-B5DB-FA448062E5AB";
+				PROVISIONING_PROFILE = "0167D51E-E2DE-47D6-96BC-FE9D1C13C29C";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -279,16 +285,17 @@
 		C9ED791D15549BCB002064B2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = Goodnight/Goodnight.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Nicholas Pitt (2N7NR46UZ9)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Goodnight/Goodnight-Prefix.pch";
 				INFOPLIST_FILE = "Goodnight/Goodnight-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "D3C7CEB9-E571-4230-9070-6628C27186BA";
-				"PROVISIONING_PROFILE[sdk=*]" = "4BB10AB1-AA5A-481B-B5DB-FA448062E5AB";
+				PROVISIONING_PROFILE = "0167D51E-E2DE-47D6-96BC-FE9D1C13C29C";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
