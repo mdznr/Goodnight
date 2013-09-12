@@ -59,9 +59,10 @@
 	
 	// Setup cards
 	_goodCard = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringGood];
-	NSDate *goodTime = [_sleepPicker.date dateByAddingTimeInterval:GOOD_SLEEP_TIME];
-	[_goodCard setDate:goodTime];
 	[_wakeScrollview addSubview:_goodCard];
+	
+	// Update cards
+	[self updateSleepCardTimes];
 }
 
 
@@ -72,7 +73,7 @@
 	[self setMode:GNViewControllerModeSetSleepTime];
 	
 	// Have to do this since UIDatePicker doesn't perform action for UIControlEventValueChanged when using setDate:Animated:
-	[self updateWakeCardTimes];
+	[self updateSleepCardTimes];
 }
 
 - (IBAction)tappedWakeButton:(id)sender
@@ -133,23 +134,23 @@
 
 - (void)sleepPickerDidChange:(id)sender
 {
-	[self updateSleepCardTimes];
-}
-
-- (void)updateSleepCardTimes
-{
-	_goodCard.date = [_sleepPicker.date dateByAddingTimeInterval:GOOD_SLEEP_TIME];
-}
-
-
-- (void)wakePickerDidChange:(id)sender
-{
 	[self updateWakeCardTimes];
 }
 
 - (void)updateWakeCardTimes
 {
 	_goodCard.date = [_sleepPicker.date dateByAddingTimeInterval:-GOOD_SLEEP_TIME];
+}
+
+
+- (void)wakePickerDidChange:(id)sender
+{
+	[self updateSleepCardTimes];
+}
+
+- (void)updateSleepCardTimes
+{
+	_goodCard.date = [_sleepPicker.date dateByAddingTimeInterval:GOOD_SLEEP_TIME];
 }
 
 
