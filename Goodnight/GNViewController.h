@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+	GNViewControllerModeSetSleepTime,
+	GNViewControllerModeSetWakeTime
+} GNViewControllerMode;
+
 @interface GNViewController : UIViewController
 
-@property (strong, nonatomic) UILocalNotification *alarm;
-
-- (IBAction)didSayGoodnight:(UIButton *)sender;
+@property (nonatomic) GNViewControllerMode mode;
 
 @end
