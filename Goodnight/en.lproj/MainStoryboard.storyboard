@@ -29,7 +29,7 @@
                                         </connections>
                                     </button>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" id="jLF-xf-rNk">
-                                        <rect key="frame" x="20" y="48" width="280" height="162"/>
+                                        <rect key="frame" x="0.0" y="48" width="320" height="162"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <date key="date" timeIntervalSinceReferenceDate="400645957.66281301">
                                             <!--2013-09-12 02:32:37 +0000-->
