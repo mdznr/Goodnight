@@ -110,14 +110,14 @@
 - (void)sleepMode
 {
 	[_topView setBackgroundColor:[UIColor whiteColor]];
-	[_sleepButton.titleLabel setTextColor:[UIColor blackColor]];
+	[_sleepButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 	[_sleepPicker setDate:[NSDate date] animated:YES]; // Default to 'now'
 	[_sleepScrollview setHidden:YES];
 	[_sleepPicker setHidden:NO];
 	
 	
 	[_bottomView setBackgroundColor:[UIColor blackColor]];
-	[_wakeButton.titleLabel setTextColor:[UIColor whiteColor]];
+	[_wakeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	[_wakePicker setHidden:YES];
 	[_wakeScrollview setHidden:NO];
 }
@@ -125,12 +125,12 @@
 - (void)wakeMode
 {
 	[_topView setBackgroundColor:[UIColor blackColor]];
-	[_sleepButton.titleLabel setTextColor:[UIColor whiteColor]];
+	[_sleepButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	[_sleepPicker setHidden:YES];
 	[_sleepScrollview setHidden:NO];
 	
 	[_bottomView setBackgroundColor:[UIColor whiteColor]];
-	[_wakeButton.titleLabel setTextColor:[UIColor blackColor]];
+	[_wakeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 	[_wakeScrollview setHidden:YES];
 	[_wakePicker setHidden:NO];
 }
