@@ -8,11 +8,11 @@
 
 #import "GNTimeCardView.h"
 
-#define meteringBadColor   [UIColor colorWithRed:239.0f/255.0f green:20.0f/255.0f  blue:17.0f/255.0f alpha:1.0];
-#define meteringPoorColor  [UIColor colorWithRed:250.0f/255.0f green:91.0f/255.0f  blue:15.0f/255.0f alpha:1.0];
-#define meteringFineColor  [UIColor colorWithRed:255.0f/255.0f green:157.0f/255.0f blue:23.0f/255.0f alpha:1.0];
-#define meteringGoodColor  [UIColor colorWithRed:75.0f/255.0f  green:165.0f/255.0f blue:3.0f/255.0f  alpha:1.0];
-#define meteringGreatColor [UIColor colorWithRed:0.0f/255.0f   green:145.0f/255.0f blue:0.0f/255.0f  alpha:1.0];
+#define meteringBadColor   [UIColor colorWithRed:239.0f/255.0f green: 20.0f/255.0f blue: 17.0f/255.0f alpha:1.0f];
+#define meteringPoorColor  [UIColor colorWithRed:250.0f/255.0f green: 91.0f/255.0f blue: 15.0f/255.0f alpha:1.0f];
+#define meteringFineColor  [UIColor colorWithRed:255.0f/255.0f green:157.0f/255.0f blue: 23.0f/255.0f alpha:1.0f];
+#define meteringGoodColor  [UIColor colorWithRed: 75.0f/255.0f green:165.0f/255.0f blue:  3.0f/255.0f alpha:1.0f];
+#define meteringGreatColor [UIColor colorWithRed:  0.0f/255.0f green:145.0f/255.0f blue:  0.0f/255.0f alpha:1.0f];
 
 #define defaultFrame ((CGRect){0,0,128,64})
 
@@ -56,7 +56,7 @@
 {
 	self = [self init];
 	if (self) {
-		_metering = metering;
+		[self setMetering:metering];
 	}
 	return self;
 }
@@ -72,11 +72,12 @@
 	_timeLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 	_timeLabel.textAlignment = NSTextAlignmentCenter;
 	_timeLabel.textColor = [UIColor blackColor];
+	[self addSubview:_timeLabel];
 	
 	_dateFormatter = [[NSDateFormatter alloc] init];
 //	_dateFormatter.dateStyle = NSDateFormatterShortStyle;
 //	_dateFormatter.timeStyle = NSDateFormatterShortStyle;
-	_dateFormatter.dateFormat = @"HH:mm a";
+	_dateFormatter.dateFormat = @"h:mm a";
 }
 
 - (void)setMetering:(GNTimeCardViewMetering)metering
