@@ -27,8 +27,8 @@
 // Bottom
 @property (strong, nonatomic) IBOutlet UIView *bottomView;
 @property (strong, nonatomic) IBOutlet UIButton *wakeButton;
-@property (strong, nonatomic) IBOutlet UIScrollView *wakeScrollview;
 @property (strong, nonatomic) IBOutlet UIDatePicker *wakePicker;
+@property (strong, nonatomic) IBOutlet UIScrollView *wakeScrollview;
 @property (strong, nonatomic) GNTimeCardView *wakeCardBad;
 @property (strong, nonatomic) GNTimeCardView *wakeCardPoor;
 @property (strong, nonatomic) GNTimeCardView *wakeCardFine;
@@ -79,10 +79,13 @@
 					action:@selector(wakePickerDidChange:)
 		  forControlEvents:UIControlEventValueChanged];
 	
-	CGFloat width = _wakeScrollview.frame.size.width;
-	CGFloat height = _wakeScrollview.frame.size.height;
+	CGFloat width, height;
 	
-	// Setup cards
+	// Wake cards
+	width = _wakeScrollview.frame.size.width;
+	height = _wakeScrollview.frame.size.height;
+	
+	// Setup wake cards
 	_wakeCardBad = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringBad];
 	_wakeCardBad.center = (CGPoint){(BAD_PAGE_INDEX+.5)*width, height/2};
 	[_wakeScrollview addSubview:_wakeCardBad];
@@ -103,13 +106,46 @@
 	_wakeCardGreat.center = (CGPoint){(GREAT_PAGE_INDEX+.5)*width, height/2};
 	[_wakeScrollview addSubview:_wakeCardGreat];
 	
-	// Configure scrollview
+	// Configure wake card scrollview
 	_wakeScrollview.pagingEnabled = YES;
-	_wakeScrollview.contentSize = (CGSize){_wakeScrollview.frame.size.width * NUMBER_OF_CARDS, _wakeScrollview.frame.size.height};
-	_wakeScrollview.contentOffset = (CGPoint){_wakeScrollview.frame.size.width * DEFAULT_PAGE_INDEX, 0};
+	_wakeScrollview.contentSize = (CGSize){width * NUMBER_OF_CARDS, height};
+	_wakeScrollview.contentOffset = (CGPoint){width * DEFAULT_PAGE_INDEX, 0};
 	
-	// Update cards
+	// Update wake card times
 	[self updateWakeCardTimes];
+	
+	
+	// Sleep Cards
+	width = _sleepScrollview.frame.size.width;
+	height = _sleepScrollview.frame.size.height;
+	
+	// Setup sleep cards
+	_sleepCardBad = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringBad];
+	_sleepCardBad.center = (CGPoint){(BAD_PAGE_INDEX+.5)*width, height/2};
+	[_sleepScrollview addSubview:_sleepCardBad];
+	
+	_sleepCardPoor = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringPoor];
+	_sleepCardPoor.center = (CGPoint){(POOR_PAGE_INDEX+.5)*width, height/2};
+	[_sleepScrollview addSubview:_sleepCardPoor];
+	
+	_sleepCardFine = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringFine];
+	_sleepCardFine.center = (CGPoint){(FINE_PAGE_INDEX+.5)*width, height/2};
+	[_sleepScrollview addSubview:_sleepCardFine];
+	
+	_sleepCardGood = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringGood];
+	_sleepCardGood.center = (CGPoint){(GOOD_PAGE_INDEX+.5)*width, height/2};
+	[_sleepScrollview addSubview:_sleepCardGood];
+	
+	_sleepCardGreat = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringGreat];
+	_sleepCardGreat.center = (CGPoint){(GREAT_PAGE_INDEX+.5)*width, height/2};
+	[_sleepScrollview addSubview:_sleepCardGreat];
+	
+	// Configure sleep card scrollview
+	_sleepScrollview.pagingEnabled = YES;
+	_sleepScrollview.contentSize = (CGSize){width * NUMBER_OF_CARDS, height};
+	_sleepScrollview.contentOffset = (CGPoint){width * DEFAULT_PAGE_INDEX, 0};
+	
+	// Update sleep card times
 	[self updateSleepCardTimes];
 }
 
