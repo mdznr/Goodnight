@@ -81,8 +81,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <constraint firstAttribute="centerX" secondItem="GF7-S0-vaO" secondAttribute="centerX" id="KeG-Bb-9UO"/>
                                     <constraint firstItem="Sz7-dn-Cvg" firstAttribute="top" secondItem="GF7-S0-vaO" secondAttribute="bottom" constant="8" symbolic="YES" id="P16-DQ-Nqm"/>
                                     <constraint firstItem="Sz7-dn-Cvg" firstAttribute="leading" secondItem="jLF-xf-rNk" secondAttribute="leading" id="PBG-Bl-tag"/>
-                                    <constraint firstItem="GF7-S0-vaO" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Nm6-tP-lsW" secondAttribute="top" constant="20" symbolic="YES" id="V80-i3-xaT"/>
-                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="jLF-xf-rNk" secondAttribute="bottom" constant="10" id="a2L-l1-Ivj"/>
+                                    <constraint firstItem="GF7-S0-vaO" firstAttribute="top" secondItem="Nm6-tP-lsW" secondAttribute="top" constant="20" symbolic="YES" id="V80-i3-xaT"/>
+                                    <constraint firstAttribute="bottom" secondItem="jLF-xf-rNk" secondAttribute="bottom" constant="10" id="a2L-l1-Ivj"/>
                                     <constraint firstItem="jLF-xf-rNk" firstAttribute="leading" secondItem="Nm6-tP-lsW" secondAttribute="leading" id="bld-E7-E3M"/>
                                     <constraint firstItem="jLF-xf-rNk" firstAttribute="top" secondItem="GF7-S0-vaO" secondAttribute="bottom" constant="8" id="zoE-PZ-Pdh"/>
                                 </constraints>
@@ -147,14 +147,14 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <constraints>
                                     <constraint firstItem="QHl-Ec-FAk" firstAttribute="bottom" secondItem="7ML-md-soV" secondAttribute="bottom" id="75k-vZ-6Wx"/>
                                     <constraint firstItem="QHl-Ec-FAk" firstAttribute="leading" secondItem="G2H-oG-hYt" secondAttribute="leading" id="8BD-2o-eW7"/>
-                                    <constraint firstItem="YUa-Ym-6pw" firstAttribute="top" relation="greaterThanOrEqual" secondItem="G2H-oG-hYt" secondAttribute="top" constant="20" symbolic="YES" id="BAM-31-nrb"/>
+                                    <constraint firstItem="YUa-Ym-6pw" firstAttribute="top" secondItem="G2H-oG-hYt" secondAttribute="top" constant="20" symbolic="YES" id="BAM-31-nrb"/>
                                     <constraint firstAttribute="trailing" secondItem="QHl-Ec-FAk" secondAttribute="trailing" id="ICl-nR-g4o"/>
                                     <constraint firstItem="7ML-md-soV" firstAttribute="leading" secondItem="QHl-Ec-FAk" secondAttribute="leading" id="O4l-Qk-h27"/>
                                     <constraint firstAttribute="centerX" secondItem="YUa-Ym-6pw" secondAttribute="centerX" id="aY0-vj-eAk"/>
-                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="7ML-md-soV" secondAttribute="bottom" constant="10" id="cxz-AV-aTf"/>
+                                    <constraint firstAttribute="bottom" secondItem="7ML-md-soV" secondAttribute="bottom" constant="10" id="cxz-AV-aTf"/>
                                     <constraint firstAttribute="bottom" secondItem="QHl-Ec-FAk" secondAttribute="bottom" constant="10" id="ic9-Q6-WJ9"/>
                                     <constraint firstItem="QHl-Ec-FAk" firstAttribute="top" secondItem="7ML-md-soV" secondAttribute="top" id="jec-Y2-4Kp"/>
-                                    <constraint firstItem="QHl-Ec-FAk" firstAttribute="top" relation="greaterThanOrEqual" secondItem="YUa-Ym-6pw" secondAttribute="bottom" constant="10" id="wGE-dd-2Ly"/>
+                                    <constraint firstItem="QHl-Ec-FAk" firstAttribute="top" secondItem="YUa-Ym-6pw" secondAttribute="bottom" constant="10" id="wGE-dd-2Ly"/>
                                     <constraint firstItem="7ML-md-soV" firstAttribute="trailing" secondItem="QHl-Ec-FAk" secondAttribute="trailing" id="wLF-NB-p2o"/>
                                 </constraints>
                             </view>
