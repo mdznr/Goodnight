@@ -38,11 +38,22 @@
 @end
 
 #define NUMBER_OF_CARDS 5
-#define DEFAULT_PAGE_NUMBER 4
+#define DEFAULT_PAGE_INDEX 3
+
+#define BAD_PAGE_INDEX   0
+#define POOR_PAGE_INDEX  1
+#define FINE_PAGE_INDEX  2
+#define GOOD_PAGE_INDEX  3
+#define GREAT_PAGE_INDEX 4
+
 
 #define FALL_ASLEEP_TIME (14*60)
 #define SLEEP_CYCLE_TIME (90*60)
+#define BAD_SLEEP_TIME (FALL_ASLEEP_TIME+(2*SLEEP_CYCLE_TIME))
+#define POOR_SLEEP_TIME (FALL_ASLEEP_TIME+(3*SLEEP_CYCLE_TIME))
+#define FINE_SLEEP_TIME (FALL_ASLEEP_TIME+(4*SLEEP_CYCLE_TIME))
 #define GOOD_SLEEP_TIME (FALL_ASLEEP_TIME+(5*SLEEP_CYCLE_TIME))
+#define GREAT_SLEEP_TIME (FALL_ASLEEP_TIME+(6*SLEEP_CYCLE_TIME))
 
 @implementation GNViewController
 
@@ -68,15 +79,34 @@
 					action:@selector(wakePickerDidChange:)
 		  forControlEvents:UIControlEventValueChanged];
 	
+	CGFloat width = _wakeScrollview.frame.size.width;
+	CGFloat height = _wakeScrollview.frame.size.height;
+	
 	// Setup cards
+	_wakeCardBad = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringBad];
+	_wakeCardBad.center = (CGPoint){(BAD_PAGE_INDEX+.5)*width, height/2};
+	[_wakeScrollview addSubview:_wakeCardBad];
+	
+	_wakeCardPoor = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringPoor];
+	_wakeCardPoor.center = (CGPoint){(POOR_PAGE_INDEX+.5)*width, height/2};
+	[_wakeScrollview addSubview:_wakeCardPoor];
+	
+	_wakeCardFine = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringFine];
+	_wakeCardFine.center = (CGPoint){(FINE_PAGE_INDEX+.5)*width, height/2};
+	[_wakeScrollview addSubview:_wakeCardFine];
+	
 	_wakeCardGood = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringGood];
-	_wakeCardGood.center = (CGPoint){_wakeScrollview.frame.size.width/2, _wakeScrollview.frame.size.height/2};
+	_wakeCardGood.center = (CGPoint){(GOOD_PAGE_INDEX+.5)*width, height/2};
 	[_wakeScrollview addSubview:_wakeCardGood];
+	
+	_wakeCardGreat = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringGreat];
+	_wakeCardGreat.center = (CGPoint){(GREAT_PAGE_INDEX+.5)*width, height/2};
+	[_wakeScrollview addSubview:_wakeCardGreat];
 	
 	// Configure scrollview
 	_wakeScrollview.pagingEnabled = YES;
 	_wakeScrollview.contentSize = (CGSize){_wakeScrollview.frame.size.width * NUMBER_OF_CARDS, _wakeScrollview.frame.size.height};
-	_wakeScrollview.contentOffset = (CGPoint){_wakeScrollview.frame.size.width * DEFAULT_PAGE_NUMBER, 0};
+	_wakeScrollview.contentOffset = (CGPoint){_wakeScrollview.frame.size.width * DEFAULT_PAGE_INDEX, 0};
 	
 	// Update cards
 	[self updateWakeCardTimes];
@@ -128,7 +158,6 @@
 	[_sleepScrollview setHidden:YES];
 	[_sleepPicker setHidden:NO];
 	
-	
 	[_bottomView setBackgroundColor:[UIColor blackColor]];
 	[_wakeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	[_wakePicker setHidden:YES];
@@ -158,7 +187,12 @@
 
 - (void)updateWakeCardTimes
 {
-	_wakeCardGood.date = [_sleepPicker.date dateByAddingTimeInterval:GOOD_SLEEP_TIME];
+	NSDate *date = _sleepPicker.date;
+	_wakeCardBad.date   = [date dateByAddingTimeInterval:BAD_SLEEP_TIME];
+	_wakeCardPoor.date  = [date dateByAddingTimeInterval:POOR_SLEEP_TIME];
+	_wakeCardFine.date  = [date dateByAddingTimeInterval:FINE_SLEEP_TIME];
+	_wakeCardGood.date  = [date dateByAddingTimeInterval:GOOD_SLEEP_TIME];
+	_wakeCardGreat.date = [date dateByAddingTimeInterval:GREAT_SLEEP_TIME];
 }
 
 
@@ -169,7 +203,12 @@
 
 - (void)updateSleepCardTimes
 {
-	_sleepCardGood.date = [_sleepPicker.date dateByAddingTimeInterval:-GOOD_SLEEP_TIME];
+	NSDate *date = _sleepPicker.date;
+	_sleepCardBad.date   = [date dateByAddingTimeInterval:-BAD_SLEEP_TIME];
+	_sleepCardPoor.date  = [date dateByAddingTimeInterval:-POOR_SLEEP_TIME];
+	_sleepCardFine.date  = [date dateByAddingTimeInterval:-FINE_SLEEP_TIME];
+	_sleepCardGood.date  = [date dateByAddingTimeInterval:-GOOD_SLEEP_TIME];
+	_sleepCardGreat.date = [date dateByAddingTimeInterval:-GREAT_SLEEP_TIME];
 }
 
 
