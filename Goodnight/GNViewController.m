@@ -16,6 +16,7 @@
 
 // Top
 @property (strong, nonatomic) IBOutlet UIView *topView;
+@property (strong, nonatomic) UIView *topViewMask;
 @property (strong, nonatomic) IBOutlet UIButton *sleepButton;
 @property (strong, nonatomic) IBOutlet UIDatePicker *sleepPicker;
 @property (strong, nonatomic) IBOutlet MTZScrollingCardsView *sleepScrollview;
@@ -27,6 +28,7 @@
 
 // Bottom
 @property (strong, nonatomic) IBOutlet UIView *bottomView;
+@property (strong, nonatomic) UIView *bottomViewMask;
 @property (strong, nonatomic) IBOutlet UIButton *wakeButton;
 @property (strong, nonatomic) IBOutlet UIDatePicker *wakePicker;
 @property (strong, nonatomic) IBOutlet MTZScrollingCardsView *wakeScrollview;
@@ -77,6 +79,49 @@
 	
 #warning store last used mode in preferences and use below
 	[self setMode:GNViewControllerModeSetSleepTime];
+	
+	// What events should have the pressed down state and which ones should not
+	UIControlEvents down = UIControlEventTouchDown | UIControlEventTouchDragInside;
+	UIControlEvents up = UIControlEventTouchCancel | UIControlEventTouchDragEnter | UIControlEventTouchDragOutside | UIControlEventTouchUpInside | UIControlEventTouchUpOutside;
+	
+	// Add targets to buttons for events
+	[_sleepButton addTarget:self
+					 action:@selector(stopTouchDownSleepButton:)
+		   forControlEvents:up];
+	[_sleepButton addTarget:self
+					 action:@selector(touchDownSleepButton:)
+		   forControlEvents:down];
+	[_sleepButton addTarget:self
+					 action:@selector(tappedSleepButton:)
+		   forControlEvents:UIControlEventTouchUpInside];
+	
+	[_wakeButton addTarget:self
+					action:@selector(stopTouchDownWakeButton:)
+		  forControlEvents:up];
+	[_wakeButton addTarget:self
+					action:@selector(touchDownWakeButton:)
+		  forControlEvents:down];
+	[_wakeButton addTarget:self
+					action:@selector(tappedWakeButton:)
+		  forControlEvents:UIControlEventTouchUpInside];
+	
+	
+	// Set up masks
+	_topViewMask = [[UIView alloc] initWithFrame:_topView.bounds];
+	_topViewMask.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+	_topViewMask.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.1f];
+	_topViewMask.opaque = NO;
+	_topViewMask.hidden = YES;
+	_topViewMask.userInteractionEnabled = NO;
+	[_topView insertSubview:_topViewMask atIndex:0];
+	
+	_bottomViewMask = [[UIView alloc] initWithFrame:_bottomView.bounds];
+	_bottomViewMask.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+	_bottomViewMask.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.1f];
+	_bottomViewMask.opaque = NO;
+	_bottomViewMask.hidden = YES;
+	_bottomViewMask.userInteractionEnabled = NO;
+	[_bottomView insertSubview:_bottomViewMask atIndex:0];
 	
 	// Picker actions
 	[_sleepPicker addTarget:self
@@ -137,7 +182,7 @@
 }
 
 
-#pragma IBActions
+#pragma mark IBActions
 
 #warning able to tap two buttons near simultaneously
 - (IBAction)tappedSleepButton:(id)sender
@@ -154,6 +199,26 @@
 	
 	// Have to do this since UIDatePicker doesn't perform action for UIControlEventValueChanged when using setDate:Animated:
 	[self updateSleepCardTimes];
+}
+
+- (IBAction)touchDownSleepButton:(id)sender
+{
+	_topViewMask.hidden = NO;
+}
+
+- (IBAction)stopTouchDownSleepButton:(id)sender
+{
+	_topViewMask.hidden = YES;
+}
+
+- (IBAction)touchDownWakeButton:(id)sender
+{
+	_bottomViewMask.hidden = NO;
+}
+
+- (IBAction)stopTouchDownWakeButton:(id)sender
+{
+	_bottomViewMask.hidden = YES;
 }
 
 
@@ -187,6 +252,7 @@
 	[_wakeScrollview setHidden:NO];
 }
 
+#warning the time for the picker should be of the currently selected wake card
 - (void)wakeMode
 {
 	[_topView setBackgroundColor:[UIColor blackColor]];
