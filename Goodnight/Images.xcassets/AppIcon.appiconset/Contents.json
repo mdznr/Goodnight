@@ -1,19 +1,22 @@
 {
   "images" : [
     {
+      "size" : "29x29",
       "idiom" : "iphone",
-      "scale" : "2x",
-      "size" : "60x60"
+      "filename" : "App Icon 29@2x.png",
+      "scale" : "2x"
     },
     {
+      "size" : "40x40",
       "idiom" : "iphone",
-      "scale" : "2x",
-      "size" : "40x40"
+      "filename" : "App Icon 40@2x.png",
+      "scale" : "2x"
     },
     {
+      "size" : "60x60",
       "idiom" : "iphone",
-      "scale" : "2x",
-      "size" : "29x29"
+      "filename" : "App Icon 60@2x.png",
+      "scale" : "2x"
     }
   ],
   "info" : {

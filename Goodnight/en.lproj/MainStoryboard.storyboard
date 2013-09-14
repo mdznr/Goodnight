@@ -110,7 +110,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <action selector="tappedWakeButton:" destination="2" eventType="touchUpInside" id="1B9-OB-cL6"/>
                                         </connections>
                                     </button>
-                                    <datePicker contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="7ML-md-soV">
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="7ML-md-soV">
                                         <rect key="frame" x="0.0" y="58" width="320" height="162"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <date key="date" timeIntervalSinceReferenceDate="400645957.66281301">
@@ -138,7 +138,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
 </data>
                                         </timeZone>
                                     </datePicker>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" directionalLockEnabled="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QHl-Ec-FAk" customClass="MTZScrollingCardsView">
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QHl-Ec-FAk" customClass="MTZScrollingCardsView">
                                         <rect key="frame" x="0.0" y="58" width="320" height="162"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     </scrollView>
@@ -154,7 +154,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <constraint firstAttribute="bottom" secondItem="7ML-md-soV" secondAttribute="bottom" constant="10" id="cxz-AV-aTf"/>
                                     <constraint firstAttribute="bottom" secondItem="QHl-Ec-FAk" secondAttribute="bottom" constant="10" id="ic9-Q6-WJ9"/>
                                     <constraint firstItem="QHl-Ec-FAk" firstAttribute="top" secondItem="7ML-md-soV" secondAttribute="top" id="jec-Y2-4Kp"/>
-                                    <constraint firstItem="QHl-Ec-FAk" firstAttribute="top" secondItem="YUa-Ym-6pw" secondAttribute="bottom" constant="10" id="wGE-dd-2Ly"/>
+                                    <constraint firstItem="QHl-Ec-FAk" firstAttribute="top" secondItem="YUa-Ym-6pw" secondAttribute="bottom" constant="8" id="wGE-dd-2Ly"/>
                                     <constraint firstItem="QHl-Ec-FAk" firstAttribute="leading" secondItem="G2H-oG-hYt" secondAttribute="leading" id="xbe-Yi-397"/>
                                 </constraints>
                             </view>
