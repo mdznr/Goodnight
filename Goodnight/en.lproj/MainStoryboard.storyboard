@@ -68,20 +68,20 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
 </data>
                                         </timeZone>
                                     </datePicker>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sz7-dn-Cvg">
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sz7-dn-Cvg" customClass="MTZScrollingCardsView">
                                         <rect key="frame" x="0.0" y="58" width="320" height="162"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     </scrollView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="Sz7-dn-Cvg" firstAttribute="trailing" secondItem="jLF-xf-rNk" secondAttribute="trailing" id="3mo-ea-6GV"/>
                                     <constraint firstAttribute="trailing" secondItem="jLF-xf-rNk" secondAttribute="trailing" id="5Yw-KX-keS"/>
                                     <constraint firstItem="Sz7-dn-Cvg" firstAttribute="bottom" secondItem="jLF-xf-rNk" secondAttribute="bottom" id="Ifw-E5-cPH"/>
                                     <constraint firstAttribute="centerX" secondItem="GF7-S0-vaO" secondAttribute="centerX" id="KeG-Bb-9UO"/>
                                     <constraint firstItem="Sz7-dn-Cvg" firstAttribute="top" secondItem="GF7-S0-vaO" secondAttribute="bottom" constant="8" symbolic="YES" id="P16-DQ-Nqm"/>
-                                    <constraint firstItem="Sz7-dn-Cvg" firstAttribute="leading" secondItem="jLF-xf-rNk" secondAttribute="leading" id="PBG-Bl-tag"/>
+                                    <constraint firstItem="Sz7-dn-Cvg" firstAttribute="centerX" secondItem="Nm6-tP-lsW" secondAttribute="centerX" id="Sda-xW-Fki"/>
                                     <constraint firstItem="GF7-S0-vaO" firstAttribute="top" secondItem="Nm6-tP-lsW" secondAttribute="top" constant="20" symbolic="YES" id="V80-i3-xaT"/>
+                                    <constraint firstItem="Sz7-dn-Cvg" firstAttribute="leading" secondItem="Nm6-tP-lsW" secondAttribute="leading" id="W1q-3V-w3k"/>
                                     <constraint firstAttribute="bottom" secondItem="jLF-xf-rNk" secondAttribute="bottom" constant="10" id="a2L-l1-Ivj"/>
                                     <constraint firstItem="jLF-xf-rNk" firstAttribute="leading" secondItem="Nm6-tP-lsW" secondAttribute="leading" id="bld-E7-E3M"/>
                                     <constraint firstItem="jLF-xf-rNk" firstAttribute="top" secondItem="GF7-S0-vaO" secondAttribute="bottom" constant="8" id="zoE-PZ-Pdh"/>
@@ -138,7 +138,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
 </data>
                                         </timeZone>
                                     </datePicker>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QHl-Ec-FAk">
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" directionalLockEnabled="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QHl-Ec-FAk" customClass="MTZScrollingCardsView">
                                         <rect key="frame" x="0.0" y="58" width="320" height="162"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     </scrollView>
@@ -146,16 +146,16 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="QHl-Ec-FAk" firstAttribute="bottom" secondItem="7ML-md-soV" secondAttribute="bottom" id="75k-vZ-6Wx"/>
-                                    <constraint firstItem="QHl-Ec-FAk" firstAttribute="leading" secondItem="G2H-oG-hYt" secondAttribute="leading" id="8BD-2o-eW7"/>
                                     <constraint firstItem="YUa-Ym-6pw" firstAttribute="top" secondItem="G2H-oG-hYt" secondAttribute="top" constant="20" symbolic="YES" id="BAM-31-nrb"/>
-                                    <constraint firstAttribute="trailing" secondItem="QHl-Ec-FAk" secondAttribute="trailing" id="ICl-nR-g4o"/>
-                                    <constraint firstItem="7ML-md-soV" firstAttribute="leading" secondItem="QHl-Ec-FAk" secondAttribute="leading" id="O4l-Qk-h27"/>
+                                    <constraint firstItem="QHl-Ec-FAk" firstAttribute="centerX" secondItem="7ML-md-soV" secondAttribute="centerX" id="IP8-0B-B4V"/>
+                                    <constraint firstItem="7ML-md-soV" firstAttribute="leading" secondItem="G2H-oG-hYt" secondAttribute="leading" id="TNi-qx-P1q"/>
                                     <constraint firstAttribute="centerX" secondItem="YUa-Ym-6pw" secondAttribute="centerX" id="aY0-vj-eAk"/>
+                                    <constraint firstItem="QHl-Ec-FAk" firstAttribute="centerX" secondItem="G2H-oG-hYt" secondAttribute="centerX" id="ayv-WS-gv4"/>
                                     <constraint firstAttribute="bottom" secondItem="7ML-md-soV" secondAttribute="bottom" constant="10" id="cxz-AV-aTf"/>
                                     <constraint firstAttribute="bottom" secondItem="QHl-Ec-FAk" secondAttribute="bottom" constant="10" id="ic9-Q6-WJ9"/>
                                     <constraint firstItem="QHl-Ec-FAk" firstAttribute="top" secondItem="7ML-md-soV" secondAttribute="top" id="jec-Y2-4Kp"/>
                                     <constraint firstItem="QHl-Ec-FAk" firstAttribute="top" secondItem="YUa-Ym-6pw" secondAttribute="bottom" constant="10" id="wGE-dd-2Ly"/>
-                                    <constraint firstItem="7ML-md-soV" firstAttribute="trailing" secondItem="QHl-Ec-FAk" secondAttribute="trailing" id="wLF-NB-p2o"/>
+                                    <constraint firstItem="QHl-Ec-FAk" firstAttribute="leading" secondItem="G2H-oG-hYt" secondAttribute="leading" id="xbe-Yi-397"/>
                                 </constraints>
                             </view>
                         </subviews>
