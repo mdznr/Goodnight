@@ -16,6 +16,9 @@
 
 #pragma mark Private Property
 
+@property (strong, nonatomic) IBOutlet UIImageView *sky;
+@property (strong, nonatomic) IBOutlet UIImageView *stars;
+
 // Top
 @property (strong, nonatomic) IBOutlet MTZSegmentView *topView;
 @property (strong, nonatomic) IBOutlet UIButton *sleepButton;
@@ -75,6 +78,15 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+	
+	// Setup background motion effects
+	UIInterpolatingMotionEffect *horizontal = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
+	horizontal.minimumRelativeValue = @(10);
+	horizontal.maximumRelativeValue = @(-10);
+	UIInterpolatingMotionEffect *vertical = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
+	vertical.minimumRelativeValue = @(10);
+	vertical.maximumRelativeValue = @(-10);
+	_stars.motionEffects = @[horizontal, vertical];
 	
 	_topView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	_bottomView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;

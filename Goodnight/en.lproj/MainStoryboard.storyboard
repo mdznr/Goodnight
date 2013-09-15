@@ -17,7 +17,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nm6-tP-lsW" userLabel="Top View" customClass="MTZSegmentView">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sky" translatesAutoresizingMaskIntoConstraints="NO" id="cFv-YR-Paa" userLabel="Sky">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Stars" translatesAutoresizingMaskIntoConstraints="NO" id="npO-0j-4k0" userLabel="Stars">
+                                <rect key="frame" x="29" y="-75" width="262" height="242"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nm6-tP-lsW" userLabel="Top" customClass="MTZSegmentView">
                                 <rect key="frame" x="0.0" y="20" width="320" height="230"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -84,7 +92,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <constraint firstItem="jLF-xf-rNk" firstAttribute="top" secondItem="GF7-S0-vaO" secondAttribute="bottom" constant="8" id="zoE-PZ-Pdh"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G2H-oG-hYt" userLabel="Bottom View" customClass="MTZSegmentView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G2H-oG-hYt" userLabel="Bottom" customClass="MTZSegmentView">
                                 <rect key="frame" x="0.0" y="250" width="320" height="230"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
@@ -155,12 +163,16 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="cFv-YR-Paa" firstAttribute="top" secondItem="3" secondAttribute="top" id="4R7-Sn-LUI"/>
                             <constraint firstItem="Nm6-tP-lsW" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="7W0-hg-yIT"/>
                             <constraint firstAttribute="trailing" secondItem="Nm6-tP-lsW" secondAttribute="trailing" id="Cag-7N-ITP"/>
                             <constraint firstAttribute="bottom" secondItem="G2H-oG-hYt" secondAttribute="bottom" id="LxR-aA-ohS"/>
+                            <constraint firstItem="Clt-wD-PdO" firstAttribute="top" secondItem="cFv-YR-Paa" secondAttribute="bottom" id="Q8k-2N-kOB"/>
                             <constraint firstItem="G2H-oG-hYt" firstAttribute="top" secondItem="Nm6-tP-lsW" secondAttribute="bottom" id="UNU-pM-mG1"/>
                             <constraint firstItem="G2H-oG-hYt" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="atV-iV-eXU"/>
                             <constraint firstItem="Nm6-tP-lsW" firstAttribute="top" secondItem="V2h-G6-aZZ" secondAttribute="bottom" id="d5G-Qj-2fF"/>
+                            <constraint firstAttribute="trailing" secondItem="cFv-YR-Paa" secondAttribute="trailing" id="def-sh-Sgk"/>
+                            <constraint firstItem="cFv-YR-Paa" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="lAh-Gm-nXC"/>
                             <constraint firstItem="Clt-wD-PdO" firstAttribute="top" secondItem="G2H-oG-hYt" secondAttribute="bottom" id="lWD-Qc-nSL"/>
                             <constraint firstItem="Nm6-tP-lsW" firstAttribute="height" secondItem="G2H-oG-hYt" secondAttribute="height" id="pp5-cw-1yE"/>
                             <constraint firstAttribute="trailing" secondItem="G2H-oG-hYt" secondAttribute="trailing" id="wzC-BP-hdY"/>
@@ -173,9 +185,11 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="bottomView" destination="G2H-oG-hYt" id="qBs-la-LL2"/>
+                        <outlet property="sky" destination="cFv-YR-Paa" id="wJc-ZQ-tLE"/>
                         <outlet property="sleepButton" destination="GF7-S0-vaO" id="GKL-OI-Ysy"/>
                         <outlet property="sleepPicker" destination="jLF-xf-rNk" id="JJm-11-DaD"/>
                         <outlet property="sleepScrollview" destination="Sz7-dn-Cvg" id="Cbg-v4-Wxj"/>
+                        <outlet property="stars" destination="npO-0j-4k0" id="ttp-2P-zPI"/>
                         <outlet property="topView" destination="Nm6-tP-lsW" id="Scc-An-JwQ"/>
                         <outlet property="wakeButton" destination="YUa-Ym-6pw" id="Sqv-WM-Cj5"/>
                         <outlet property="wakePicker" destination="7ML-md-soV" id="In3-nr-hqc"/>
@@ -186,6 +200,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="Sky" width="320" height="568"/>
+        <image name="Stars" width="262" height="242"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

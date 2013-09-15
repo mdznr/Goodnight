@@ -84,8 +84,10 @@
 	// Mask Should always be on top
 	
 	_tintColor = [UIColor whiteColor];
-	_radius = 6.0f;
-	_borderWidth = 1.0f;
+//	_radius = 6.0f;
+	_radius = 1.0f;
+//	_borderWidth = 1.0f;
+	_borderWidth = 0.0f;
 	
 	[self addTarget:self
 			 action:@selector(didTouchUpInside:)
