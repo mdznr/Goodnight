@@ -191,22 +191,22 @@
 #warning all of these should be handled by MTZSegmentView
 - (IBAction)touchDownSleepButton:(id)sender
 {
-	[_topView setPendingSelection:YES];
+	[_topView setHighlighted:YES];
 }
 
 - (IBAction)stopTouchDownSleepButton:(id)sender
 {
-	[_topView setPendingSelection:NO];
+	[_topView setHighlighted:NO];
 }
 
 - (IBAction)touchDownWakeButton:(id)sender
 {
-	[_bottomView setPendingSelection:YES];
+	[_bottomView setHighlighted:YES];
 }
 
 - (IBAction)stopTouchDownWakeButton:(id)sender
 {
-	[_bottomView setPendingSelection:NO];
+	[_bottomView setHighlighted:NO];
 }
 
 
@@ -228,13 +228,13 @@
 #warning animate to mode like UISegmentedControl
 - (void)sleepMode
 {
-	[_topView setState:MTZSegmentStateSelected];
+	[_topView setSelected:YES];
 	[_sleepButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 	[_sleepPicker setDate:[NSDate date] animated:YES]; // Default to 'now'
 	[_sleepScrollview setHidden:YES];
 	[_sleepPicker setHidden:NO];
 	
-	[_bottomView setState:MTZSegmentStateUnselected];
+	[_bottomView setSelected:NO];
 	[_wakeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	[_wakePicker setHidden:YES];
 	[_wakeScrollview setHidden:NO];
@@ -243,12 +243,12 @@
 #warning the time for the picker should be of the currently selected wake card
 - (void)wakeMode
 {
-	[_topView setState:MTZSegmentStateUnselected];
+	[_topView setSelected:NO];
 	[_sleepButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	[_sleepPicker setHidden:YES];
 	[_sleepScrollview setHidden:NO];
 	
-	[_bottomView setState:MTZSegmentStateSelected];
+	[_bottomView setSelected:YES];
 	[_wakeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 	[_wakeScrollview setHidden:YES];
 	[_wakePicker setHidden:NO];

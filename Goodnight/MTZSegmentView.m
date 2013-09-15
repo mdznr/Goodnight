@@ -11,6 +11,7 @@
 @interface MTZSegmentView ()
 
 @property (strong, nonatomic) UIImageView *backgroundView;
+@property (strong, nonatomic) UIImageView *borderView;
 @property (strong, nonatomic) UIView *mask;
 
 @property (strong, nonatomic) UIColor *tintColor;
@@ -58,15 +59,18 @@
 	self.backgroundColor = [UIColor clearColor];
 	
 	_position = MTZSegmentPositionMiddle;
-	_state = MTZSegmentStateUnselected;
 	
-	// This should be moved outside this class to be used mroe often
+#warning This should be moved outside this class to be used mroe often
 	UIViewAutoresizing UIViewAutoresizingSize = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;;
 	
 	_backgroundView = [[UIImageView alloc] initWithFrame:self.bounds];
 	_backgroundView.autoresizingMask = UIViewAutoresizingSize;
 	[self insertSubview:_backgroundView atIndex:0];
 	// Background view should always be on bottom
+	
+	_borderView = [[UIImageView alloc] initWithFrame:self.bounds];
+	_borderView.autoresizingMask = UIViewAutoresizingSize;
+	[self insertSubview:_backgroundView atIndex:0];
 	
 	_mask = [[UIView alloc] initWithFrame:self.bounds];
 	_mask.autoresizingMask = UIViewAutoresizingSize;
@@ -124,22 +128,11 @@
 	}
 }
 
-- (void)setState:(MTZSegmentState)state
+- (void)setSelected:(BOOL)selected
 {
-	_state = state;
-	switch (state) {
-		case MTZSegmentStateUnselected: {
-			[UIView animateWithDuration:ANIMATION_DURATION
-								  delay:0.0f
-				 usingSpringWithDamping:1.0f
-				  initialSpringVelocity:1.0f
-								options:UIViewAnimationOptionBeginFromCurrentState
-							 animations:^{
-								 _backgroundView.alpha = 0.0f;
-							 }
-							 completion:^(BOOL finished) {}];
-		} break;
-		case MTZSegmentStateSelected: {
+	[super setSelected:selected];
+	switch (selected) {
+		case YES: {
 			[UIView animateWithDuration:ANIMATION_DURATION
 								  delay:0.0f
 				 usingSpringWithDamping:1.0f
@@ -150,13 +143,24 @@
 							 }
 							 completion:^(BOOL finished) {}];
 		} break;
+		case NO: {
+			[UIView animateWithDuration:ANIMATION_DURATION
+								  delay:0.0f
+				 usingSpringWithDamping:1.0f
+				  initialSpringVelocity:1.0f
+								options:UIViewAnimationOptionBeginFromCurrentState
+							 animations:^{
+								 _backgroundView.alpha = 0.0f;
+							 }
+							 completion:^(BOOL finished) {}];
+		} break;
 	}
 }
 
-- (void)setPendingSelection:(BOOL)pendingSelection
+- (void)setHighlighted:(BOOL)highlighted
 {
-	_pendingSelection = pendingSelection;
-	switch (pendingSelection) {
+	[super setHighlighted:highlighted];
+	switch (highlighted) {
 		case YES: {
 			[UIView animateWithDuration:ANIMATION_DURATION
 								  delay:0.0f
@@ -185,24 +189,31 @@
 
 #pragma mark Track Touches
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+- (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
+	return [super beginTrackingWithTouch:touch withEvent:event];
 	
+	CGPoint point = [touch locationInView:self];
+	if ( [self pointInside:point withEvent:event] ) {
+		return YES;
+	} else {
+		return NO;
+	}
 }
 
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+- (BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
-	
+	return [super continueTrackingWithTouch:touch withEvent:event];
 }
 
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+- (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
-	
+	[super endTrackingWithTouch:touch withEvent:event];
 }
 
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+- (void)cancelTrackingWithEvent:(UIEvent *)event
 {
-	
+	[super cancelTrackingWithEvent:event];
 }
 
 @end

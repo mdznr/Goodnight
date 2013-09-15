@@ -110,9 +110,8 @@
 - (void)scrollToPageIndex:(int)index animated:(BOOL)animated
 {
 	_currentPage = index;
-    CGRect pageFrame = CGRectMake(self.frame.size.width * index, 0,
-								  self.frame.size.width, 0);
-	
+    CGRect pageFrame = CGRectMake(self.frame.size.width * index, 1,
+								  self.frame.size.width, 1);
     [self scrollRectToVisible:pageFrame animated:animated];
 }
 
