@@ -65,7 +65,8 @@
 {
 	self.backgroundColor = [UIColor whiteColor];
 //	self.opaque = NO;
-#warning Need to do rounding of corners
+	
+	self.layer.cornerRadius = 4.0f;
 	
 	_timeLabel = [[UILabel alloc] initWithFrame:self.frame];
 	_timeLabel.center = self.center;
