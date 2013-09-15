@@ -70,7 +70,7 @@
 	
 	_borderView = [[UIImageView alloc] initWithFrame:self.bounds];
 	_borderView.autoresizingMask = UIViewAutoresizingSize;
-	[self insertSubview:_backgroundView atIndex:0];
+	[self insertSubview:_borderView atIndex:0];
 	// Border view should always be on bottom
 	
 #warning the corners for mask should be rounded properly
