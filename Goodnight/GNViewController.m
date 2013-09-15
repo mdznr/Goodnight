@@ -23,7 +23,7 @@
 @property (strong, nonatomic) IBOutlet MTZSegmentView *topView;
 @property (strong, nonatomic) IBOutlet UIButton *sleepButton;
 @property (strong, nonatomic) IBOutlet UIDatePicker *sleepPicker;
-@property (strong, nonatomic) IBOutlet MTZScrollingCardsView *sleepScrollview;
+@property (strong, nonatomic) IBOutlet MTZScrollingCardsView *sleepCardsView;
 @property (strong, nonatomic) GNTimeCardView *sleepCardBad;
 @property (strong, nonatomic) GNTimeCardView *sleepCardPoor;
 @property (strong, nonatomic) GNTimeCardView *sleepCardFine;
@@ -34,7 +34,7 @@
 @property (strong, nonatomic) IBOutlet MTZSegmentView *bottomView;
 @property (strong, nonatomic) IBOutlet UIButton *wakeButton;
 @property (strong, nonatomic) IBOutlet UIDatePicker *wakePicker;
-@property (strong, nonatomic) IBOutlet MTZScrollingCardsView *wakeScrollview;
+@property (strong, nonatomic) IBOutlet MTZScrollingCardsView *wakeCardsView;
 @property (strong, nonatomic) GNTimeCardView *wakeCardBad;
 @property (strong, nonatomic) GNTimeCardView *wakeCardPoor;
 @property (strong, nonatomic) GNTimeCardView *wakeCardFine;
@@ -88,9 +88,6 @@
 	vertical.maximumRelativeValue = @(-20);
 	_stars.motionEffects = @[horizontal, vertical];
 	
-	_sleepScrollview.clipsToBounds = NO;
-	_wakeScrollview.clipsToBounds = NO;
-	
 	// Autoresize top and bottom views
 	_topView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	_bottomView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -135,8 +132,8 @@
 	CGFloat width, height;
 	
 	// Wake cards
-	width = _wakeScrollview.frame.size.width;
-	height = _wakeScrollview.frame.size.height;
+	width = _wakeCardsView.frame.size.width;
+	height = _wakeCardsView.frame.size.height;
 	
 	// Setup wake cards
 	_wakeCardBad   = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringBad];
@@ -146,21 +143,24 @@
 	_wakeCardGreat = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringGreat];
 	
 	// Configure wake card scrollview
-	[_wakeScrollview addPages:@[_wakeCardBad,
-								_wakeCardPoor,
-								_wakeCardFine,
-								_wakeCardGood,
-								_wakeCardGreat]];
-	_wakeScrollview.currentPage = DEFAULT_WAKE_PAGE_INDEX;
+	[_wakeCardsView addPages:@[_wakeCardBad,
+							   _wakeCardPoor,
+							   _wakeCardFine,
+							   _wakeCardGood,
+							   _wakeCardGreat]];
+	_wakeCardsView.currentPage = DEFAULT_WAKE_PAGE_INDEX;
 #warning setting current page isn't working
+	
+	_wakeCardsView.cardWidth = _wakeCardBad.frame.size.width;
+	_wakeCardsView.cardPadding = 24.0f;
 	
 	// Update wake card times
 	[self updateWakeCardTimes];
 	
 	
 	// Sleep Cards
-	width = _sleepScrollview.frame.size.width;
-	height = _sleepScrollview.frame.size.height;
+	width = _sleepCardsView.frame.size.width;
+	height = _sleepCardsView.frame.size.height;
 	
 	// Setup sleep cards
 	_sleepCardBad   = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringBad];
@@ -170,13 +170,16 @@
 	_sleepCardGreat = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringGreat];
 	
 	// Configure sleep card scrollview
-	[_sleepScrollview addPages:@[_sleepCardGreat,
+	[_sleepCardsView addPages:@[_sleepCardGreat,
 								 _sleepCardGood,
 								 _sleepCardFine,
 								 _sleepCardPoor,
 								 _sleepCardBad]];
-	_sleepScrollview.currentPage = DEFAULT_SLEEP_PAGE_INDEX;
+	_sleepCardsView.currentPage = DEFAULT_SLEEP_PAGE_INDEX;
 #warning setting current page isn't working
+	
+	_sleepCardsView.cardWidth = _sleepCardBad.frame.size.width;
+	_sleepCardsView.cardPadding = 24.0f;
 	
 	// Update sleep card times
 	[self updateSleepCardTimes];
@@ -244,30 +247,30 @@
 #warning animate to mode like UISegmentedControl
 - (void)sleepMode
 {
-	[_topView setSelected:YES];
+	_topView.selected = YES;
 	[_sleepButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 	[_sleepPicker setDate:[NSDate date] animated:YES]; // Default to 'now'
-	[_sleepScrollview setHidden:YES];
-	[_sleepPicker setHidden:NO];
+	_sleepCardsView.hidden = YES;
+	_sleepPicker.hidden = NO;
 	
-	[_bottomView setSelected:NO];
+	_bottomView.selected = NO;
 	[_wakeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-	[_wakePicker setHidden:YES];
-	[_wakeScrollview setHidden:NO];
+	_wakePicker.hidden = YES;
+	_wakeCardsView.hidden = NO;
 }
 
 #warning the time for the picker should be of the currently selected wake card
 - (void)wakeMode
 {
-	[_topView setSelected:NO];
+	_topView.selected = NO;
 	[_sleepButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-	[_sleepPicker setHidden:YES];
-	[_sleepScrollview setHidden:NO];
+	_sleepPicker.hidden = YES;
+	_sleepCardsView.hidden = NO;
 	
-	[_bottomView setSelected:YES];
+	_bottomView.selected = YES;
 	[_wakeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-	[_wakeScrollview setHidden:YES];
-	[_wakePicker setHidden:NO];
+	_wakeCardsView.hidden = YES;
+	_wakePicker.hidden = NO;
 }
 
 

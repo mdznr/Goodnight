@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MTZScrollingCardsView : UIScrollView<UIScrollViewDelegate>
+@interface MTZScrollingCardsView : UIView<UIScrollViewDelegate>
 
 #pragma mark Properties
 
@@ -19,6 +19,11 @@
 /// @discussion Changing this value will scroll the scroll view without animating. This will also set pageControl's (if not nil) currentPage
 @property (nonatomic) NSInteger currentPage;
 
+///
+@property (nonatomic) CGFloat cardWidth;
+
+///
+@property (nonatomic) CGFloat cardPadding;
 
 #pragma mark Initialization
 ///

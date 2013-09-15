@@ -7,10 +7,14 @@
 
 #import "MTZScrollingCardsView.h"
 
+@interface MTZScrollingCardsView ()
+
+@property (strong, nonatomic) UIScrollView *scrollView;
+@property (strong, nonatomic) NSMutableArray *allPages;
+
+@end
+
 @implementation MTZScrollingCardsView
-{
-	NSMutableArray *allPages;
-}
 
 #pragma mark Initialization Methods
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -43,19 +47,22 @@
 
 - (void)setup
 {
-	self.clipsToBounds = NO;
+#warning reset frame when cardWidth or cardPadding changes
+	_scrollView = [[UIScrollView alloc] init];
+	_scrollView.clipsToBounds = NO;
+	_scrollView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+	[self addSubview:_scrollView];
 	
-	self.delegate = self;
-	
-	self.pagingEnabled = YES;
-	self.scrollsToTop = NO;
-	self.showsHorizontalScrollIndicator = NO;
-	self.showsVerticalScrollIndicator = NO;
+	_scrollView.delegate = self;
+	_scrollView.pagingEnabled = YES;
+	_scrollView.scrollsToTop = NO;
+	_scrollView.showsHorizontalScrollIndicator = NO;
+	_scrollView.showsVerticalScrollIndicator = NO;
 	
 	// Most should have at least three items.
-	allPages = [[NSMutableArray alloc] initWithCapacity:3];
+	_allPages = [[NSMutableArray alloc] initWithCapacity:3];
 	
-	// Start off the walkthrough on the first page
+	// Start off on the first page
 	_currentPage = 0;
 }
 
@@ -65,7 +72,7 @@
 - (void)setPageControl:(UIPageControl *)pageControl
 {
 	_pageControl = pageControl;
-	_pageControl.numberOfPages = allPages.count;
+	_pageControl.numberOfPages = _allPages.count;
 	_pageControl.currentPage = _currentPage;
 	
 	[_pageControl addTarget:self
@@ -82,28 +89,44 @@
 	[self scrollToPageIndex:currentPage animated:NO];
 }
 
+- (void)setCardWidth:(CGFloat)cardWidth
+{
+	_cardWidth = cardWidth;
+	_scrollView.frame = (CGRect){0, 0, cardWidth + _cardPadding, self.frame.size.height};
+	_scrollView.center = self.center;
+	[self updateSizingAndPositioning];
+}
+
+- (void)setCardPadding:(CGFloat)cardPadding
+{
+	_cardPadding = cardPadding;
+	_scrollView.frame = (CGRect){0, 0, _cardWidth + cardPadding, self.frame.size.height};
+	_scrollView.center = self.center;
+	[self updateSizingAndPositioning];
+}
+
 
 #pragma mark Adding Pages
 - (void)addPage:(UIView *)page
 {
-	[self addSubview:page];
-	[allPages addObject:page];
+	[_scrollView addSubview:page];
+	[_allPages addObject:page];
 	[self updateSizingAndPositioning];
 }
 
 - (void)insertPage:(UIView *)page atIndex:(int)index
 {
-	[self addSubview:page];
-	[allPages insertObject:page atIndex:index];
+	[_scrollView addSubview:page];
+	[_allPages insertObject:page atIndex:index];
 	[self updateSizingAndPositioning];
 }
 
 - (void)addPages:(NSArray *)pages
 {
 	for ( NSInteger i=0; i < pages.count; ++i ) {
-		[self addSubview:pages[i]];
+		[_scrollView addSubview:pages[i]];
 	}
-	[allPages addObjectsFromArray:pages];
+	[_allPages addObjectsFromArray:pages];
 	[self updateSizingAndPositioning];
 }
 
@@ -112,9 +135,9 @@
 - (void)scrollToPageIndex:(int)index animated:(BOOL)animated
 {
 	_currentPage = index;
-    CGRect pageFrame = CGRectMake(self.frame.size.width * index, 1,
-								  self.frame.size.width, 1);
-    [self scrollRectToVisible:pageFrame animated:animated];
+    CGRect pageFrame = CGRectMake(_scrollView.frame.size.width * index, 1,
+								  _scrollView.frame.size.width, 1);
+    [_scrollView scrollRectToVisible:pageFrame animated:animated];
 }
 
 - (void)scrollToPreviousPage
@@ -143,15 +166,15 @@
 
 - (void)updateSizingAndPositioning
 {
-	NSInteger numberOfPages = allPages.count;
+	NSInteger numberOfPages = _allPages.count;
 	
-	CGFloat width = self.frame.size.width;
-	CGFloat height = self.frame.size.height;
+	CGFloat width = _scrollView.frame.size.width;
+	CGFloat height = _scrollView.frame.size.height;
 	
 	for ( NSInteger i=0; i < numberOfPages; ++i ) {
-		((UIView *)allPages[i]).center = (CGPoint){width*(i+0.5f), height/2};
+		((UIView *)_allPages[i]).center = (CGPoint){width*(i+0.5f), height/2};
 	}
-	[self setContentSize:CGSizeMake(self.frame.size.width * numberOfPages, 0)];
+	[_scrollView setContentSize:CGSizeMake(_scrollView.frame.size.width * numberOfPages, 0)];
 	[_pageControl setNumberOfPages:numberOfPages];
 }
 
@@ -168,6 +191,18 @@
 	// Calculate the current page index and set it
 	_currentPage = (NSInteger) ( scrollView.contentOffset.x / scrollView.frame.size.width + .5 );
 	[_pageControl setCurrentPage:_currentPage];
+}
+
+
+#pragma mark UIView Touches
+
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+{
+	if ( [self pointInside:point withEvent:event] ) {
+		return _scrollView;
+	} else {
+		return nil;
+	}
 }
 
 @end
