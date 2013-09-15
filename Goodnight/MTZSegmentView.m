@@ -84,7 +84,7 @@
 	// Mask Should always be on top
 	
 	_tintColor = [UIColor whiteColor];
-	_radius = 4.0f;
+	_radius = 6.0f;
 	_borderWidth = 1.0f;
 	
 	[self addTarget:self
