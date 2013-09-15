@@ -12,6 +12,7 @@
 + (UIImage *)imageWithBezierPathFill:(UIBezierPath *)bezierPath withColor:(UIColor *)color
 {
 	UIGraphicsBeginImageContextWithOptions(bezierPath.bounds.size, NO, 0.0f);
+	[color setStroke];
 	[color setFill];
 	[bezierPath stroke];
 	[bezierPath fill];
@@ -22,7 +23,7 @@
 + (UIImage *)imageWithBezierPathStroke:(UIBezierPath *)bezierPath withColor:(UIColor *)color
 {
 	UIGraphicsBeginImageContextWithOptions(bezierPath.bounds.size, NO, 0.0f);
-	[color setFill];
+	[color setStroke];
 	[bezierPath stroke];
 	UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
 	return image;
