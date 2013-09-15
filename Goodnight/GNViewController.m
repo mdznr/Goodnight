@@ -2,7 +2,7 @@
 //  GNViewController.m
 //  Goodnight
 //
-//  Created by Matt on 5/4/12.
+//  Created by Matt Zanchelli on 5/4/12.
 //  Copyright (c) 2012 Matt Zanchelli. All rights reserved.
 //
 
