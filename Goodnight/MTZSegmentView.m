@@ -1,7 +1,7 @@
 //
 //  MTZSegmentView.m
 //
-//  Created by Matt on 9/14/13.
+//  Created by Matt Zanchelli on 9/14/13.
 //  Copyright (c) 2013 Matt Zanchelli. All rights reserved.
 //
 
@@ -19,7 +19,7 @@
 
 @end
 
-#define ANIMATION_DURATION 0.2f
+#define ANIMATION_DURATION 0.21618f
 
 @implementation MTZSegmentView
 
@@ -129,12 +129,26 @@
 	_state = state;
 	switch (state) {
 		case MTZSegmentStateUnselected: {
-#warning animate
-			_backgroundView.hidden = YES;
+			[UIView animateWithDuration:ANIMATION_DURATION
+								  delay:0.0f
+				 usingSpringWithDamping:1.0f
+				  initialSpringVelocity:1.0f
+								options:UIViewAnimationOptionBeginFromCurrentState
+							 animations:^{
+								 _backgroundView.alpha = 0.0f;
+							 }
+							 completion:^(BOOL finished) {}];
 		} break;
 		case MTZSegmentStateSelected: {
-#warning animate
-			_backgroundView.hidden = NO;
+			[UIView animateWithDuration:ANIMATION_DURATION
+								  delay:0.0f
+				 usingSpringWithDamping:1.0f
+				  initialSpringVelocity:1.0f
+								options:UIViewAnimationOptionBeginFromCurrentState
+							 animations:^{
+								 _backgroundView.alpha = 1.0f;
+							 }
+							 completion:^(BOOL finished) {}];
 		} break;
 	}
 }

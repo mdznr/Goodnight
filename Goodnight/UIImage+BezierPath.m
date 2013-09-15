@@ -1,7 +1,7 @@
 //
 //  UIImage+BezierPath.m
 //
-//  Created by Matt on 9/14/13.
+//  Created by Matt Zanchelli on 9/14/13.
 //  Copyright (c) 2013 Matt Zanchelli. All rights reserved.
 //
 
