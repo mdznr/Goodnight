@@ -64,8 +64,6 @@
 - (void)setup
 {
 	self.backgroundColor = [UIColor whiteColor];
-//	self.opaque = NO;
-	
 	self.layer.cornerRadius = 4.0f;
 	
 	_timeLabel = [[UILabel alloc] initWithFrame:self.frame];
