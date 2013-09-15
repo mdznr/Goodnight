@@ -64,6 +64,10 @@
 	
 	// Start off on the first page
 	_currentPage = 0;
+	
+	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+																		  action:@selector(didTap:)];
+	[self addGestureRecognizer:tap];
 }
 
 
@@ -194,11 +198,26 @@
 }
 
 
-#pragma mark UIView Touches
+#pragma mark Gesture Recognizers
+
+- (void)didTap:(UITapGestureRecognizer *)sender
+{
+	[self scrollToNextPage];
+	
+	CGPoint point = [sender locationInView:self];
+	if ( _currentPage >= 1 && [((UIView*)_allPages[_currentPage-1]) pointInside:point withEvent:nil] ) {
+		[self scrollToPreviousPage];
+	} else if ( _currentPage+1 < _allPages.count && [((UIView*)_allPages[_currentPage+1]) pointInside:point withEvent:nil] ) {
+		[self scrollToNextPage];
+	}
+}
+
+
+#pragma mark Override hitTest
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
 {
-	if ( [self pointInside:point withEvent:event] ) {
+	if ( [self pointInside:point withEvent:event] && !self.hidden && self.alpha > 0.1f ) {
 		return _scrollView;
 	} else {
 		return nil;
