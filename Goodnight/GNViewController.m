@@ -9,6 +9,7 @@
 #import "GNViewController.h"
 #import "GNTimeCardView.h"
 #import "MTZScrollingCardsView.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface GNViewController ()
 
@@ -39,6 +40,8 @@
 @property (strong, nonatomic) GNTimeCardView *wakeCardGreat;
 
 @end
+
+#define ANIMATION_DURATION 0.2f
 
 #define NUMBER_OF_CARDS 5
 
@@ -73,6 +76,25 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+	
+	// Round top and bottom views like the ends of a segmented control
+	_topView.layer.cornerRadius = 4.0f;
+	_topView.layer.borderColor = [UIColor whiteColor].CGColor;
+	_topView.layer.borderWidth = 1.0f;
+	
+	_bottomView.layer.cornerRadius = 4.0f;
+	_bottomView.layer.borderColor = [UIColor whiteColor].CGColor;
+	_bottomView.layer.borderWidth = 1.0f;
+	/*
+	UIBezierPath *topSegment = [UIBezierPath bezierPathWithRoundedRect:_topView.frame
+													   byRoundingCorners:UIRectCornerTopLeft|UIRectCornerTopRight
+															 cornerRadii:(CGSize){10.0f,10.0f}];
+	[topSegment fill];
+	CAShapeLayer *shapeLayer = [[CAShapeLayer alloc] init];
+	shapeLayer.frame = _topView.bounds;
+	shapeLayer.path = topSegment.CGPath;
+	_topView.layer.mask = shapeLayer;
+	*/
 	
 	_topView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	_bottomView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -111,7 +133,7 @@
 	_topViewMask.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	_topViewMask.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.1f];
 	_topViewMask.opaque = NO;
-	_topViewMask.hidden = YES;
+	_topViewMask.alpha = 0.0f;
 	_topViewMask.userInteractionEnabled = NO;
 	[_topView insertSubview:_topViewMask atIndex:0];
 	
@@ -119,7 +141,7 @@
 	_bottomViewMask.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	_bottomViewMask.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.1f];
 	_bottomViewMask.opaque = NO;
-	_bottomViewMask.hidden = YES;
+	_bottomViewMask.alpha = 0.0f;
 	_bottomViewMask.userInteractionEnabled = NO;
 	[_bottomView insertSubview:_bottomViewMask atIndex:0];
 	
@@ -162,18 +184,18 @@
 	height = _sleepScrollview.frame.size.height;
 	
 	// Setup sleep cards
-	_sleepCardBad = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringBad];
-	_sleepCardPoor = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringPoor];
-	_sleepCardFine = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringFine];
-	_sleepCardGood = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringGood];
+	_sleepCardBad   = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringBad];
+	_sleepCardPoor  = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringPoor];
+	_sleepCardFine  = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringFine];
+	_sleepCardGood  = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringGood];
 	_sleepCardGreat = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringGreat];
 	
 	// Configure sleep card scrollview
-	[_sleepScrollview addPages:@[_sleepCardBad,
-								 _sleepCardPoor,
-								 _sleepCardFine,
+	[_sleepScrollview addPages:@[_sleepCardGreat,
 								 _sleepCardGood,
-								 _sleepCardGreat]];
+								 _sleepCardFine,
+								 _sleepCardPoor,
+								 _sleepCardBad]];
 	_sleepScrollview.currentPage = DEFAULT_SLEEP_PAGE_INDEX;
 #warning setting current page isn't working
 	
@@ -203,22 +225,54 @@
 
 - (IBAction)touchDownSleepButton:(id)sender
 {
-	_topViewMask.hidden = NO;
+	[UIView animateWithDuration:ANIMATION_DURATION
+						  delay:0.0f
+		 usingSpringWithDamping:1.0f
+		  initialSpringVelocity:1.0f
+						options:UIViewAnimationOptionBeginFromCurrentState
+					 animations:^{
+						 _topViewMask.alpha = 1.0f;
+					 }
+					 completion:^(BOOL finished) {}];
 }
 
 - (IBAction)stopTouchDownSleepButton:(id)sender
 {
-	_topViewMask.hidden = YES;
+	[UIView animateWithDuration:ANIMATION_DURATION
+						  delay:0.0f
+		 usingSpringWithDamping:1.0f
+		  initialSpringVelocity:1.0f
+						options:UIViewAnimationOptionBeginFromCurrentState
+					 animations:^{
+						 _topViewMask.alpha = 0.0f;
+					 }
+					 completion:^(BOOL finished) {}];
 }
 
 - (IBAction)touchDownWakeButton:(id)sender
 {
-	_bottomViewMask.hidden = NO;
+	[UIView animateWithDuration:ANIMATION_DURATION
+						  delay:0.0f
+		 usingSpringWithDamping:1.0f
+		  initialSpringVelocity:1.0f
+						options:UIViewAnimationOptionBeginFromCurrentState
+					 animations:^{
+						 _bottomViewMask.alpha = 1.0f;
+					 }
+					 completion:^(BOOL finished) {}];
 }
 
 - (IBAction)stopTouchDownWakeButton:(id)sender
 {
-	_bottomViewMask.hidden = YES;
+	[UIView animateWithDuration:ANIMATION_DURATION
+						  delay:0.0f
+		 usingSpringWithDamping:1.0f
+		  initialSpringVelocity:1.0f
+						options:UIViewAnimationOptionBeginFromCurrentState
+					 animations:^{
+						 _bottomViewMask.alpha = 0.0f;
+					 }
+					 completion:^(BOOL finished) {}];
 }
 
 
