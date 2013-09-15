@@ -9,6 +9,10 @@
 
 @interface UIImage (BezierPath)
 
-+ (UIImage *)imageWithBezierPath:(UIBezierPath *)bezierPath withColor:(UIColor *)color;
+///
++ (UIImage *)imageWithBezierPathFill:(UIBezierPath *)bezierPath withColor:(UIColor *)color;
+
+///
++ (UIImage *)imageWithBezierPathStroke:(UIBezierPath *)bezierPath withColor:(UIColor *)color;
 
 @end

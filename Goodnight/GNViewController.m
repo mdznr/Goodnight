@@ -188,7 +188,6 @@
 	[self updateSleepCardTimes];
 }
 
-#warning all of these should be handled by MTZSegmentView
 - (IBAction)touchDownSleepButton:(id)sender
 {
 	[_topView setHighlighted:YES];

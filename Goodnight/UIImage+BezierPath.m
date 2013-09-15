@@ -9,12 +9,21 @@
 
 @implementation UIImage (BezierPath)
 
-+ (UIImage *)imageWithBezierPath:(UIBezierPath *)bezierPath withColor:(UIColor *)color
++ (UIImage *)imageWithBezierPathFill:(UIBezierPath *)bezierPath withColor:(UIColor *)color
 {
 	UIGraphicsBeginImageContextWithOptions(bezierPath.bounds.size, NO, 0.0f);
 	[color setFill];
 	[bezierPath stroke];
 	[bezierPath fill];
+	UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+	return image;
+}
+
++ (UIImage *)imageWithBezierPathStroke:(UIBezierPath *)bezierPath withColor:(UIColor *)color
+{
+	UIGraphicsBeginImageContextWithOptions(bezierPath.bounds.size, NO, 0.0f);
+	[color setFill];
+	[bezierPath stroke];
 	UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
 	return image;
 }

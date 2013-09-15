@@ -60,7 +60,7 @@
 	
 	_position = MTZSegmentPositionMiddle;
 	
-#warning This should be moved outside this class to be used mroe often
+#warning This should be moved outside this class to be used more often
 	UIViewAutoresizing UIViewAutoresizingSize = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;;
 	
 	_backgroundView = [[UIImageView alloc] initWithFrame:self.bounds];
@@ -71,7 +71,9 @@
 	_borderView = [[UIImageView alloc] initWithFrame:self.bounds];
 	_borderView.autoresizingMask = UIViewAutoresizingSize;
 	[self insertSubview:_backgroundView atIndex:0];
+	// Border view should always be on bottom
 	
+#warning the corners for mask should be rounded properly
 	_mask = [[UIView alloc] initWithFrame:self.bounds];
 	_mask.autoresizingMask = UIViewAutoresizingSize;
 	_mask.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.1f];
@@ -84,6 +86,10 @@
 	_tintColor = [UIColor whiteColor];
 	_radius = 4.0f;
 	_borderWidth = 1.0f;
+	
+	[self addTarget:self
+			 action:@selector(didTouchUpInside:)
+   forControlEvents:UIControlEventTouchUpInside];
 }
 
 
@@ -99,9 +105,16 @@
 			UIBezierPath *bp = [UIBezierPath bezierPathWithRoundedRect:(CGRect){0, 0, 2*_radius, 2*_radius}
 													 byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight
 														   cornerRadii:(CGSize){_radius, _radius}];
-			UIImage *img = [UIImage imageWithBezierPath:bp withColor:_tintColor];
-			img = [img resizableImageWithCapInsets:UIEdgeInsetsMake(_radius, _radius, _radius, _radius)];
-			_backgroundView.image = img;
+			bp.lineWidth = _borderWidth;
+			UIEdgeInsets insets = UIEdgeInsetsMake(_radius, _radius, _radius, _radius);
+			
+			UIImage *bgImg = [UIImage imageWithBezierPathFill:bp withColor:_tintColor];
+			bgImg = [bgImg resizableImageWithCapInsets:insets];
+			_backgroundView.image = bgImg;
+			
+			UIImage *brdrImg = [UIImage imageWithBezierPathStroke:bp withColor:_tintColor];
+			brdrImg = [brdrImg resizableImageWithCapInsets:insets];
+			_borderView.image = brdrImg;
 		} break;
 			
 		// Round bottom two corners
@@ -109,9 +122,16 @@
 			UIBezierPath *bp = [UIBezierPath bezierPathWithRoundedRect:(CGRect){0, 0, 2*_radius, 2*_radius}
 													 byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight
 														   cornerRadii:(CGSize){_radius, _radius}];
-			UIImage *img = [UIImage imageWithBezierPath:bp withColor:_tintColor];
-			img = [img resizableImageWithCapInsets:UIEdgeInsetsMake(_radius, _radius, _radius, _radius)];
+			bp.lineWidth = _borderWidth;
+			UIEdgeInsets insets = UIEdgeInsetsMake(_radius, _radius, _radius, _radius);
+			
+			UIImage *img = [UIImage imageWithBezierPathFill:bp withColor:_tintColor];
+			img = [img resizableImageWithCapInsets:insets];
 			_backgroundView.image = img;
+			
+			UIImage *brdrImg = [UIImage imageWithBezierPathStroke:bp withColor:_tintColor];
+			brdrImg = [brdrImg resizableImageWithCapInsets:insets];
+			_borderView.image = brdrImg;
 		} break;
 			
 		// Round no corners
@@ -120,7 +140,8 @@
 			UIBezierPath *bp = [UIBezierPath bezierPathWithRoundedRect:(CGRect){0, 0, 2, 2}
 													 byRoundingCorners:UIRectCornerAllCorners
 														   cornerRadii:CGSizeZero];
-			UIImage *img = [UIImage imageWithBezierPath:bp withColor:_tintColor];
+			bp.lineWidth = _borderWidth;
+			UIImage *img = [UIImage imageWithBezierPathFill:bp withColor:_tintColor];
 			img = [img resizableImageWithCapInsets:UIEdgeInsetsZero];
 			_backgroundView.image = img;
 		} break;
@@ -214,6 +235,14 @@
 - (void)cancelTrackingWithEvent:(UIEvent *)event
 {
 	[super cancelTrackingWithEvent:event];
+}
+
+
+#pragma mark Misc.
+
+- (void)didTouchUpInside:(id)sender
+{
+	[self setSelected:YES];
 }
 
 @end
