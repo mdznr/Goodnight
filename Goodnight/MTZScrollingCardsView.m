@@ -1,7 +1,7 @@
 //
 //  MTZScrollingCardsView.m
 //
-//  Created by Matt on 1/14/13.
+//  Created by Matt Zanchelli on 1/14/13.
 //  Copyright (c) 2013 Matt Zanchelli. All rights reserved.
 //
 
@@ -43,12 +43,14 @@
 
 - (void)setup
 {
-	[self setDelegate:self];
+	self.clipsToBounds = NO;
 	
-	[self setPagingEnabled:YES];
-	[self setScrollsToTop:NO];
-	[self setShowsHorizontalScrollIndicator:NO];
-	[self setShowsVerticalScrollIndicator:NO];
+	self.delegate = self;
+	
+	self.pagingEnabled = YES;
+	self.scrollsToTop = NO;
+	self.showsHorizontalScrollIndicator = NO;
+	self.showsVerticalScrollIndicator = NO;
 	
 	// Most should have at least three items.
 	allPages = [[NSMutableArray alloc] initWithCapacity:3];

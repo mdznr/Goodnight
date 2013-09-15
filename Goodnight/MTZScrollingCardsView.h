@@ -1,7 +1,7 @@
 //
 //  MTZScrollingCardsView.h
 //
-//  Created by Matt on 1/14/13.
+//  Created by Matt Zanchelli on 1/14/13.
 //  Copyright (c) 2013 Matt Zanchelli. All rights reserved.
 //
 

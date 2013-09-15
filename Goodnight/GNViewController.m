@@ -81,21 +81,23 @@
 	
 	// Setup background motion effects
 	UIInterpolatingMotionEffect *horizontal = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
-	horizontal.minimumRelativeValue = @(10);
-	horizontal.maximumRelativeValue = @(-10);
+	horizontal.minimumRelativeValue = @(20);
+	horizontal.maximumRelativeValue = @(-20);
 	UIInterpolatingMotionEffect *vertical = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
-	vertical.minimumRelativeValue = @(10);
-	vertical.maximumRelativeValue = @(-10);
+	vertical.minimumRelativeValue = @(20);
+	vertical.maximumRelativeValue = @(-20);
 	_stars.motionEffects = @[horizontal, vertical];
 	
+	_sleepScrollview.clipsToBounds = NO;
+	_wakeScrollview.clipsToBounds = NO;
+	
+	// Autoresize top and bottom views
 	_topView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	_bottomView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	
+	// Declare top and bottom views positions
 	_topView.position = MTZSegmentPositionTop;
 	_bottomView.position = MTZSegmentPositionBottom;
-	
-#warning store last used mode in preferences and use below
-	[self setMode:GNViewControllerModeSetSleepTime];
 	
 	// What events should have the pressed down state and which ones should not
 	UIControlEvents down = UIControlEventTouchDown | UIControlEventTouchDragInside;
@@ -178,6 +180,9 @@
 	
 	// Update sleep card times
 	[self updateSleepCardTimes];
+	
+#warning store last used mode in preferences and use below
+	[self setMode:GNViewControllerModeSetSleepTime];
 }
 
 
