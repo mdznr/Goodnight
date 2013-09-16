@@ -90,7 +90,15 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
 </data>
                                                 </timeZone>
                                             </datePicker>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xeS-Z4-6cf" customClass="MTZOutlinedButton">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xeS-Z4-6cf" userLabel="Goodnight (Sleep)" customClass="MTZOutlinedButton">
+                                                <rect key="frame" x="32" y="190" width="256" height="60"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="21"/>
+                                                <state key="normal" title="Goodnight">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ozt-D6-lDP" userLabel="Goodnight (Wake)" customClass="MTZOutlinedButton">
                                                 <rect key="frame" x="32" y="190" width="256" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="21"/>
@@ -113,7 +121,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="datePicker" destination="I5e-pQ-WCH" id="7X8-wk-G9S"/>
-                        <outlet property="goodnightButton" destination="xeS-Z4-6cf" id="iUO-TA-XGC"/>
+                        <outlet property="goodnightButtonSleep" destination="xeS-Z4-6cf" id="Fb3-3J-sT2"/>
+                        <outlet property="goodnightButtonWake" destination="ozt-D6-lDP" id="FWk-fT-qCy"/>
                         <outlet property="selectorView" destination="Jyc-KX-f6x" id="paN-sQ-58w"/>
                         <outlet property="sky" destination="cFv-YR-Paa" id="wJc-ZQ-tLE"/>
                         <outlet property="sleepButton" destination="XSM-hG-eiY" id="SlD-pn-CqC"/>

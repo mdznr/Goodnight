@@ -27,7 +27,8 @@
 
 @property (strong, nonatomic) IBOutlet UIView *selectorView;
 @property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
-@property (strong, nonatomic) IBOutlet MTZOutlinedButton *goodnightButton;
+@property (strong, nonatomic) IBOutlet MTZOutlinedButton *goodnightButtonSleep;
+@property (strong, nonatomic) IBOutlet MTZOutlinedButton *goodnightButtonWake;
 
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
 
@@ -76,6 +77,23 @@
 	_lightSky = [UIImage imageNamed:@"lightSky"];
 	_darkSky = [UIImage imageNamed:@"darkSky"];
 	
+	[_goodnightButtonSleep setTintColor:[UIColor colorWithRed:157.0f/255.0f
+														green: 75.0f/255.0f
+														 blue:212.0f/255.0f
+														alpha:1.0f]];
+	
+	[_goodnightButtonWake setTintColor:[UIColor colorWithRed: 69.0f/255.0f
+													   green:172.0f/255.0f
+														blue:245.0f/255.0f
+													   alpha:1.0f]];
+	// Add goodnight button action
+	[_goodnightButtonSleep addTarget:self
+							  action:@selector(tappedGoodnightButton:)
+					forControlEvents:UIControlEventTouchUpInside];
+	[_goodnightButtonWake addTarget:self
+							 action:@selector(tappedGoodnightButton:)
+				   forControlEvents:UIControlEventTouchUpInside];
+	
 	// Autoresize top and bottom views
 	_selectorView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 	
@@ -111,7 +129,7 @@
 }
 
 
-#pragma mark IBActions
+#pragma mark Button Actions
 
 #warning able to tap two buttons near simultaneously
 - (IBAction)tappedSleepButton:(id)sender
@@ -128,6 +146,11 @@
 	
 	// Have to do this since UIDatePicker doesn't perform action for UIControlEventValueChanged when using setDate:Animated:
 	[self updateTimes];
+}
+
+- (void)tappedGoodnightButton:(id)sender
+{
+#warning animate and show times
 }
 
 
@@ -162,13 +185,10 @@
 						 _stars.center = (CGPoint){_stars.center.x, _stars.center.y + 100.0f};
 						 _stars.alpha = 1.0f;
 						 
-						 _triangleMarker.center = (CGPoint){_sleepButton.center.x, _triangleMarker.center.y};
+						 _goodnightButtonSleep.alpha = 1.0f;
+						 _goodnightButtonWake.alpha = 0.0f;
 						 
-						 // Set purple tint color
-						 [_goodnightButton setTintColor:[UIColor colorWithRed:157.0f/255.0f
-																		green: 75.0f/255.0f
-																		 blue:212.0f/255.0f
-																		alpha:1.0f]];
+						 _triangleMarker.center = (CGPoint){_sleepButton.center.x, _triangleMarker.center.y};
 					 }
 					 completion:^(BOOL finished) {}];
 }
@@ -191,11 +211,8 @@
 						 
 						 _triangleMarker.center = (CGPoint){_wakeButton.center.x, _triangleMarker.center.y};
 						 
-						 // Set blue tint color
-						 [_goodnightButton setTintColor:[UIColor colorWithRed: 69.0f/255.0f
-																		green:172.0f/255.0f
-																		 blue:245.0f/255.0f
-																		alpha:1.0f]];
+						 _goodnightButtonWake.alpha = 1.0f;
+						 _goodnightButtonSleep.alpha = 0.0f;
 					 }
 					 completion:^(BOOL finished) {}];
 }

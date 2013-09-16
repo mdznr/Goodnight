@@ -80,9 +80,6 @@
 										   brightness:b+10.0f
 												alpha:a];
 	
-	CGFloat r = _cornerRadius;
-	UIEdgeInsets insets = (UIEdgeInsets){r,r,r,r};
-	
 	CGRect rect = (CGRect){0, 0, 2*_cornerRadius, 2*_cornerRadius};
 	UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:rect
 													cornerRadius:_cornerRadius];
