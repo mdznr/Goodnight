@@ -10,6 +10,7 @@
 		C969821E17E54BC700AB44F6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C969821D17E54BC700AB44F6 /* QuartzCore.framework */; };
 		C969822117E54F6D00AB44F6 /* UIImage+BezierPath.m in Sources */ = {isa = PBXBuildFile; fileRef = C969822017E54F6D00AB44F6 /* UIImage+BezierPath.m */; };
 		C969822717E6C52C00AB44F6 /* MTZOutlinedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C969822617E6C52C00AB44F6 /* MTZOutlinedButton.m */; };
+		C98E128517E7C279009AC0C6 /* MTZTriangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = C98E128417E7C279009AC0C6 /* MTZTriangleView.m */; };
 		C9E6CFD417E2326100E65CE9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9E6CFD317E2326100E65CE9 /* Images.xcassets */; };
 		C9ED790015549BCB002064B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9ED78FF15549BCB002064B2 /* UIKit.framework */; };
 		C9ED790215549BCB002064B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9ED790115549BCB002064B2 /* Foundation.framework */; };
@@ -28,6 +29,8 @@
 		C969822017E54F6D00AB44F6 /* UIImage+BezierPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BezierPath.m"; sourceTree = "<group>"; };
 		C969822517E6C52C00AB44F6 /* MTZOutlinedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTZOutlinedButton.h; sourceTree = "<group>"; };
 		C969822617E6C52C00AB44F6 /* MTZOutlinedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTZOutlinedButton.m; sourceTree = "<group>"; };
+		C98E128317E7C279009AC0C6 /* MTZTriangleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTZTriangleView.h; sourceTree = "<group>"; };
+		C98E128417E7C279009AC0C6 /* MTZTriangleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTZTriangleView.m; sourceTree = "<group>"; };
 		C9E6CFD317E2326100E65CE9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C9ED78FB15549BCB002064B2 /* Goodnight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Goodnight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9ED78FF15549BCB002064B2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -100,6 +103,8 @@
 				C969822017E54F6D00AB44F6 /* UIImage+BezierPath.m */,
 				C969822517E6C52C00AB44F6 /* MTZOutlinedButton.h */,
 				C969822617E6C52C00AB44F6 /* MTZOutlinedButton.m */,
+				C98E128317E7C279009AC0C6 /* MTZTriangleView.h */,
+				C98E128417E7C279009AC0C6 /* MTZTriangleView.m */,
 				C9E6CFD317E2326100E65CE9 /* Images.xcassets */,
 				C9ED790615549BCB002064B2 /* Supporting Files */,
 			);
@@ -191,6 +196,7 @@
 			files = (
 				C969822717E6C52C00AB44F6 /* MTZOutlinedButton.m in Sources */,
 				C969822117E54F6D00AB44F6 /* UIImage+BezierPath.m in Sources */,
+				C98E128517E7C279009AC0C6 /* MTZTriangleView.m in Sources */,
 				C9ED790C15549BCB002064B2 /* main.m in Sources */,
 				C9ED791015549BCB002064B2 /* GNAppDelegate.m in Sources */,
 				C9ED791815549BCB002064B2 /* GNViewController.m in Sources */,

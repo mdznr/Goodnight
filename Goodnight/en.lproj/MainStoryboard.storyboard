@@ -61,10 +61,13 @@
                                             <color key="titleColor" white="1" alpha="0.70000000000000007" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
-                                    <view contentMode="scaleToFill" id="6fg-Ya-qCC" userLabel="Triangle">
+                                    <view contentMode="scaleToFill" id="6fg-Ya-qCC" userLabel="Triangle" customClass="MTZTriangleView">
                                         <rect key="frame" x="86" y="183" width="27" height="15"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="orientation" value="MTZTriangleOrientationPointingUp"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" id="Jyc-KX-f6x" userLabel="Selector">
                                         <rect key="frame" x="0.0" y="198" width="320" height="282"/>
@@ -149,7 +152,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="Dusk" width="320" height="480"/>
         <image name="Sky" width="320" height="3840"/>
         <image name="Stars" width="262" height="242"/>
-        <image name="Sunrise" width="320" height="196"/>
+        <image name="Sunrise" width="320" height="480"/>
     </resources>
     <color key="tintColor" red="0.52817553281784058" green="0.17499475181102753" blue="0.79014778137207031" alpha="1" colorSpace="calibratedRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

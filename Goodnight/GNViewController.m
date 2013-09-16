@@ -8,6 +8,7 @@
 
 #import "GNViewController.h"
 #import "MTZOutlinedButton.h"
+#import "MTZTriangleView.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface GNViewController ()
@@ -22,7 +23,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *sleepButton;
 @property (strong, nonatomic) IBOutlet UIButton *wakeButton;
 
-@property (strong, nonatomic) IBOutlet UIView *triangleMarker;
+@property (strong, nonatomic) IBOutlet MTZTriangleView *triangleMarker;
 
 @property (strong, nonatomic) IBOutlet UIView *selectorView;
 @property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
@@ -56,8 +57,8 @@
 
 @implementation GNViewController
 {
-	CGRect skyStart;
-	CGRect skyEnd;
+	CGPoint skyStart;
+	CGPoint skyEnd;
 }
 
 
@@ -130,8 +131,8 @@
 	[self setMode:GNViewControllerModeSetSleepTime];
 	
 	// Calculate start and end frames from dusk and dawn
-	skyStart = (CGRect){0,0,self.view.frame.size.width, _sky.image.size.height};
-	skyEnd = (CGRect){0,_selectorView.frame.origin.y+20-_sky.image.size.height,self.view.frame.size.width, _sky.image.size.height};
+	skyStart = (CGPoint){self.view.frame.size.width/2, -20+(_sky.image.size.height/2)};
+	skyEnd = (CGPoint){self.view.frame.size.width/2, 20+_selectorView.frame.origin.y-(_sky.image.size.height/2)};
 }
 
 
@@ -187,20 +188,28 @@
 						 _sleepButton.selected = YES;
 						 _wakeButton.selected = NO;
 						 
-						 _dusk.alpha = 1.0f;	// Animate up, too
 						 _sunrise.alpha = 0.0f; // Animate down, too
 						 
-						 _stars.center = (CGPoint){_stars.center.x, _stars.center.y + 100.0f};
+						 _stars.center = (CGPoint){_stars.center.x, _stars.center.y + 50.0f};
 						 _stars.alpha = 1.0f;
-						 
-						 _sky.frame = skyStart;
-						 
-						 _goodnightButtonSleep.alpha = 1.0f;
-						 _goodnightButtonWake.alpha = 0.0f;
 						 
 						 _triangleMarker.center = (CGPoint){_sleepButton.center.x, _triangleMarker.center.y};
 					 }
 					 completion:^(BOOL finished) {}];
+	
+	[UIView animateWithDuration:ANIMATION_DURATION * 3
+						  delay:0.0f
+		 usingSpringWithDamping:10.0f
+		  initialSpringVelocity:1.0f
+						options:UIViewAnimationOptionBeginFromCurrentState
+					 animations:^{
+						 _sky.center = skyStart;
+						 _dusk.alpha = 1.0f;	// Animate up, too
+						 
+						 _goodnightButtonSleep.alpha = 1.0f;
+						 _goodnightButtonWake.alpha = 0.0f;
+					 }
+					 completion:^(BOOL finished) { }];
 }
 
 - (void)wakeMode
@@ -216,19 +225,27 @@
 						 _sleepButton.selected = NO;
 						 
 						 _dusk.alpha = 0.0f;	// Animate down, too
-						 _sunrise.alpha = 1.0f; // Animate up, too
 						 
-						 _stars.center = (CGPoint){_stars.center.x, _stars.center.y - 100.0f};
+						 _stars.center = (CGPoint){_stars.center.x, _stars.center.y - 50.0f};
 						 _stars.alpha = 0.0f;
 						 
-						 _sky.frame = skyEnd;
-						 
 						 _triangleMarker.center = (CGPoint){_wakeButton.center.x, _triangleMarker.center.y};
+					 }
+					 completion:^(BOOL finished) {}];
+	
+	[UIView animateWithDuration:ANIMATION_DURATION * 3
+						  delay:0.0f
+		 usingSpringWithDamping:10.0f
+		  initialSpringVelocity:1.0f
+						options:UIViewAnimationOptionBeginFromCurrentState
+					 animations:^{
+						 _sky.center = skyEnd;
+						 _sunrise.alpha = 0.5f; // Animate up, too
 						 
 						 _goodnightButtonWake.alpha = 1.0f;
 						 _goodnightButtonSleep.alpha = 0.0f;
 					 }
-					 completion:^(BOOL finished) {}];
+					 completion:^(BOOL finished) { }];
 }
 
 
