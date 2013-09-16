@@ -43,16 +43,17 @@
 	self.backgroundColor = [UIColor clearColor];
 }
 
+// With help from http://stackoverflow.com/questions/6697614/how-to-draw-a-triangle-programmatically
 - (void)drawRect:(CGRect)rect
 {
 	// X Coordinates
-	CGFloat left = CGRectGetMinX(rect);
-	CGFloat midX = CGRectGetMidX(rect);
+	CGFloat left  = CGRectGetMinX(rect);
+	CGFloat midX  = CGRectGetMidX(rect);
 	CGFloat right = CGRectGetMaxX(rect);
 	
 	// Y Coordinates
-	CGFloat top = CGRectGetMinY(rect);
-	CGFloat midY = CGRectGetMidY(rect);
+	CGFloat top    = CGRectGetMinY(rect);
+	CGFloat midY   = CGRectGetMidY(rect);
 	CGFloat bottom = CGRectGetMaxY(rect);
 	
 	CGContextRef ctx = UIGraphicsGetCurrentContext();
