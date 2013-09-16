@@ -25,25 +25,35 @@
                                         <rect key="frame" x="29" y="29" width="262" height="242"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XSM-hG-eiY" userLabel="Sleep">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="XSM-hG-eiY" userLabel="Sleep">
                                         <rect key="frame" x="40" y="147" width="120" height="41"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="24"/>
                                         <state key="normal" title="Sleep">
+                                            <color key="titleColor" red="1" green="0.9999350905418396" blue="0.99997484683990479" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <state key="selected">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="0.70000000000000007" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kyx-RC-jyU" userLabel="Wake">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="kyx-RC-jyU" userLabel="Wake">
                                         <rect key="frame" x="160" y="147" width="120" height="41"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="24"/>
                                         <state key="normal" title="Wake">
+                                            <color key="titleColor" red="1" green="0.9999350905418396" blue="0.99997484683990479" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <state key="selected">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="0.70000000000000007" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
-                                    <view contentMode="scaleToFill" id="6fg-Ya-qCC">
+                                    <view contentMode="scaleToFill" id="6fg-Ya-qCC" userLabel="Triangle">
                                         <rect key="frame" x="90" y="196" width="20" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -108,6 +118,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="sky" destination="cFv-YR-Paa" id="wJc-ZQ-tLE"/>
                         <outlet property="sleepButton" destination="XSM-hG-eiY" id="SlD-pn-CqC"/>
                         <outlet property="stars" destination="npO-0j-4k0" id="ttp-2P-zPI"/>
+                        <outlet property="triangleMarker" destination="6fg-Ya-qCC" id="9Ch-E3-1Ha"/>
                         <outlet property="wakeButton" destination="kyx-RC-jyU" id="w2y-yt-AkW"/>
                     </connections>
                 </viewController>

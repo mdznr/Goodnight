@@ -22,6 +22,8 @@
 @property (strong, nonatomic) IBOutlet UIButton *sleepButton;
 @property (strong, nonatomic) IBOutlet UIButton *wakeButton;
 
+@property (strong, nonatomic) IBOutlet UIView *triangleMarker;
+
 @property (strong, nonatomic) IBOutlet UIView *selectorView;
 @property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property (strong, nonatomic) IBOutlet UIButton *goodnightButton;
@@ -35,7 +37,7 @@
 
 @end
 
-#define ANIMATION_DURATION 0.2f
+#define ANIMATION_DURATION 0.75f
 
 #define NUMBER_OF_CARDS 4
 
@@ -43,9 +45,6 @@
 #define FINE_OPACITY  0.8f
 #define GOOD_OPACITY  0.9f
 #define GREAT_OPACITY 1.0f
-
-#define MODE_BUTTON_ACTIVE_OPACITY 1.0f
-#define MODE_BUTTON_INACTIVE_OPACITY 0.4f
 
 #define FALL_ASLEEP_TIME (14*60)
 #define SLEEP_CYCLE_TIME (90*60)
@@ -148,38 +147,56 @@
 
 - (void)sleepMode
 {
-#warning animate?
-	_sleepButton.alpha = MODE_BUTTON_ACTIVE_OPACITY;
-	_wakeButton.alpha  = MODE_BUTTON_INACTIVE_OPACITY;
-	
-#warning this should animate down
-	_stars.hidden = NO;
-	
-	_sky.image = _darkSky;
-	
-	// Set purple tint color
-	[_goodnightButton setTintColor:[UIColor colorWithRed:157.0f/255.0f
-												   green: 75.0f/255.0f
-													blue:212.0f/255.0f
-												   alpha:1.0f]];
+	[UIView animateWithDuration:ANIMATION_DURATION
+						  delay:0.0f
+		 usingSpringWithDamping:1.0f
+		  initialSpringVelocity:1.0f
+						options:UIViewAnimationOptionBeginFromCurrentState
+					 animations:^{
+#warning UIButton does not animate between selected states
+						 _sleepButton.selected = YES;
+						 _wakeButton.selected = NO;
+						 _sky.image = _darkSky;
+						 
+						 _stars.center = (CGPoint){_stars.center.x, _stars.center.y + 100.0f};
+						 _stars.alpha = 1.0f;
+						 
+						 _triangleMarker.center = (CGPoint){_sleepButton.center.x, _triangleMarker.center.y};
+						 
+						 // Set purple tint color
+						 [_goodnightButton setTintColor:[UIColor colorWithRed:157.0f/255.0f
+																		green: 75.0f/255.0f
+																		 blue:212.0f/255.0f
+																		alpha:1.0f]];
+					 }
+					 completion:^(BOOL finished) {}];
 }
 
 - (void)wakeMode
 {
-#warning animate?
-	_wakeButton.alpha  = MODE_BUTTON_ACTIVE_OPACITY;
-	_sleepButton.alpha = MODE_BUTTON_INACTIVE_OPACITY;
-	
-#warning this should animate up and out of opacity
-	_stars.hidden = YES;
-	
-	_sky.image = _lightSky;
-	
-	// Set blue tint color
-	[_goodnightButton setTintColor:[UIColor colorWithRed: 69.0f/255.0f
-												   green:172.0f/255.0f
-													blue:245.0f/255.0f
-												   alpha:1.0f]];
+	[UIView animateWithDuration:ANIMATION_DURATION
+						  delay:0.0f
+		 usingSpringWithDamping:1.0f
+		  initialSpringVelocity:1.0f
+						options:UIViewAnimationOptionBeginFromCurrentState
+					 animations:^{
+#warning UIButton does not animate between selected states
+						 _wakeButton.selected = YES;
+						 _sleepButton.selected = NO;
+						 _sky.image = _lightSky;
+						 
+						 _stars.center = (CGPoint){_stars.center.x, _stars.center.y - 100.0f};
+						 _stars.alpha = 0.0f;
+						 
+						 _triangleMarker.center = (CGPoint){_wakeButton.center.x, _triangleMarker.center.y};
+						 
+						 // Set blue tint color
+						 [_goodnightButton setTintColor:[UIColor colorWithRed: 69.0f/255.0f
+																		green:172.0f/255.0f
+																		 blue:245.0f/255.0f
+																		alpha:1.0f]];
+					 }
+					 completion:^(BOOL finished) {}];
 }
 
 
