@@ -45,18 +45,19 @@
 
 - (void)drawRect:(CGRect)rect
 {
-#warning switch on orientation
-	CGContextRef ctx = UIGraphicsGetCurrentContext();
-	
-	CGContextBeginPath(ctx);
-	
+	// X Coordinates
 	CGFloat left = CGRectGetMinX(rect);
 	CGFloat midX = CGRectGetMidX(rect);
 	CGFloat right = CGRectGetMaxX(rect);
 	
+	// Y Coordinates
 	CGFloat top = CGRectGetMinY(rect);
 	CGFloat midY = CGRectGetMidY(rect);
 	CGFloat bottom = CGRectGetMaxY(rect);
+	
+	CGContextRef ctx = UIGraphicsGetCurrentContext();
+	
+	CGContextBeginPath(ctx);
 	
 	switch (_orientation) {
 		case MTZTriangleOrientationPointingDown: {
@@ -81,11 +82,9 @@
 		} break;
 	}
 	
-	
     CGContextClosePath(ctx);
 	
 	[_color set];
-//	CGContextSetRGBFillColor(ctx, 1, 1, 0, 1);
     CGContextFillPath(ctx);
 }
 
