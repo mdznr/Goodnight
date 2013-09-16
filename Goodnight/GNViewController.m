@@ -16,9 +16,8 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView *sky;
 @property (strong, nonatomic) IBOutlet UIImageView *stars;
-
-@property (strong, nonatomic) UIImage *darkSky;
-@property (strong, nonatomic) UIImage *lightSky;
+@property (strong, nonatomic) IBOutlet UIImageView *dusk;
+@property (strong, nonatomic) IBOutlet UIImageView *sunrise;
 
 @property (strong, nonatomic) IBOutlet UIButton *sleepButton;
 @property (strong, nonatomic) IBOutlet UIButton *wakeButton;
@@ -56,6 +55,10 @@
 #define GREAT_SLEEP_TIME (FALL_ASLEEP_TIME+(6*SLEEP_CYCLE_TIME))
 
 @implementation GNViewController
+{
+	CGRect skyStart;
+	CGRect skyEnd;
+}
 
 
 #pragma mark Setup
@@ -73,9 +76,8 @@
 	vertical.minimumRelativeValue = @(20);
 	vertical.maximumRelativeValue = @(-20);
 	_stars.motionEffects = @[horizontal, vertical];
-	
-	_lightSky = [UIImage imageNamed:@"lightSky"];
-	_darkSky = [UIImage imageNamed:@"darkSky"];
+	_sunrise.motionEffects = @[vertical];
+	_dusk.motionEffects = @[vertical];
 	
 	[_goodnightButtonSleep setTintColor:[UIColor colorWithRed:157.0f/255.0f
 														green: 75.0f/255.0f
@@ -126,6 +128,10 @@
 	
 #warning store last used mode in preferences and use below
 	[self setMode:GNViewControllerModeSetSleepTime];
+	
+	// Calculate start and end frames from dusk and dawn
+	skyStart = (CGRect){0,0,self.view.frame.size.width, _sky.image.size.height};
+	skyEnd = (CGRect){0,_selectorView.frame.origin.y+20-_sky.image.size.height,self.view.frame.size.width, _sky.image.size.height};
 }
 
 
@@ -180,10 +186,14 @@
 #warning UIButton does not animate between selected states
 						 _sleepButton.selected = YES;
 						 _wakeButton.selected = NO;
-						 _sky.image = _darkSky;
+						 
+						 _dusk.alpha = 1.0f;	// Animate up, too
+						 _sunrise.alpha = 0.0f; // Animate down, too
 						 
 						 _stars.center = (CGPoint){_stars.center.x, _stars.center.y + 100.0f};
 						 _stars.alpha = 1.0f;
+						 
+						 _sky.frame = skyStart;
 						 
 						 _goodnightButtonSleep.alpha = 1.0f;
 						 _goodnightButtonWake.alpha = 0.0f;
@@ -204,10 +214,14 @@
 #warning UIButton does not animate between selected states
 						 _wakeButton.selected = YES;
 						 _sleepButton.selected = NO;
-						 _sky.image = _lightSky;
+						 
+						 _dusk.alpha = 0.0f;	// Animate down, too
+						 _sunrise.alpha = 1.0f; // Animate up, too
 						 
 						 _stars.center = (CGPoint){_stars.center.x, _stars.center.y - 100.0f};
 						 _stars.alpha = 0.0f;
+						 
+						 _sky.frame = skyEnd;
 						 
 						 _triangleMarker.center = (CGPoint){_wakeButton.center.x, _triangleMarker.center.y};
 						 
