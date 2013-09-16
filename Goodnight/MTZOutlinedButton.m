@@ -110,9 +110,8 @@
 	[self setTitleColor:disabledColor forState:UIControlStateDisabled];
 	
 	// Filled in color background
-	UIImage *selected = [UIImage resizableImageWithStrokedRoundedCornersOfRadius:_cornerRadius
-																		 ofColor:normalColor
-																	 ofThickness:_borderWidth];
+	UIImage *selected = [UIImage resizableImageWithRoundedCornersOfRadius:_cornerRadius
+																  ofColor:normalColor];
 	[self setBackgroundImage:selected forState:UIControlStateSelected];
 	[self setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
 #warning be smarter about title color

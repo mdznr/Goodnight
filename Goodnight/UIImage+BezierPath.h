@@ -9,21 +9,17 @@
 
 @interface UIImage (BezierPath)
 
-/// Create an image with a @c UIBezierPath and fill with a specified color.
-/// @parameter bezierPath The @c UIBezierPath to draw into image
-/// @parameter color The color to fill the @c bezierPath
-+ (UIImage *)imageWithBezierPathFill:(UIBezierPath *)bezierPath withColor:(UIColor *)color;
-
-/// Create an image with a @c UIBezierPath and stroke with a specified color
-/// @parameter bezierPath The @c UIBezierPath to draw into image
-/// @parameter color The color to fill the @c bezierPath
-+ (UIImage *)imageWithBezierPathStroke:(UIBezierPath *)bezierPath withColor:(UIColor *)color;
-
-///
-///
-///
-///
+/// Create a resizable image with a specified corner radius stroked with a color
+/// @parameter radius The corner radius of the desired image
+/// @parameter color The color to fill the stroke
+/// @parameter thickness The thickness of the stroke
 + (UIImage *)resizableImageWithStrokedRoundedCornersOfRadius:(CGFloat)radius
 													 ofColor:(UIColor *)color
 												 ofThickness:(CGFloat)thickness;
+
+/// Create a resizable image with a specified corner radius filled with a color
+/// @parameter radius The corner radius of the desired image
+/// @parameter color The color to fill the image
++ (UIImage *)resizableImageWithRoundedCornersOfRadius:(CGFloat)radius
+											  ofColor:(UIColor *)color;
 @end
