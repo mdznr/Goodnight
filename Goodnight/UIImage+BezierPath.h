@@ -19,4 +19,11 @@
 /// @parameter color The color to fill the @c bezierPath
 + (UIImage *)imageWithBezierPathStroke:(UIBezierPath *)bezierPath withColor:(UIColor *)color;
 
+///
+///
+///
+///
++ (UIImage *)resizableImageWithStrokedRoundedCornersOfRadius:(CGFloat)radius
+													 ofColor:(UIColor *)color
+												 ofThickness:(CGFloat)thickness;
 @end

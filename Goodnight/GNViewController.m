@@ -7,6 +7,7 @@
 //
 
 #import "GNViewController.h"
+#import "MTZOutlinedButton.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface GNViewController ()
@@ -26,7 +27,7 @@
 
 @property (strong, nonatomic) IBOutlet UIView *selectorView;
 @property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
-@property (strong, nonatomic) IBOutlet UIButton *goodnightButton;
+@property (strong, nonatomic) IBOutlet MTZOutlinedButton *goodnightButton;
 
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
 

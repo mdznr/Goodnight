@@ -9,9 +9,7 @@
 /* Begin PBXBuildFile section */
 		C969821E17E54BC700AB44F6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C969821D17E54BC700AB44F6 /* QuartzCore.framework */; };
 		C969822117E54F6D00AB44F6 /* UIImage+BezierPath.m in Sources */ = {isa = PBXBuildFile; fileRef = C969822017E54F6D00AB44F6 /* UIImage+BezierPath.m */; };
-		C969822417E5613600AB44F6 /* MTZSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = C969822317E5613600AB44F6 /* MTZSegmentView.m */; };
-		C9A0B90617E3F23B009D318B /* MTZScrollingCardsView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A0B90517E3F23B009D318B /* MTZScrollingCardsView.m */; };
-		C9E6CFD217E16D3200E65CE9 /* GNTimeCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E6CFD117E16D3200E65CE9 /* GNTimeCardView.m */; };
+		C969822717E6C52C00AB44F6 /* MTZOutlinedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C969822617E6C52C00AB44F6 /* MTZOutlinedButton.m */; };
 		C9E6CFD417E2326100E65CE9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9E6CFD317E2326100E65CE9 /* Images.xcassets */; };
 		C9ED790015549BCB002064B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9ED78FF15549BCB002064B2 /* UIKit.framework */; };
 		C9ED790215549BCB002064B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9ED790115549BCB002064B2 /* Foundation.framework */; };
@@ -28,12 +26,8 @@
 		C969821D17E54BC700AB44F6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C969821F17E54F6D00AB44F6 /* UIImage+BezierPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BezierPath.h"; sourceTree = "<group>"; };
 		C969822017E54F6D00AB44F6 /* UIImage+BezierPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BezierPath.m"; sourceTree = "<group>"; };
-		C969822217E5613600AB44F6 /* MTZSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTZSegmentView.h; sourceTree = "<group>"; };
-		C969822317E5613600AB44F6 /* MTZSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTZSegmentView.m; sourceTree = "<group>"; };
-		C9A0B90417E3F23B009D318B /* MTZScrollingCardsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTZScrollingCardsView.h; sourceTree = "<group>"; };
-		C9A0B90517E3F23B009D318B /* MTZScrollingCardsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTZScrollingCardsView.m; sourceTree = "<group>"; };
-		C9E6CFD017E16D3200E65CE9 /* GNTimeCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTimeCardView.h; sourceTree = "<group>"; };
-		C9E6CFD117E16D3200E65CE9 /* GNTimeCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTimeCardView.m; sourceTree = "<group>"; };
+		C969822517E6C52C00AB44F6 /* MTZOutlinedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTZOutlinedButton.h; sourceTree = "<group>"; };
+		C969822617E6C52C00AB44F6 /* MTZOutlinedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTZOutlinedButton.m; sourceTree = "<group>"; };
 		C9E6CFD317E2326100E65CE9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C9ED78FB15549BCB002064B2 /* Goodnight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Goodnight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9ED78FF15549BCB002064B2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -102,14 +96,10 @@
 				C9ED791315549BCB002064B2 /* MainStoryboard.storyboard */,
 				C9ED791615549BCB002064B2 /* GNViewController.h */,
 				C9ED791715549BCB002064B2 /* GNViewController.m */,
-				C9E6CFD017E16D3200E65CE9 /* GNTimeCardView.h */,
-				C9E6CFD117E16D3200E65CE9 /* GNTimeCardView.m */,
-				C9A0B90417E3F23B009D318B /* MTZScrollingCardsView.h */,
-				C9A0B90517E3F23B009D318B /* MTZScrollingCardsView.m */,
-				C969822217E5613600AB44F6 /* MTZSegmentView.h */,
-				C969822317E5613600AB44F6 /* MTZSegmentView.m */,
 				C969821F17E54F6D00AB44F6 /* UIImage+BezierPath.h */,
 				C969822017E54F6D00AB44F6 /* UIImage+BezierPath.m */,
+				C969822517E6C52C00AB44F6 /* MTZOutlinedButton.h */,
+				C969822617E6C52C00AB44F6 /* MTZOutlinedButton.m */,
 				C9E6CFD317E2326100E65CE9 /* Images.xcassets */,
 				C9ED790615549BCB002064B2 /* Supporting Files */,
 			);
@@ -199,13 +189,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9E6CFD217E16D3200E65CE9 /* GNTimeCardView.m in Sources */,
+				C969822717E6C52C00AB44F6 /* MTZOutlinedButton.m in Sources */,
 				C969822117E54F6D00AB44F6 /* UIImage+BezierPath.m in Sources */,
 				C9ED790C15549BCB002064B2 /* main.m in Sources */,
-				C9A0B90617E3F23B009D318B /* MTZScrollingCardsView.m in Sources */,
 				C9ED791015549BCB002064B2 /* GNAppDelegate.m in Sources */,
 				C9ED791815549BCB002064B2 /* GNViewController.m in Sources */,
-				C969822417E5613600AB44F6 /* MTZSegmentView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
