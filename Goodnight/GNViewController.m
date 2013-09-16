@@ -7,9 +7,6 @@
 //
 
 #import "GNViewController.h"
-#import "GNTimeCardView.h"
-#import "MTZScrollingCardsView.h"
-#import "MTZSegmentView.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface GNViewController ()
@@ -19,54 +16,42 @@
 @property (strong, nonatomic) IBOutlet UIImageView *sky;
 @property (strong, nonatomic) IBOutlet UIImageView *stars;
 
-// Top
-@property (strong, nonatomic) IBOutlet MTZSegmentView *topView;
-@property (strong, nonatomic) IBOutlet UIButton *sleepButton;
-@property (strong, nonatomic) IBOutlet UIDatePicker *sleepPicker;
-@property (strong, nonatomic) IBOutlet MTZScrollingCardsView *sleepCardsView;
-@property (strong, nonatomic) GNTimeCardView *sleepCardBad;
-@property (strong, nonatomic) GNTimeCardView *sleepCardPoor;
-@property (strong, nonatomic) GNTimeCardView *sleepCardFine;
-@property (strong, nonatomic) GNTimeCardView *sleepCardGood;
-@property (strong, nonatomic) GNTimeCardView *sleepCardGreat;
+@property (strong, nonatomic) UIImage *darkSky;
+@property (strong, nonatomic) UIImage *lightSky;
 
-// Bottom
-@property (strong, nonatomic) IBOutlet MTZSegmentView *bottomView;
+@property (strong, nonatomic) IBOutlet UIButton *sleepButton;
 @property (strong, nonatomic) IBOutlet UIButton *wakeButton;
-@property (strong, nonatomic) IBOutlet UIDatePicker *wakePicker;
-@property (strong, nonatomic) IBOutlet MTZScrollingCardsView *wakeCardsView;
-@property (strong, nonatomic) GNTimeCardView *wakeCardBad;
-@property (strong, nonatomic) GNTimeCardView *wakeCardPoor;
-@property (strong, nonatomic) GNTimeCardView *wakeCardFine;
-@property (strong, nonatomic) GNTimeCardView *wakeCardGood;
-@property (strong, nonatomic) GNTimeCardView *wakeCardGreat;
+
+@property (strong, nonatomic) IBOutlet UIView *selectorView;
+@property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property (strong, nonatomic) IBOutlet UIButton *goodnightButton;
+
+@property (strong, nonatomic) NSDateFormatter *dateFormatter;
+
+@property (strong, nonatomic) UILabel *timeBad;
+@property (strong, nonatomic) UILabel *timeFine;
+@property (strong, nonatomic) UILabel *timeGood;
+@property (strong, nonatomic) UILabel *timeGreat;
 
 @end
 
 #define ANIMATION_DURATION 0.2f
 
-#define NUMBER_OF_CARDS 5
+#define NUMBER_OF_CARDS 4
 
-#define DEFAULT_WAKE_PAGE_INDEX 3
-#define BAD_WAKE_PAGE_INDEX   0
-#define POOR_WAKE_PAGE_INDEX  1
-#define FINE_WAKE_PAGE_INDEX  2
-#define GOOD_WAKE_PAGE_INDEX  3
-#define GREAT_WAKE_PAGE_INDEX 4
+#define BAD_OPACITY   0.7f
+#define FINE_OPACITY  0.8f
+#define GOOD_OPACITY  0.9f
+#define GREAT_OPACITY 1.0f
 
-#define DEFAULT_SLEEP_PAGE_INDEX 1
-#define BAD_SLEEP_PAGE_INDEX   4
-#define POOR_SLEEP_PAGE_INDEX  3
-#define FINE_SLEEP_PAGE_INDEX  2
-#define GOOD_SLEEP_PAGE_INDEX  1
-#define GREAT_SLEEP_PAGE_INDEX 0
+#define MODE_BUTTON_ACTIVE_OPACITY 1.0f
+#define MODE_BUTTON_INACTIVE_OPACITY 0.4f
 
 #define FALL_ASLEEP_TIME (14*60)
 #define SLEEP_CYCLE_TIME (90*60)
-#define BAD_SLEEP_TIME (FALL_ASLEEP_TIME+(2*SLEEP_CYCLE_TIME))
-#define POOR_SLEEP_TIME (FALL_ASLEEP_TIME+(3*SLEEP_CYCLE_TIME))
-#define FINE_SLEEP_TIME (FALL_ASLEEP_TIME+(4*SLEEP_CYCLE_TIME))
-#define GOOD_SLEEP_TIME (FALL_ASLEEP_TIME+(5*SLEEP_CYCLE_TIME))
+#define BAD_SLEEP_TIME   (FALL_ASLEEP_TIME+(3*SLEEP_CYCLE_TIME))
+#define FINE_SLEEP_TIME  (FALL_ASLEEP_TIME+(4*SLEEP_CYCLE_TIME))
+#define GOOD_SLEEP_TIME  (FALL_ASLEEP_TIME+(5*SLEEP_CYCLE_TIME))
 #define GREAT_SLEEP_TIME (FALL_ASLEEP_TIME+(6*SLEEP_CYCLE_TIME))
 
 @implementation GNViewController
@@ -88,101 +73,38 @@
 	vertical.maximumRelativeValue = @(-20);
 	_stars.motionEffects = @[horizontal, vertical];
 	
+	_lightSky = [UIImage imageNamed:@"lightSky"];
+	_darkSky = [UIImage imageNamed:@"darkSky"];
+	
 	// Autoresize top and bottom views
-	_topView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	_bottomView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	
-	// Declare top and bottom views positions
-	_topView.position = MTZSegmentPositionTop;
-	_bottomView.position = MTZSegmentPositionBottom;
-	
-	// What events should have the pressed down state and which ones should not
-	UIControlEvents down = UIControlEventTouchDown | UIControlEventTouchDragInside;
-	UIControlEvents up = UIControlEventTouchCancel | UIControlEventTouchDragEnter | UIControlEventTouchDragOutside | UIControlEventTouchUpInside | UIControlEventTouchUpOutside;
+	_selectorView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 	
 	// Add targets to buttons for events
 	[_sleepButton addTarget:self
-					 action:@selector(stopTouchDownSleepButton:)
-		   forControlEvents:up];
-	[_sleepButton addTarget:self
-					 action:@selector(touchDownSleepButton:)
-		   forControlEvents:down];
-	[_sleepButton addTarget:self
 					 action:@selector(tappedSleepButton:)
 		   forControlEvents:UIControlEventTouchUpInside];
-	
-	[_wakeButton addTarget:self
-					action:@selector(stopTouchDownWakeButton:)
-		  forControlEvents:up];
-	[_wakeButton addTarget:self
-					action:@selector(touchDownWakeButton:)
-		  forControlEvents:down];
 	[_wakeButton addTarget:self
 					action:@selector(tappedWakeButton:)
 		  forControlEvents:UIControlEventTouchUpInside];
 	
 	// Picker actions
-	[_sleepPicker addTarget:self
-					 action:@selector(sleepPickerDidChange:)
-		   forControlEvents:UIControlEventValueChanged];
-	[_wakePicker addTarget:self
-					action:@selector(wakePickerDidChange:)
+	[_datePicker addTarget:self
+					action:@selector(sleepPickerDidChange:)
 		  forControlEvents:UIControlEventValueChanged];
 	
-	CGFloat width, height;
+	// Setup formatter
+	_dateFormatter = [[NSDateFormatter alloc] init];
+	_dateFormatter.dateFormat = @"h:mm a";
 	
-	// Wake cards
-	width = _wakeCardsView.frame.size.width;
-	height = _wakeCardsView.frame.size.height;
+	// Setup times
+#warning frames for times?
+	_timeBad   = [[UILabel alloc] init];
+	_timeFine  = [[UILabel alloc] init];
+	_timeGood  = [[UILabel alloc] init];
+	_timeGreat = [[UILabel alloc] init];
 	
-	// Setup wake cards
-	_wakeCardBad   = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringBad];
-	_wakeCardPoor  = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringPoor];
-	_wakeCardFine  = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringFine];
-	_wakeCardGood  = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringGood];
-	_wakeCardGreat = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringGreat];
-	
-	// Configure wake card scrollview
-	[_wakeCardsView addPages:@[_wakeCardBad,
-							   _wakeCardPoor,
-							   _wakeCardFine,
-							   _wakeCardGood,
-							   _wakeCardGreat]];
-	_wakeCardsView.currentPage = DEFAULT_WAKE_PAGE_INDEX;
-#warning setting current page isn't working
-	
-	_wakeCardsView.cardWidth = _wakeCardBad.frame.size.width;
-	_wakeCardsView.cardPadding = 24.0f;
-	
-	// Update wake card times
-	[self updateWakeCardTimes];
-	
-	
-	// Sleep Cards
-	width = _sleepCardsView.frame.size.width;
-	height = _sleepCardsView.frame.size.height;
-	
-	// Setup sleep cards
-	_sleepCardBad   = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringBad];
-	_sleepCardPoor  = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringPoor];
-	_sleepCardFine  = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringFine];
-	_sleepCardGood  = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringGood];
-	_sleepCardGreat = [[GNTimeCardView alloc] initWithMetering:GNTimeCardViewMeteringGreat];
-	
-	// Configure sleep card scrollview
-	[_sleepCardsView addPages:@[_sleepCardGreat,
-								 _sleepCardGood,
-								 _sleepCardFine,
-								 _sleepCardPoor,
-								 _sleepCardBad]];
-	_sleepCardsView.currentPage = DEFAULT_SLEEP_PAGE_INDEX;
-#warning setting current page isn't working
-	
-	_sleepCardsView.cardWidth = _sleepCardBad.frame.size.width;
-	_sleepCardsView.cardPadding = 24.0f;
-	
-	// Update sleep card times
-	[self updateSleepCardTimes];
+	// Update times
+	[self updateTimes];
 	
 #warning store last used mode in preferences and use below
 	[self setMode:GNViewControllerModeSetSleepTime];
@@ -197,7 +119,7 @@
 	[self setMode:GNViewControllerModeSetSleepTime];
 	
 	// Have to do this since UIDatePicker doesn't perform action for UIControlEventValueChanged when using setDate:Animated:
-	[self updateWakeCardTimes];
+	[self updateTimes];
 }
 
 - (IBAction)tappedWakeButton:(id)sender
@@ -205,27 +127,7 @@
 	[self setMode:GNViewControllerModeSetWakeTime];
 	
 	// Have to do this since UIDatePicker doesn't perform action for UIControlEventValueChanged when using setDate:Animated:
-	[self updateSleepCardTimes];
-}
-
-- (IBAction)touchDownSleepButton:(id)sender
-{
-	[_topView setHighlighted:YES];
-}
-
-- (IBAction)stopTouchDownSleepButton:(id)sender
-{
-	[_topView setHighlighted:NO];
-}
-
-- (IBAction)touchDownWakeButton:(id)sender
-{
-	[_bottomView setHighlighted:YES];
-}
-
-- (IBAction)stopTouchDownWakeButton:(id)sender
-{
-	[_bottomView setHighlighted:NO];
+	[self updateTimes];
 }
 
 
@@ -244,33 +146,40 @@
 	}
 }
 
-#warning animate to mode like UISegmentedControl
 - (void)sleepMode
 {
-	_topView.selected = YES;
-	[_sleepButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-	[_sleepPicker setDate:[NSDate date] animated:YES]; // Default to 'now'
-	_sleepCardsView.hidden = YES;
-	_sleepPicker.hidden = NO;
+#warning animate?
+	_sleepButton.alpha = MODE_BUTTON_ACTIVE_OPACITY;
+	_wakeButton.alpha  = MODE_BUTTON_INACTIVE_OPACITY;
 	
-	_bottomView.selected = NO;
-	[_wakeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-	_wakePicker.hidden = YES;
-	_wakeCardsView.hidden = NO;
+#warning this should animate down
+	_stars.hidden = NO;
+	
+	_sky.image = _darkSky;
+	
+	// Set purple tint color
+	[_goodnightButton setTintColor:[UIColor colorWithRed:157.0f/255.0f
+												   green: 75.0f/255.0f
+													blue:212.0f/255.0f
+												   alpha:1.0f]];
 }
 
-#warning the time for the picker should be of the currently selected wake card
 - (void)wakeMode
 {
-	_topView.selected = NO;
-	[_sleepButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-	_sleepPicker.hidden = YES;
-	_sleepCardsView.hidden = NO;
+#warning animate?
+	_wakeButton.alpha  = MODE_BUTTON_ACTIVE_OPACITY;
+	_sleepButton.alpha = MODE_BUTTON_INACTIVE_OPACITY;
 	
-	_bottomView.selected = YES;
-	[_wakeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-	_wakeCardsView.hidden = YES;
-	_wakePicker.hidden = NO;
+#warning this should animate up and out of opacity
+	_stars.hidden = YES;
+	
+	_sky.image = _lightSky;
+	
+	// Set blue tint color
+	[_goodnightButton setTintColor:[UIColor colorWithRed: 69.0f/255.0f
+												   green:172.0f/255.0f
+													blue:245.0f/255.0f
+												   alpha:1.0f]];
 }
 
 
@@ -278,17 +187,16 @@
 
 - (void)sleepPickerDidChange:(id)sender
 {
-	[self updateWakeCardTimes];
+	[self updateTimes];
 }
 
-- (void)updateWakeCardTimes
+- (void)updateTimes
 {
-	NSDate *date = _sleepPicker.date;
-	_wakeCardBad.date   = [date dateByAddingTimeInterval:BAD_SLEEP_TIME];
-	_wakeCardPoor.date  = [date dateByAddingTimeInterval:POOR_SLEEP_TIME];
-	_wakeCardFine.date  = [date dateByAddingTimeInterval:FINE_SLEEP_TIME];
-	_wakeCardGood.date  = [date dateByAddingTimeInterval:GOOD_SLEEP_TIME];
-	_wakeCardGreat.date = [date dateByAddingTimeInterval:GREAT_SLEEP_TIME];
+	NSDate *date = _datePicker.date;
+	_timeBad.text   = [_dateFormatter stringFromDate:[date dateByAddingTimeInterval:BAD_SLEEP_TIME]];
+	_timeFine.text  = [_dateFormatter stringFromDate:[date dateByAddingTimeInterval:FINE_SLEEP_TIME]];
+	_timeGood.text  = [_dateFormatter stringFromDate:[date dateByAddingTimeInterval:GOOD_SLEEP_TIME]];
+	_timeGreat.text = [_dateFormatter stringFromDate:[date dateByAddingTimeInterval:GREAT_SLEEP_TIME]];
 }
 
 
@@ -299,12 +207,11 @@
 
 - (void)updateSleepCardTimes
 {
-	NSDate *date = _wakePicker.date;
-	_sleepCardBad.date   = [date dateByAddingTimeInterval:-BAD_SLEEP_TIME];
-	_sleepCardPoor.date  = [date dateByAddingTimeInterval:-POOR_SLEEP_TIME];
-	_sleepCardFine.date  = [date dateByAddingTimeInterval:-FINE_SLEEP_TIME];
-	_sleepCardGood.date  = [date dateByAddingTimeInterval:-GOOD_SLEEP_TIME];
-	_sleepCardGreat.date = [date dateByAddingTimeInterval:-GREAT_SLEEP_TIME];
+	NSDate *date = _datePicker.date;
+	_timeBad.text   = [_dateFormatter stringFromDate:[date dateByAddingTimeInterval:-BAD_SLEEP_TIME]];
+	_timeFine.text  = [_dateFormatter stringFromDate:[date dateByAddingTimeInterval:-FINE_SLEEP_TIME]];
+	_timeGood.text  = [_dateFormatter stringFromDate:[date dateByAddingTimeInterval:-GOOD_SLEEP_TIME]];
+	_timeGreat.text = [_dateFormatter stringFromDate:[date dateByAddingTimeInterval:-GREAT_SLEEP_TIME]];
 }
 
 
