@@ -16,6 +16,7 @@ typedef enum {
 
 @interface MTZTriangleView : UIView
 
+/// The orientation of the triangle as defined as which way it is pointing in cardinal directions.
 @property (nonatomic) MTZTriangleOrientation orientation;
 
 #warning could this just be backgroundColor?
