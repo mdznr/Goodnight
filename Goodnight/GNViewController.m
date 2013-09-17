@@ -56,10 +56,6 @@
 #define GREAT_SLEEP_TIME (FALL_ASLEEP_TIME+(6*SLEEP_CYCLE_TIME))
 
 @implementation GNViewController
-{
-	CGPoint skyStart;
-	CGPoint skyEnd;
-}
 
 
 #pragma mark Setup
@@ -129,10 +125,6 @@
 	
 #warning store last used mode in preferences and use below
 	[self setMode:GNViewControllerModeSetSleepTime];
-	
-	// Calculate start and end frames from dusk and dawn
-	skyStart = (CGPoint){self.view.frame.size.width/2, -20+(_sky.image.size.height/2)};
-	skyEnd = (CGPoint){self.view.frame.size.width/2, 20+_selectorView.frame.origin.y-(_sky.image.size.height/2)};
 }
 
 
@@ -203,6 +195,7 @@
 		  initialSpringVelocity:1.0f
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
+						 CGPoint skyStart = (CGPoint){self.view.frame.size.width/2, -20+(_sky.image.size.height/2)};
 						 _sky.center = skyStart;
 						 _dusk.alpha = 1.0f;	// Animate up, too
 						 
@@ -239,6 +232,7 @@
 		  initialSpringVelocity:1.0f
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
+						 CGPoint skyEnd = (CGPoint){self.view.frame.size.width/2, 20+_selectorView.frame.origin.y-(_sky.image.size.height/2)};
 						 _sky.center = skyEnd;
 						 _sunrise.alpha = 0.5f; // Animate up, too
 						 
