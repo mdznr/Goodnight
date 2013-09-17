@@ -27,8 +27,7 @@
 
 @property (strong, nonatomic) IBOutlet UIView *selectorView;
 @property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
-@property (strong, nonatomic) IBOutlet MTZOutlinedButton *goodnightButtonSleep;
-@property (strong, nonatomic) IBOutlet MTZOutlinedButton *goodnightButtonWake;
+@property (strong, nonatomic) IBOutlet MTZOutlinedButton *goodnightButton;
 
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
 
@@ -76,22 +75,10 @@
 	_sunrise.motionEffects = @[vertical];
 	_dusk.motionEffects = @[vertical];
 	
-	[_goodnightButtonSleep setTintColor:[UIColor colorWithRed:157.0f/255.0f
-														green: 75.0f/255.0f
-														 blue:212.0f/255.0f
-														alpha:1.0f]];
-	
-	[_goodnightButtonWake setTintColor:[UIColor colorWithRed: 69.0f/255.0f
-													   green:172.0f/255.0f
-														blue:245.0f/255.0f
-													   alpha:1.0f]];
 	// Add goodnight button action
-	[_goodnightButtonSleep addTarget:self
-							  action:@selector(tappedGoodnightButton:)
-					forControlEvents:UIControlEventTouchUpInside];
-	[_goodnightButtonWake addTarget:self
-							 action:@selector(tappedGoodnightButton:)
-				   forControlEvents:UIControlEventTouchUpInside];
+	[_goodnightButton addTarget:self
+						 action:@selector(tappedGoodnightButton:)
+			   forControlEvents:UIControlEventTouchUpInside];
 	
 	// Autoresize top and bottom views
 	_selectorView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -150,6 +137,7 @@
 - (void)tappedGoodnightButton:(id)sender
 {
 #warning animate and show times
+	NSLog(@"tappedGoodnightButton: %@", sender);
 }
 
 
@@ -198,11 +186,19 @@
 						 CGPoint skyStart = (CGPoint){self.view.frame.size.width/2, -20+(_sky.image.size.height/2)};
 						 _sky.center = skyStart;
 						 _dusk.alpha = 1.0f;	// Animate up, too
-						 
-						 _goodnightButtonSleep.alpha = 1.0f;
-						 _goodnightButtonWake.alpha = 0.0f;
 					 }
 					 completion:^(BOOL finished) { }];
+	
+	[UIView transitionWithView:_goodnightButton
+					  duration:ANIMATION_DURATION
+					   options:UIViewAnimationOptionTransitionCrossDissolve
+					animations:^{
+						[_goodnightButton setTintColor:[UIColor colorWithRed:157.0f/255.0f
+																	   green: 75.0f/255.0f
+																		blue:212.0f/255.0f
+																	   alpha:1.0f]];
+					}
+					completion:^(BOOL finished) {}];
 }
 
 - (void)wakeMode
@@ -235,11 +231,19 @@
 						 CGPoint skyEnd = (CGPoint){self.view.frame.size.width/2, 20+_selectorView.frame.origin.y-(_sky.image.size.height/2)};
 						 _sky.center = skyEnd;
 						 _sunrise.alpha = 0.5f; // Animate up, too
-						 
-						 _goodnightButtonWake.alpha = 1.0f;
-						 _goodnightButtonSleep.alpha = 0.0f;
 					 }
 					 completion:^(BOOL finished) { }];
+	
+	[UIView transitionWithView:_goodnightButton
+					  duration:ANIMATION_DURATION
+					   options:UIViewAnimationOptionTransitionCrossDissolve
+					animations:^{
+						[_goodnightButton setTintColor:[UIColor colorWithRed: 69.0f/255.0f
+																	   green:172.0f/255.0f
+																		blue:245.0f/255.0f
+																	   alpha:1.0f]];
+					}
+					completion:^(BOOL finished) {}];
 }
 
 

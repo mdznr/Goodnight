@@ -53,6 +53,7 @@
 	UIGraphicsBeginImageContextWithOptions((CGSize){width, height}, NO, 0.0f);
 	
 	[color set];
+	[bp stroke];
 	[bp fill];
 	UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();
