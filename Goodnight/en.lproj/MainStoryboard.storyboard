@@ -22,7 +22,7 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <imageView opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Stars" id="npO-0j-4k0" userLabel="Stars">
-                                        <rect key="frame" x="29" y="29" width="262" height="242"/>
+                                        <rect key="frame" x="29" y="10" width="262" height="242"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dusk" id="cHx-v5-WaU" userLabel="Dusk">
@@ -33,6 +33,15 @@
                                         <rect key="frame" x="0.0" y="-20" width="320" height="238"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AK7-kH-Fn4" userLabel="Instructions">
+                                        <rect key="frame" x="0.0" y="42" width="320" height="70"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                        <string key="text">Set the time you’d
+like to fall asleep at</string>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="XSM-hG-eiY" userLabel="Sleep">
                                         <rect key="frame" x="40" y="134" width="120" height="41"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -126,6 +135,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="datePicker" destination="I5e-pQ-WCH" id="7X8-wk-G9S"/>
                         <outlet property="dusk" destination="cHx-v5-WaU" id="rPD-pR-Liz"/>
                         <outlet property="goodnightButton" destination="ozt-D6-lDP" id="rxO-lQ-FTb"/>
+                        <outlet property="instructions" destination="AK7-kH-Fn4" id="y0C-v5-Zmr"/>
                         <outlet property="selectorView" destination="Jyc-KX-f6x" id="paN-sQ-58w"/>
                         <outlet property="sky" destination="cFv-YR-Paa" id="wJc-ZQ-tLE"/>
                         <outlet property="sleepButton" destination="XSM-hG-eiY" id="SlD-pn-CqC"/>

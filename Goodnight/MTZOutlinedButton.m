@@ -8,7 +8,9 @@
 #import "MTZOutlinedButton.h"
 #import "UIImage+BezierPath.h"
 
-@interface MTZOutlinedButton ()
+@interface MTZOutlinedButton () {
+	MTZOutlineLayer *_outlineLayer;
+}
 
 @property (nonatomic) CGFloat borderWidth;
 
@@ -56,11 +58,20 @@
 									   alpha:1.0f]];
 	
 	_cornerRadius = 8.0f;
+	
+	_outlineLayer = [MTZOutlineLayer layer];
+	_outlineLayer.frame = self.bounds;
+	_outlineLayer.color = self.tintColor.CGColor;
+	_outlineLayer.thickness = _borderWidth;
+	_outlineLayer.radius = _cornerRadius;
+	[self.layer addSublayer:_outlineLayer];
 }
 
 - (void)setTintColor:(UIColor *)normalColor
 {
 	[super setTintColor:normalColor];
+	_outlineLayer.color = normalColor.CGColor;
+	return;
 	
 	CGFloat h,s,b,a;
 	[normalColor getHue:&h

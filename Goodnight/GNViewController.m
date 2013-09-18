@@ -20,6 +20,8 @@
 @property (strong, nonatomic) IBOutlet UIImageView *dusk;
 @property (strong, nonatomic) IBOutlet UIImageView *sunrise;
 
+@property (strong, nonatomic) IBOutlet UILabel *instructions;
+
 @property (strong, nonatomic) IBOutlet UIButton *sleepButton;
 @property (strong, nonatomic) IBOutlet UIButton *wakeButton;
 
@@ -35,6 +37,10 @@
 @property (strong, nonatomic) UILabel *timeFine;
 @property (strong, nonatomic) UILabel *timeGood;
 @property (strong, nonatomic) UILabel *timeGreat;
+
+@property (nonatomic) BOOL hasUsedAppBefore;
+
+@property (strong, nonatomic) NSDate *dateToResumeAnimatingInstructions;
 
 @end
 
@@ -112,6 +118,19 @@
 	
 #warning store last used mode in preferences and use below
 	[self setMode:GNViewControllerModeSetSleepTime];
+	
+#warning see if the app has been used
+	_hasUsedAppBefore = NO;
+	if ( !_hasUsedAppBefore ) {
+		[UIView animateWithDuration:2 * ANIMATION_DURATION
+							  delay:2 * ANIMATION_DURATION
+							options:UIViewAnimationOptionBeginFromCurrentState
+						 animations:^{
+							 _instructions.alpha = 0.7;
+						 }
+						 completion:^(BOOL finished) {}];
+	}
+	
 }
 
 
@@ -158,6 +177,10 @@
 
 - (void)sleepMode
 {
+	// Select Sleep segmented control button
+	// Hide sunrise
+	// Bring in stars
+	// Move triangle
 	[UIView animateWithDuration:ANIMATION_DURATION
 						  delay:0.0f
 		 usingSpringWithDamping:1.0f
@@ -177,6 +200,9 @@
 					 }
 					 completion:^(BOOL finished) {}];
 	
+	// Animate sky
+	// Bring up dusk
+	// Change goodnight button tint color
 	[UIView animateWithDuration:ANIMATION_DURATION * 3
 						  delay:0.0f
 		 usingSpringWithDamping:10.0f
@@ -186,23 +212,26 @@
 						 CGPoint skyStart = (CGPoint){self.view.frame.size.width/2, -20+(_sky.image.size.height/2)};
 						 _sky.center = skyStart;
 						 _dusk.alpha = 1.0f;	// Animate up, too
+						 
+						 UIColor *color = [UIColor colorWithRed:157.0f/255.0f
+														  green: 75.0f/255.0f
+														   blue:212.0f/255.0f
+														  alpha:1.0f];
+						 [_goodnightButton setTintColor:color];
 					 }
 					 completion:^(BOOL finished) { }];
 	
-	[UIView transitionWithView:_goodnightButton
-					  duration:ANIMATION_DURATION
-					   options:UIViewAnimationOptionTransitionCrossDissolve
-					animations:^{
-						[_goodnightButton setTintColor:[UIColor colorWithRed:157.0f/255.0f
-																	   green: 75.0f/255.0f
-																		blue:212.0f/255.0f
-																	   alpha:1.0f]];
-					}
-					completion:^(BOOL finished) {}];
+	if ( !_hasUsedAppBefore ) {
+		[self showInstructionsSleep];
+	}
 }
 
 - (void)wakeMode
 {
+	// Select Sleep segmented control button
+	// Hide sunrise
+	// Bring in stars
+	// Move triangle
 	[UIView animateWithDuration:ANIMATION_DURATION
 						  delay:0.0f
 		 usingSpringWithDamping:1.0f
@@ -222,6 +251,9 @@
 					 }
 					 completion:^(BOOL finished) {}];
 	
+	// Animate sky
+	// Bring up dusk
+	// Change goodnight button tint color
 	[UIView animateWithDuration:ANIMATION_DURATION * 3
 						  delay:0.0f
 		 usingSpringWithDamping:10.0f
@@ -231,19 +263,76 @@
 						 CGPoint skyEnd = (CGPoint){self.view.frame.size.width/2, 20+_selectorView.frame.origin.y-(_sky.image.size.height/2)};
 						 _sky.center = skyEnd;
 						 _sunrise.alpha = 0.5f; // Animate up, too
+						 
+						 UIColor *color = [UIColor colorWithRed: 69.0f/255.0f
+														  green:172.0f/255.0f
+														   blue:245.0f/255.0f
+														  alpha:1.0f];
+						 [_goodnightButton setTintColor:color];
 					 }
 					 completion:^(BOOL finished) { }];
 	
-	[UIView transitionWithView:_goodnightButton
-					  duration:ANIMATION_DURATION
-					   options:UIViewAnimationOptionTransitionCrossDissolve
-					animations:^{
-						[_goodnightButton setTintColor:[UIColor colorWithRed: 69.0f/255.0f
-																	   green:172.0f/255.0f
-																		blue:245.0f/255.0f
-																	   alpha:1.0f]];
-					}
-					completion:^(BOOL finished) {}];
+	if ( !_hasUsedAppBefore ) {
+		[self showInstructionsWake];
+	}
+}
+
+- (void)showInstructionsSleep
+{
+	 if ( [_dateToResumeAnimatingInstructions compare:[NSDate date]] == NSOrderedAscending ) {
+		// Animate instructions out
+		// Change text
+		[UIView animateWithDuration:ANIMATION_DURATION
+							  delay:0.0f
+							options:UIViewAnimationOptionBeginFromCurrentState
+						 animations:^{
+							 _instructions.alpha = 0.0f;
+						 }
+						 completion:^(BOOL finished) {
+							 if ( _mode == GNViewControllerModeSetSleepTime ) {
+	#warning get localized string
+								 _instructions.text = @"Set the time you’d\nlike to fall asleep at";
+								 // Animate instructions back in
+								 [UIView animateWithDuration:2 * ANIMATION_DURATION
+													   delay:2 * ANIMATION_DURATION
+													 options:UIViewAnimationOptionCurveLinear
+												  animations:^{
+													  _instructions.alpha = 0.7f;
+												  }
+												  completion:^(BOOL finished) {}];
+							 }
+						 }];
+	 }
+	_dateToResumeAnimatingInstructions = [NSDate dateWithTimeIntervalSinceNow:ANIMATION_DURATION];
+}
+
+- (void)showInstructionsWake
+{
+	if ( [_dateToResumeAnimatingInstructions compare:[NSDate date]] == NSOrderedAscending ) {
+		// Animate instructions out
+		// Change text
+		[UIView animateWithDuration:ANIMATION_DURATION
+							  delay:0.0f
+							options:UIViewAnimationOptionBeginFromCurrentState
+						 animations:^{
+							 _instructions.alpha = 0.0f;
+						 }
+						 completion:^(BOOL finished) {
+								 if ( _mode == GNViewControllerModeSetWakeTime ) {
+	#warning get localized string)
+								 _instructions.text = @"Set the time you’d\nlike to wake up at";
+								 // Animate instructions back in
+								 [UIView animateWithDuration:2 * ANIMATION_DURATION
+													   delay:2 * ANIMATION_DURATION
+													 options:UIViewAnimationOptionCurveLinear
+												  animations:^{
+													  _instructions.alpha = 0.7f;
+												  }
+												  completion:^(BOOL finished) {}];
+							 }
+						 }];
+		}
+	_dateToResumeAnimatingInstructions = [NSDate dateWithTimeIntervalSinceNow:ANIMATION_DURATION];
 }
 
 

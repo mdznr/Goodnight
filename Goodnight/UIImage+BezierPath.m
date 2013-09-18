@@ -16,8 +16,7 @@
 	CGFloat side = MAX(2*radius, 2);
 	CGRect rect = {0, 0, side, side};
 	UIBezierPath *bp = [UIBezierPath bezierPathWithRoundedRect:rect
-											 byRoundingCorners:UIRectCornerAllCorners
-												   cornerRadii:(CGSize){radius,radius}];
+												  cornerRadius:radius];
 	bp.lineWidth = 0.0f;
 	CGFloat width = bp.bounds.size.width;
 	CGFloat height = bp.bounds.size.height;
@@ -25,8 +24,7 @@
 	
 	CGFloat innerRadius = radius - thickness;
 	UIBezierPath *bp2 = [UIBezierPath bezierPathWithRoundedRect:CGRectInset(rect, thickness, thickness)
-											  byRoundingCorners:UIRectCornerAllCorners
-													cornerRadii:(CGSize){innerRadius, innerRadius}];
+												   cornerRadius:innerRadius];
 	bp2.lineWidth = 0.0f;
 	[bp appendPath:bp2];
 	bp.usesEvenOddFillRule = YES;
@@ -45,8 +43,7 @@
 	CGFloat side = MAX(2*radius, 2);
 	CGRect rect = {0, 0, side, side};
 	UIBezierPath *bp = [UIBezierPath bezierPathWithRoundedRect:rect
-											 byRoundingCorners:UIRectCornerAllCorners
-												   cornerRadii:(CGSize){radius,radius}];
+												  cornerRadius:radius];
 	bp.lineWidth = 0.0f;
 	CGFloat width = bp.bounds.size.width;
 	CGFloat height = bp.bounds.size.height;

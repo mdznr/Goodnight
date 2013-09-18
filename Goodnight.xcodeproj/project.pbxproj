@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C968CC3917E91711005CD5F4 /* MTZOutlineLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C968CC3817E91711005CD5F4 /* MTZOutlineLayer.m */; };
 		C969821E17E54BC700AB44F6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C969821D17E54BC700AB44F6 /* QuartzCore.framework */; };
 		C969822117E54F6D00AB44F6 /* UIImage+BezierPath.m in Sources */ = {isa = PBXBuildFile; fileRef = C969822017E54F6D00AB44F6 /* UIImage+BezierPath.m */; };
 		C969822717E6C52C00AB44F6 /* MTZOutlinedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C969822617E6C52C00AB44F6 /* MTZOutlinedButton.m */; };
@@ -24,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C968CC3717E91711005CD5F4 /* MTZOutlineLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTZOutlineLayer.h; sourceTree = "<group>"; };
+		C968CC3817E91711005CD5F4 /* MTZOutlineLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTZOutlineLayer.m; sourceTree = "<group>"; };
 		C969821D17E54BC700AB44F6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C969821F17E54F6D00AB44F6 /* UIImage+BezierPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BezierPath.h"; sourceTree = "<group>"; };
 		C969822017E54F6D00AB44F6 /* UIImage+BezierPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BezierPath.m"; sourceTree = "<group>"; };
@@ -103,6 +106,8 @@
 				C969822017E54F6D00AB44F6 /* UIImage+BezierPath.m */,
 				C969822517E6C52C00AB44F6 /* MTZOutlinedButton.h */,
 				C969822617E6C52C00AB44F6 /* MTZOutlinedButton.m */,
+				C968CC3717E91711005CD5F4 /* MTZOutlineLayer.h */,
+				C968CC3817E91711005CD5F4 /* MTZOutlineLayer.m */,
 				C98E128317E7C279009AC0C6 /* MTZTriangleView.h */,
 				C98E128417E7C279009AC0C6 /* MTZTriangleView.m */,
 				C9E6CFD317E2326100E65CE9 /* Images.xcassets */,
@@ -197,6 +202,7 @@
 				C969822717E6C52C00AB44F6 /* MTZOutlinedButton.m in Sources */,
 				C969822117E54F6D00AB44F6 /* UIImage+BezierPath.m in Sources */,
 				C98E128517E7C279009AC0C6 /* MTZTriangleView.m in Sources */,
+				C968CC3917E91711005CD5F4 /* MTZOutlineLayer.m in Sources */,
 				C9ED790C15549BCB002064B2 /* main.m in Sources */,
 				C9ED791015549BCB002064B2 /* GNAppDelegate.m in Sources */,
 				C9ED791815549BCB002064B2 /* GNViewController.m in Sources */,
