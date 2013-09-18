@@ -106,6 +106,7 @@
 
 - (void)drawInContext:(CGContextRef)ctx
 {
+	/*
 	CGRect rect = self.bounds;
 	UIBezierPath *bp = [UIBezierPath bezierPathWithRoundedRect:rect
 												  cornerRadius:self.radius];
@@ -118,12 +119,19 @@
 	bp2.lineWidth = 0.0f;
 	[bp appendPath:bp2];
 	bp.usesEvenOddFillRule = YES;
+	 */
+	
+	CGRect rect = CGRectInset(self.bounds, self.thickness/2, self.thickness/2);
+	UIBezierPath *bp = [UIBezierPath bezierPathWithRoundedRect:rect
+												  cornerRadius:self.radius];
+	bp.lineWidth = self.thickness;
 	
 	CGContextAddPath(ctx, bp.CGPath);
 	CGContextSetFillColorWithColor(ctx, self.color);
 	CGContextSetStrokeColorWithColor(ctx, self.color);
-	CGContextSetLineWidth(ctx, 0.0);
-	CGContextDrawPath(ctx, kCGPathFillStroke);
+	CGContextSetLineWidth(ctx, self.thickness);
+//	CGContextDrawPath(ctx, kCGPathFillStroke);
+	CGContextDrawPath(ctx, kCGPathStroke);
 }
 
 @end
