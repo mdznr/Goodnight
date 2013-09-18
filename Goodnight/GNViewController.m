@@ -164,6 +164,11 @@
 
 - (void)setMode:(GNViewControllerMode)mode
 {
+	// Only manipulate instructions if necessary
+	if ( _mode != mode && !_hasUsedAppBefore ) {
+		[self fadeInstructionsOut];
+	}
+	
 	_mode = mode;
 	switch (mode) {
 		case GNViewControllerModeSetSleepTime:
@@ -173,10 +178,7 @@
 			[self wakeMode];
 			break;
 	}
-	
-	if ( !_hasUsedAppBefore ) {
-		[self fadeInstructionsOut];
-	}
+		
 }
 
 - (void)sleepMode
