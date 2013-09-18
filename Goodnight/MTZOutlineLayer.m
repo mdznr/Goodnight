@@ -112,7 +112,7 @@
 	bp.lineWidth = 0.0f;
 	
 	CGFloat innerRadius = self.radius - self.thickness;
-	CGRect innerRect = CGRectInset(rect, self.thickness, self.thickness+10);
+	CGRect innerRect = CGRectInset(rect, self.thickness, self.thickness);
 	UIBezierPath *bp2 = [UIBezierPath bezierPathWithRoundedRect:innerRect
 												   cornerRadius:innerRadius];
 	bp2.lineWidth = 0.0f;
