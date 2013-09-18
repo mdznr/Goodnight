@@ -173,6 +173,10 @@
 			[self wakeMode];
 			break;
 	}
+	
+	if ( !_hasUsedAppBefore ) {
+		[self fadeInstructionsOut];
+	}
 }
 
 - (void)sleepMode
@@ -220,10 +224,6 @@
 						 [_goodnightButton setTintColor:color];
 					 }
 					 completion:^(BOOL finished) { }];
-	
-	if ( !_hasUsedAppBefore ) {
-		[self showInstructionsSleep];
-	}
 }
 
 - (void)wakeMode
@@ -271,68 +271,41 @@
 						 [_goodnightButton setTintColor:color];
 					 }
 					 completion:^(BOOL finished) { }];
+}
+
+- (void)fadeInstructionsOut
+{
+	[NSObject cancelPreviousPerformRequestsWithTarget:self
+											 selector:@selector(fadeInstructionsIn)
+											   object:nil];
 	
-	if ( !_hasUsedAppBefore ) {
-		[self showInstructionsWake];
-	}
+	[UIView animateWithDuration:ANIMATION_DURATION
+						  delay:0.0f
+						options:UIViewAnimationOptionBeginFromCurrentState
+					 animations:^{
+						 _instructions.alpha = 0.0f;
+					 }
+					 completion:^(BOOL finished) {}];
+	
+	[self performSelector:@selector(fadeInstructionsIn) withObject:nil afterDelay:ANIMATION_DURATION];
 }
 
-- (void)showInstructionsSleep
+- (void)fadeInstructionsIn
 {
-	 if ( [_dateToResumeAnimatingInstructions compare:[NSDate date]] == NSOrderedAscending ) {
-		// Animate instructions out
-		// Change text
-		[UIView animateWithDuration:ANIMATION_DURATION
-							  delay:0.0f
-							options:UIViewAnimationOptionBeginFromCurrentState
-						 animations:^{
-							 _instructions.alpha = 0.0f;
-						 }
-						 completion:^(BOOL finished) {
-							 if ( _mode == GNViewControllerModeSetSleepTime ) {
 	#warning get localized string
-								 _instructions.text = @"Set the time you’d\nlike to fall asleep at";
-								 // Animate instructions back in
-								 [UIView animateWithDuration:2 * ANIMATION_DURATION
-													   delay:2 * ANIMATION_DURATION
-													 options:UIViewAnimationOptionCurveLinear
-												  animations:^{
-													  _instructions.alpha = 0.7f;
-												  }
-												  completion:^(BOOL finished) {}];
-							 }
-						 }];
-	 }
-	_dateToResumeAnimatingInstructions = [NSDate dateWithTimeIntervalSinceNow:ANIMATION_DURATION];
-}
-
-- (void)showInstructionsWake
-{
-	if ( [_dateToResumeAnimatingInstructions compare:[NSDate date]] == NSOrderedAscending ) {
-		// Animate instructions out
-		// Change text
-		[UIView animateWithDuration:ANIMATION_DURATION
-							  delay:0.0f
-							options:UIViewAnimationOptionBeginFromCurrentState
-						 animations:^{
-							 _instructions.alpha = 0.0f;
-						 }
-						 completion:^(BOOL finished) {
-								 if ( _mode == GNViewControllerModeSetWakeTime ) {
-	#warning get localized string)
-								 _instructions.text = @"Set the time you’d\nlike to wake up at";
-								 // Animate instructions back in
-								 [UIView animateWithDuration:2 * ANIMATION_DURATION
-													   delay:2 * ANIMATION_DURATION
-													 options:UIViewAnimationOptionCurveLinear
-												  animations:^{
-													  _instructions.alpha = 0.7f;
-												  }
-												  completion:^(BOOL finished) {}];
-							 }
-						 }];
-		}
-	_dateToResumeAnimatingInstructions = [NSDate dateWithTimeIntervalSinceNow:ANIMATION_DURATION];
+	if ( _mode == GNViewControllerModeSetWakeTime ) {
+		_instructions.text = @"Set the time you’d\nlike to wake up at";
+	} else {
+		_instructions.text = @"Set the time you’d\nlike to fall asleep at";
+	}
+	
+	[UIView animateWithDuration:2 * ANIMATION_DURATION
+						  delay:2 * ANIMATION_DURATION
+						options:UIViewAnimationOptionBeginFromCurrentState
+					 animations:^{
+						 _instructions.alpha = 0.7f;
+					 }
+					 completion:^(BOOL finished) {}];
 }
 
 
