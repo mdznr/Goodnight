@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C968CC3917E91711005CD5F4 /* MTZOutlineLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C968CC3817E91711005CD5F4 /* MTZOutlineLayer.m */; };
+		C968CC4417EA676F005CD5F4 /* GNInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C968CC4217EA676F005CD5F4 /* GNInfoViewController.m */; };
+		C968CC4517EA676F005CD5F4 /* GNInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C968CC4317EA676F005CD5F4 /* GNInfoViewController.xib */; };
 		C969821E17E54BC700AB44F6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C969821D17E54BC700AB44F6 /* QuartzCore.framework */; };
 		C969822117E54F6D00AB44F6 /* UIImage+BezierPath.m in Sources */ = {isa = PBXBuildFile; fileRef = C969822017E54F6D00AB44F6 /* UIImage+BezierPath.m */; };
 		C969822717E6C52C00AB44F6 /* MTZOutlinedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C969822617E6C52C00AB44F6 /* MTZOutlinedButton.m */; };
@@ -27,6 +29,9 @@
 /* Begin PBXFileReference section */
 		C968CC3717E91711005CD5F4 /* MTZOutlineLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTZOutlineLayer.h; sourceTree = "<group>"; };
 		C968CC3817E91711005CD5F4 /* MTZOutlineLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTZOutlineLayer.m; sourceTree = "<group>"; };
+		C968CC4117EA676F005CD5F4 /* GNInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNInfoViewController.h; sourceTree = "<group>"; };
+		C968CC4217EA676F005CD5F4 /* GNInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNInfoViewController.m; sourceTree = "<group>"; };
+		C968CC4317EA676F005CD5F4 /* GNInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GNInfoViewController.xib; sourceTree = "<group>"; };
 		C969821D17E54BC700AB44F6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C969821F17E54F6D00AB44F6 /* UIImage+BezierPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BezierPath.h"; sourceTree = "<group>"; };
 		C969822017E54F6D00AB44F6 /* UIImage+BezierPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BezierPath.m"; sourceTree = "<group>"; };
@@ -99,9 +104,12 @@
 			children = (
 				C9ED790E15549BCB002064B2 /* GNAppDelegate.h */,
 				C9ED790F15549BCB002064B2 /* GNAppDelegate.m */,
-				C9ED791315549BCB002064B2 /* MainStoryboard.storyboard */,
 				C9ED791615549BCB002064B2 /* GNViewController.h */,
 				C9ED791715549BCB002064B2 /* GNViewController.m */,
+				C9ED791315549BCB002064B2 /* MainStoryboard.storyboard */,
+				C968CC4117EA676F005CD5F4 /* GNInfoViewController.h */,
+				C968CC4217EA676F005CD5F4 /* GNInfoViewController.m */,
+				C968CC4317EA676F005CD5F4 /* GNInfoViewController.xib */,
 				C969821F17E54F6D00AB44F6 /* UIImage+BezierPath.h */,
 				C969822017E54F6D00AB44F6 /* UIImage+BezierPath.m */,
 				C969822517E6C52C00AB44F6 /* MTZOutlinedButton.h */,
@@ -188,6 +196,7 @@
 				C9ED790A15549BCB002064B2 /* InfoPlist.strings in Resources */,
 				C9E6CFD417E2326100E65CE9 /* Images.xcassets in Resources */,
 				C9ED791215549BCB002064B2 /* Goodnight.entitlements in Resources */,
+				C968CC4517EA676F005CD5F4 /* GNInfoViewController.xib in Resources */,
 				C9ED791515549BCB002064B2 /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -200,6 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C969822717E6C52C00AB44F6 /* MTZOutlinedButton.m in Sources */,
+				C968CC4417EA676F005CD5F4 /* GNInfoViewController.m in Sources */,
 				C969822117E54F6D00AB44F6 /* UIImage+BezierPath.m in Sources */,
 				C98E128517E7C279009AC0C6 /* MTZTriangleView.m in Sources */,
 				C968CC3917E91711005CD5F4 /* MTZOutlineLayer.m in Sources */,

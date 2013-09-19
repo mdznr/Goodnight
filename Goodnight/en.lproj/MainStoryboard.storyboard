@@ -40,6 +40,7 @@
                                         <state key="normal" image="Info">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="selected" image="Close"/>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AK7-kH-Fn4" userLabel="Instructions">
                                         <rect key="frame" x="0.0" y="42" width="320" height="70"/>
@@ -143,6 +144,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="datePicker" destination="I5e-pQ-WCH" id="7X8-wk-G9S"/>
                         <outlet property="dusk" destination="cHx-v5-WaU" id="rPD-pR-Liz"/>
                         <outlet property="goodnightButton" destination="ozt-D6-lDP" id="rxO-lQ-FTb"/>
+                        <outlet property="infoButton" destination="K7H-ig-wDJ" id="lEJ-Fb-iPs"/>
                         <outlet property="instructions" destination="AK7-kH-Fn4" id="y0C-v5-Zmr"/>
                         <outlet property="selectorView" destination="Jyc-KX-f6x" id="paN-sQ-58w"/>
                         <outlet property="sky" destination="cFv-YR-Paa" id="wJc-ZQ-tLE"/>
@@ -158,6 +160,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         </scene>
     </scenes>
     <resources>
+        <image name="Close" width="32" height="32"/>
         <image name="Dusk" width="320" height="480"/>
         <image name="Info" width="32" height="32"/>
         <image name="Sky" width="320" height="3840"/>

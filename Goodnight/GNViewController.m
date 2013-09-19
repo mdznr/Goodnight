@@ -9,6 +9,7 @@
 #import "GNViewController.h"
 #import "MTZOutlinedButton.h"
 #import "MTZTriangleView.h"
+#import "GNInfoViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface GNViewController ()
@@ -19,6 +20,9 @@
 @property (strong, nonatomic) IBOutlet UIImageView *stars;
 @property (strong, nonatomic) IBOutlet UIImageView *dusk;
 @property (strong, nonatomic) IBOutlet UIImageView *sunrise;
+
+@property (strong, nonatomic) IBOutlet UIButton *infoButton;
+@property (strong, nonatomic) GNInfoViewController *infoVC;
 
 @property (strong, nonatomic) IBOutlet UILabel *instructions;
 
@@ -85,6 +89,11 @@
 	[_goodnightButton addTarget:self
 						 action:@selector(tappedGoodnightButton:)
 			   forControlEvents:UIControlEventTouchUpInside];
+	
+	// Add Info button action
+	[_infoButton addTarget:self
+					action:@selector(tappedInfoButton:)
+		  forControlEvents:UIControlEventTouchUpInside];
 	
 	// Autoresize top and bottom views
 	_selectorView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -157,6 +166,42 @@
 {
 #warning animate and show times
 	NSLog(@"tappedGoodnightButton: %@", sender);
+}
+
+- (void)tappedInfoButton:(id)sender
+{
+	_infoButton.selected = YES;
+	_infoVC = [[GNInfoViewController alloc] initWithNibName:@"GNInfoViewController"
+													   bundle:nil];
+	_infoVC.delegate = self;
+	_infoVC.view.alpha = 0.0f;
+	[self.view addSubview:_infoVC.view];
+	[UIView animateWithDuration:ANIMATION_DURATION
+						  delay:0.0f
+		 usingSpringWithDamping:1.0f
+		  initialSpringVelocity:1.0f
+						options:UIViewAnimationOptionBeginFromCurrentState
+					 animations:^{
+						 _infoVC.view.alpha = 1.0f;
+					 }
+					 completion:^(BOOL finished) {}];
+}
+
+- (void)tappedCloseButton:(id)sender
+{
+	_infoButton.selected = NO;
+	
+	[UIView animateWithDuration:ANIMATION_DURATION
+						  delay:0.0f
+		 usingSpringWithDamping:1.0f
+		  initialSpringVelocity:1.0f
+						options:UIViewAnimationOptionBeginFromCurrentState
+					 animations:^{
+						 _infoVC.view.alpha = 0.0f;
+					 }
+					 completion:^(BOOL finished) {
+						 [_infoVC removeFromParentViewController];
+					 }];
 }
 
 
@@ -305,7 +350,7 @@
 						  delay:2 * ANIMATION_DURATION
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
-						 _instructions.alpha = 0.7f;
+						 _instructions.alpha = 0.75f;
 					 }
 					 completion:^(BOOL finished) {}];
 }
