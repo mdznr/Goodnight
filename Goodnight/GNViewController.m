@@ -81,6 +81,9 @@
 	// Find necessary y change to hide main UI
 	_yChange = self.view.frame.size.height - _wakeButton.frame.origin.y;
 	
+	// Make sure sky imageView is tall enough
+	_sky.frame = (CGRect){_sky.frame.origin.x, _sky.frame.origin.y, _sky.image.size.width, _sky.image.size.height};
+	
 	// Setup background motion effects
 	UIInterpolatingMotionEffect *horizontal = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
 	horizontal.minimumRelativeValue = @(20);
@@ -200,7 +203,7 @@
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
 						 _instructions.alpha = 0.0f;
-						 _stars.alpha = 0.33f;
+//						 _stars.alpha = 0.33f;
 						 
 						 _sleepButton.frame = CGRectOffset(_sleepButton.frame, 0, _yChange);
 						 _wakeButton.frame = CGRectOffset(_wakeButton.frame, 0, _yChange);
@@ -244,7 +247,7 @@
 						 if ( !_hasUsedAppBefore ) {
 							 _instructions.alpha = 0.7f;
 						 }
-						 _stars.alpha = 1.0f;
+//						 _stars.alpha = 1.0f;
 						 
 						 _sleepButton.frame = CGRectOffset(_sleepButton.frame, 0, -_yChange);
 						 _wakeButton.frame = CGRectOffset(_wakeButton.frame, 0, -_yChange);
@@ -359,7 +362,7 @@
 		  initialSpringVelocity:1.0f
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
-						 CGPoint skyEnd = (CGPoint){self.view.frame.size.width/2, 20+_selectorView.frame.origin.y-(_sky.image.size.height/2)};
+						 CGPoint skyEnd = (CGPoint){self.view.frame.size.width/2, 20+self.view.bounds.size.height-(_sky.image.size.height/2)};
 						 _sky.center = skyEnd;
 						 _sunrise.alpha = 0.5f; // Animate up, too
 						 
