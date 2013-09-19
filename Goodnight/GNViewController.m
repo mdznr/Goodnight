@@ -10,6 +10,7 @@
 #import "MTZOutlinedButton.h"
 #import "MTZTriangleView.h"
 #import "GNInfoViewController.h"
+#import "GNTimesViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface GNViewController ()
@@ -22,6 +23,8 @@
 @property (strong, nonatomic) IBOutlet UIImageView *stars;
 @property (strong, nonatomic) IBOutlet UIImageView *dusk;
 @property (strong, nonatomic) IBOutlet UIImageView *sunrise;
+
+@property (strong, nonatomic) GNTimesViewController *timesViewController;
 
 @property (strong, nonatomic) IBOutlet UIButton *infoButton;
 @property (strong, nonatomic) UIView *info;
@@ -37,13 +40,6 @@
 @property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property (strong, nonatomic) IBOutlet MTZOutlinedButton *goodnightButton;
 
-@property (strong, nonatomic) NSDateFormatter *dateFormatter;
-
-@property (strong, nonatomic) UILabel *timeBad;
-@property (strong, nonatomic) UILabel *timeFine;
-@property (strong, nonatomic) UILabel *timeGood;
-@property (strong, nonatomic) UILabel *timeGreat;
-
 @property (nonatomic) BOOL hasUsedAppBefore;
 
 @property (strong, nonatomic) NSDate *dateToResumeAnimatingInstructions;
@@ -53,20 +49,6 @@
 @end
 
 #define ANIMATION_DURATION 0.75f
-
-#define NUMBER_OF_CARDS 4
-
-#define BAD_OPACITY   0.7f
-#define FINE_OPACITY  0.8f
-#define GOOD_OPACITY  0.9f
-#define GREAT_OPACITY 1.0f
-
-#define FALL_ASLEEP_TIME (14*60)
-#define SLEEP_CYCLE_TIME (90*60)
-#define BAD_SLEEP_TIME   (FALL_ASLEEP_TIME+(3*SLEEP_CYCLE_TIME))
-#define FINE_SLEEP_TIME  (FALL_ASLEEP_TIME+(4*SLEEP_CYCLE_TIME))
-#define GOOD_SLEEP_TIME  (FALL_ASLEEP_TIME+(5*SLEEP_CYCLE_TIME))
-#define GREAT_SLEEP_TIME (FALL_ASLEEP_TIME+(6*SLEEP_CYCLE_TIME))
 
 @implementation GNViewController
 
@@ -95,6 +77,9 @@
 	_sunrise.motionEffects = @[vertical];
 	_dusk.motionEffects = @[vertical];
 	
+	_timesViewController = [[GNTimesViewController alloc] init];
+	[_scrollView addSubview:_timesViewController.view];
+	
 	// Add goodnight button action
 	[_goodnightButton addTarget:self
 						 action:@selector(tappedGoodnightButton:)
@@ -120,20 +105,6 @@
 	[_datePicker addTarget:self
 					action:@selector(sleepPickerDidChange:)
 		  forControlEvents:UIControlEventValueChanged];
-	
-	// Setup formatter
-	_dateFormatter = [[NSDateFormatter alloc] init];
-	_dateFormatter.dateFormat = @"h:mm a";
-	
-	// Setup times
-#warning frames for times?
-	_timeBad   = [[UILabel alloc] init];
-	_timeFine  = [[UILabel alloc] init];
-	_timeGood  = [[UILabel alloc] init];
-	_timeGreat = [[UILabel alloc] init];
-	
-	// Update times
-	[self updateTimes];
 	
 #warning store last used mode in preferences and use below
 	[self setMode:GNViewControllerModeSetSleepTime];
@@ -164,23 +135,26 @@
 - (IBAction)tappedSleepButton:(id)sender
 {
 	[self setMode:GNViewControllerModeSetSleepTime];
-	
-	// Have to do this since UIDatePicker doesn't perform action for UIControlEventValueChanged when using setDate:Animated:
-	[self updateTimes];
 }
 
 - (IBAction)tappedWakeButton:(id)sender
 {
 	[self setMode:GNViewControllerModeSetWakeTime];
-	
-	// Have to do this since UIDatePicker doesn't perform action for UIControlEventValueChanged when using setDate:Animated:
-	[self updateTimes];
 }
 
 - (void)tappedGoodnightButton:(id)sender
 {
-#warning animate and show times
 	NSLog(@"tappedGoodnightButton: %@", sender);
+#warning animate and show times
+	
+	if ( GNViewControllerModeSetSleepTime ) {
+		_timesViewController.mode = GNTimesViewControllerModeWakeTimes;
+	} else if ( GNViewControllerModeSetWakeTime ) {
+		_timesViewController.mode = GNTimesViewControllerModeSleepTimes;
+	}
+	
+	_timesViewController.date = _datePicker.date;
+	[_timesViewController animateIn];
 }
 
 - (void)tappedInfoButton:(id)sender
@@ -439,31 +413,13 @@
 
 - (void)sleepPickerDidChange:(id)sender
 {
-	[self updateTimes];
-}
-
-- (void)updateTimes
-{
-	NSDate *date = _datePicker.date;
-	_timeBad.text   = [_dateFormatter stringFromDate:[date dateByAddingTimeInterval:BAD_SLEEP_TIME]];
-	_timeFine.text  = [_dateFormatter stringFromDate:[date dateByAddingTimeInterval:FINE_SLEEP_TIME]];
-	_timeGood.text  = [_dateFormatter stringFromDate:[date dateByAddingTimeInterval:GOOD_SLEEP_TIME]];
-	_timeGreat.text = [_dateFormatter stringFromDate:[date dateByAddingTimeInterval:GREAT_SLEEP_TIME]];
+	
 }
 
 
 - (void)wakePickerDidChange:(id)sender
 {
-	[self updateSleepCardTimes];
-}
 
-- (void)updateSleepCardTimes
-{
-	NSDate *date = _datePicker.date;
-	_timeBad.text   = [_dateFormatter stringFromDate:[date dateByAddingTimeInterval:-BAD_SLEEP_TIME]];
-	_timeFine.text  = [_dateFormatter stringFromDate:[date dateByAddingTimeInterval:-FINE_SLEEP_TIME]];
-	_timeGood.text  = [_dateFormatter stringFromDate:[date dateByAddingTimeInterval:-GOOD_SLEEP_TIME]];
-	_timeGreat.text = [_dateFormatter stringFromDate:[date dateByAddingTimeInterval:-GREAT_SLEEP_TIME]];
 }
 
 

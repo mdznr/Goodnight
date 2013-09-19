@@ -63,7 +63,8 @@
 {
 	CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:key];
 	anim.fromValue = [[self presentationLayer] valueForKey:key];
-	CABasicAnimation *defaultAnim = (CABasicAnimation *)[CALayer defaultActionForKey:@"frame"];
+	NSLog(@"%@", [self actions]);
+	CABasicAnimation *defaultAnim = (CABasicAnimation *)[CALayer defaultActionForKey:@"tintColor"];
 	anim.duration = defaultAnim.duration;
 	anim.timingFunction = defaultAnim.timingFunction;
 	return anim;

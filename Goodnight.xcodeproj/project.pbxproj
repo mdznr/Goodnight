@@ -24,6 +24,8 @@
 		C9ED791215549BCB002064B2 /* Goodnight.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = C9ED791115549BCB002064B2 /* Goodnight.entitlements */; };
 		C9ED791515549BCB002064B2 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9ED791315549BCB002064B2 /* MainStoryboard.storyboard */; };
 		C9ED791815549BCB002064B2 /* GNViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9ED791715549BCB002064B2 /* GNViewController.m */; };
+		C9F0677C17EBB1B9006E243F /* GNTimesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F0677A17EBB1B9006E243F /* GNTimesViewController.m */; };
+		C9F0677D17EBB1B9006E243F /* GNTimesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9F0677B17EBB1B9006E243F /* GNTimesViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,9 @@
 		C9ED791415549BCB002064B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		C9ED791615549BCB002064B2 /* GNViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GNViewController.h; sourceTree = "<group>"; };
 		C9ED791715549BCB002064B2 /* GNViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GNViewController.m; sourceTree = "<group>"; };
+		C9F0677917EBB1B9006E243F /* GNTimesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTimesViewController.h; sourceTree = "<group>"; };
+		C9F0677A17EBB1B9006E243F /* GNTimesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTimesViewController.m; sourceTree = "<group>"; };
+		C9F0677B17EBB1B9006E243F /* GNTimesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GNTimesViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +115,9 @@
 				C968CC4117EA676F005CD5F4 /* GNInfoViewController.h */,
 				C968CC4217EA676F005CD5F4 /* GNInfoViewController.m */,
 				C968CC4317EA676F005CD5F4 /* GNInfoViewController.xib */,
+				C9F0677917EBB1B9006E243F /* GNTimesViewController.h */,
+				C9F0677A17EBB1B9006E243F /* GNTimesViewController.m */,
+				C9F0677B17EBB1B9006E243F /* GNTimesViewController.xib */,
 				C969821F17E54F6D00AB44F6 /* UIImage+BezierPath.h */,
 				C969822017E54F6D00AB44F6 /* UIImage+BezierPath.m */,
 				C969822517E6C52C00AB44F6 /* MTZOutlinedButton.h */,
@@ -197,6 +205,7 @@
 				C9E6CFD417E2326100E65CE9 /* Images.xcassets in Resources */,
 				C9ED791215549BCB002064B2 /* Goodnight.entitlements in Resources */,
 				C968CC4517EA676F005CD5F4 /* GNInfoViewController.xib in Resources */,
+				C9F0677D17EBB1B9006E243F /* GNTimesViewController.xib in Resources */,
 				C9ED791515549BCB002064B2 /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,6 +221,7 @@
 				C968CC4417EA676F005CD5F4 /* GNInfoViewController.m in Sources */,
 				C969822117E54F6D00AB44F6 /* UIImage+BezierPath.m in Sources */,
 				C98E128517E7C279009AC0C6 /* MTZTriangleView.m in Sources */,
+				C9F0677C17EBB1B9006E243F /* GNTimesViewController.m in Sources */,
 				C968CC3917E91711005CD5F4 /* MTZOutlineLayer.m in Sources */,
 				C9ED790C15549BCB002064B2 /* main.m in Sources */,
 				C9ED791015549BCB002064B2 /* GNAppDelegate.m in Sources */,
