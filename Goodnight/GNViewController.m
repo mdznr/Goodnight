@@ -204,7 +204,9 @@
 					 animations:^{
 						 _instructions.alpha = 0.0f;
 					 }
-					 completion:^(BOOL finished) {}];
+					 completion:^(BOOL finished) {
+						 _instructions.hidden = YES;
+					 }];
 	
 	[UIView animateWithDuration:ANIMATION_DURATION
 						  delay:0.0f
@@ -237,6 +239,10 @@
 
 - (void)hideInfo
 {
+	// make sure it's at alpha 0.0f?
+	_instructions.alpha = 0.0f;
+	_instructions.hidden = NO;
+	
 	[UIView animateWithDuration:ANIMATION_DURATION
 						  delay:0.0f
 		 usingSpringWithDamping:1.0f
@@ -245,7 +251,19 @@
 					 animations:^{
 						 _info.alpha = 0.0f;
 					 }
-					 completion:^(BOOL finished) {}];
+					 completion:^(BOOL finished) {
+						 if ( !_hasUsedAppBefore ) {
+							 [UIView animateWithDuration:ANIMATION_DURATION*2
+												   delay:0.0f
+								  usingSpringWithDamping:1.0f
+								   initialSpringVelocity:1.0f
+												 options:UIViewAnimationOptionBeginFromCurrentState
+											  animations:^{
+												  _instructions.alpha = 0.7f;
+											  }
+											  completion:^(BOOL finished) {}];
+						 }
+					 }];
 	
 	[UIView animateWithDuration:ANIMATION_DURATION
 						  delay:0.0f
@@ -263,18 +281,6 @@
 						 _sunrise.frame = CGRectOffset(_sunrise.frame, 0, -_yChange);
 					 }
 					 completion:^(BOOL finished) { }];
-	
-	if ( !_hasUsedAppBefore ) {
-		[UIView animateWithDuration:ANIMATION_DURATION*2
-							  delay:ANIMATION_DURATION/2
-			 usingSpringWithDamping:1.0f
-			  initialSpringVelocity:1.0f
-							options:UIViewAnimationOptionBeginFromCurrentState
-						 animations:^{
-							 _instructions.alpha = 0.7f;
-						 }
-						 completion:^(BOOL finished) {}];
-	}
 }
 
 
