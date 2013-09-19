@@ -196,13 +196,22 @@
 
 - (void)showInfo
 {
-	[UIView animateWithDuration:ANIMATION_DURATION
+	[UIView animateWithDuration:ANIMATION_DURATION/2
 						  delay:0.0f
 		 usingSpringWithDamping:1.0f
 		  initialSpringVelocity:1.0f
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
 						 _instructions.alpha = 0.0f;
+					 }
+					 completion:^(BOOL finished) {}];
+	
+	[UIView animateWithDuration:ANIMATION_DURATION
+						  delay:0.0f
+		 usingSpringWithDamping:1.0f
+		  initialSpringVelocity:1.0f
+						options:UIViewAnimationOptionBeginFromCurrentState
+					 animations:^{
 //						 _stars.alpha = 0.33f;
 						 
 						 _sleepButton.frame = CGRectOffset(_sleepButton.frame, 0, _yChange);
@@ -244,9 +253,6 @@
 		  initialSpringVelocity:1.0f
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
-						 if ( !_hasUsedAppBefore ) {
-							 _instructions.alpha = 0.7f;
-						 }
 //						 _stars.alpha = 1.0f;
 						 
 						 _sleepButton.frame = CGRectOffset(_sleepButton.frame, 0, -_yChange);
@@ -257,6 +263,18 @@
 						 _sunrise.frame = CGRectOffset(_sunrise.frame, 0, -_yChange);
 					 }
 					 completion:^(BOOL finished) { }];
+	
+	if ( !_hasUsedAppBefore ) {
+		[UIView animateWithDuration:ANIMATION_DURATION*2
+							  delay:ANIMATION_DURATION/2
+			 usingSpringWithDamping:1.0f
+			  initialSpringVelocity:1.0f
+							options:UIViewAnimationOptionBeginFromCurrentState
+						 animations:^{
+							 _instructions.alpha = 0.7f;
+						 }
+						 completion:^(BOOL finished) {}];
+	}
 }
 
 
