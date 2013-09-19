@@ -48,6 +48,8 @@
 
 @property (strong, nonatomic) NSDate *dateToResumeAnimatingInstructions;
 
+@property (nonatomic) CGFloat yChange;
+
 @end
 
 #define ANIMATION_DURATION 0.75f
@@ -75,6 +77,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+	
+	// Find necessary y change to hide main UI
+	_yChange = self.view.frame.size.height - _wakeButton.frame.origin.y;
 	
 	// Setup background motion effects
 	UIInterpolatingMotionEffect *horizontal = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
@@ -194,6 +199,25 @@
 		  initialSpringVelocity:1.0f
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
+						 _instructions.alpha = 0.0f;
+						 _stars.alpha = 0.33f;
+						 
+						 _sleepButton.frame = CGRectOffset(_sleepButton.frame, 0, _yChange);
+						 _wakeButton.frame = CGRectOffset(_wakeButton.frame, 0, _yChange);
+						 _triangleMarker.frame = CGRectOffset(_triangleMarker.frame, 0, _yChange);
+						 _selectorView.frame = CGRectOffset(_selectorView.frame, 0, _yChange);
+						 _dusk.frame = CGRectOffset(_dusk.frame, 0, _yChange);
+						 _sunrise.frame = CGRectOffset(_sunrise.frame, 0, _yChange);
+					 }
+					 completion:^(BOOL finished) {}];
+	
+	// Show Info text
+	[UIView animateWithDuration:ANIMATION_DURATION
+						  delay:0.0f
+		 usingSpringWithDamping:1.0f
+		  initialSpringVelocity:1.0f
+						options:UIViewAnimationOptionBeginFromCurrentState
+					 animations:^{
 						 _info.alpha = 1.0f;
 					 }
 					 completion:^(BOOL finished) {}];
@@ -210,6 +234,26 @@
 						 _info.alpha = 0.0f;
 					 }
 					 completion:^(BOOL finished) {}];
+	
+	[UIView animateWithDuration:ANIMATION_DURATION
+						  delay:0.0f
+		 usingSpringWithDamping:1.0f
+		  initialSpringVelocity:1.0f
+						options:UIViewAnimationOptionBeginFromCurrentState
+					 animations:^{
+						 if ( !_hasUsedAppBefore ) {
+							 _instructions.alpha = 0.7f;
+						 }
+						 _stars.alpha = 1.0f;
+						 
+						 _sleepButton.frame = CGRectOffset(_sleepButton.frame, 0, -_yChange);
+						 _wakeButton.frame = CGRectOffset(_wakeButton.frame, 0, -_yChange);
+						 _triangleMarker.frame = CGRectOffset(_triangleMarker.frame, 0, -_yChange);
+						 _selectorView.frame = CGRectOffset(_selectorView.frame, 0, -_yChange);
+						 _dusk.frame = CGRectOffset(_dusk.frame, 0, -_yChange);
+						 _sunrise.frame = CGRectOffset(_sunrise.frame, 0, -_yChange);
+					 }
+					 completion:^(BOOL finished) { }];
 }
 
 
