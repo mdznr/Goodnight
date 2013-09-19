@@ -146,6 +146,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="goodnightButton" destination="ozt-D6-lDP" id="rxO-lQ-FTb"/>
                         <outlet property="infoButton" destination="K7H-ig-wDJ" id="lEJ-Fb-iPs"/>
                         <outlet property="instructions" destination="AK7-kH-Fn4" id="y0C-v5-Zmr"/>
+                        <outlet property="scrollView" destination="SA5-6k-wYl" id="FNC-Lc-Lhc"/>
                         <outlet property="selectorView" destination="Jyc-KX-f6x" id="paN-sQ-58w"/>
                         <outlet property="sky" destination="cFv-YR-Paa" id="wJc-ZQ-tLE"/>
                         <outlet property="sleepButton" destination="XSM-hG-eiY" id="SlD-pn-CqC"/>

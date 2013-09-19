@@ -16,13 +16,15 @@
 
 #pragma mark Private Property
 
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+
 @property (strong, nonatomic) IBOutlet UIImageView *sky;
 @property (strong, nonatomic) IBOutlet UIImageView *stars;
 @property (strong, nonatomic) IBOutlet UIImageView *dusk;
 @property (strong, nonatomic) IBOutlet UIImageView *sunrise;
 
 @property (strong, nonatomic) IBOutlet UIButton *infoButton;
-@property (strong, nonatomic) GNInfoViewController *infoVC;
+@property (strong, nonatomic) UIView *info;
 
 @property (strong, nonatomic) IBOutlet UILabel *instructions;
 
@@ -140,6 +142,11 @@
 						 completion:^(BOOL finished) {}];
 	}
 	
+	// Setup instructions
+	_info = [[GNInfoViewController alloc] initWithNibName:@"GNInfoViewController"
+													 bundle:nil].view;
+	_info.alpha = 0.0f;
+	[_scrollView insertSubview:_info belowSubview:_infoButton];
 }
 
 
@@ -170,38 +177,39 @@
 
 - (void)tappedInfoButton:(id)sender
 {
-	_infoButton.selected = YES;
-	_infoVC = [[GNInfoViewController alloc] initWithNibName:@"GNInfoViewController"
-													   bundle:nil];
-	_infoVC.delegate = self;
-	_infoVC.view.alpha = 0.0f;
-	[self.view addSubview:_infoVC.view];
+	_infoButton.selected = !_infoButton.selected;
+	
+	if ( _infoButton.selected ) {
+		[self showInfo];
+	} else {
+		[self hideInfo];
+	}
+}
+
+- (void)showInfo
+{
 	[UIView animateWithDuration:ANIMATION_DURATION
 						  delay:0.0f
 		 usingSpringWithDamping:1.0f
 		  initialSpringVelocity:1.0f
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
-						 _infoVC.view.alpha = 1.0f;
+						 _info.alpha = 1.0f;
 					 }
 					 completion:^(BOOL finished) {}];
 }
 
-- (void)tappedCloseButton:(id)sender
+- (void)hideInfo
 {
-	_infoButton.selected = NO;
-	
 	[UIView animateWithDuration:ANIMATION_DURATION
 						  delay:0.0f
 		 usingSpringWithDamping:1.0f
 		  initialSpringVelocity:1.0f
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
-						 _infoVC.view.alpha = 0.0f;
+						 _info.alpha = 0.0f;
 					 }
-					 completion:^(BOOL finished) {
-						 [_infoVC removeFromParentViewController];
-					 }];
+					 completion:^(BOOL finished) {}];
 }
 
 

@@ -10,8 +10,6 @@
 
 @interface GNInfoViewController ()
 
-@property (strong, nonatomic) IBOutlet UIButton *closeButton;
-
 @end
 
 @implementation GNInfoViewController
@@ -29,13 +27,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-}
-
-- (IBAction)tappedCloseButton:(id)sender
-{
-	[_delegate performSelector:@selector(tappedCloseButton:)
-					withObject:sender
-					afterDelay:0.0f];
 }
 
 - (void)didReceiveMemoryWarning
