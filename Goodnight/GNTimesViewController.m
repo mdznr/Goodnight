@@ -78,7 +78,10 @@
 	_headerImage.image = [UIImage imageNamed:SLEEP_IMAGE];
 	
 	_instructionalLabel.text = @"Try falling asleep at\none of these times:";
-	
+}
+
+- (void)setTimesForSleepMode
+{
 	// Times
 	NSDate *date;
 	date = [_date dateByAddingTimeInterval:-GREAT_SLEEP_TIME];
@@ -93,7 +96,7 @@
 	_time3.text = [_dateFormatter stringFromDate:date];;
 	_time3.alpha = FINE_OPACITY;
 	
-	date = [date dateByAddingTimeInterval:-BAD_SLEEP_TIME];
+	date = [_date dateByAddingTimeInterval:-BAD_SLEEP_TIME];
 	_time4.text = [_dateFormatter stringFromDate:date];
 	_time4.alpha = BAD_OPACITY;
 }
@@ -105,7 +108,10 @@
 	_headerImage.image = [UIImage imageNamed:WAKE_IMAGE];
 	
 	_instructionalLabel.text = @"Try waking up at\none of these times:";
-	
+}
+
+- (void)setTimesForWakeMode
+{
 	// Times
 	NSDate *date;
 	date = [_date dateByAddingTimeInterval:BAD_SLEEP_TIME];
@@ -120,7 +126,7 @@
 	_time3.text = [_dateFormatter stringFromDate:date];;
 	_time3.alpha = GOOD_OPACITY;
 	
-	date = [date dateByAddingTimeInterval:GREAT_SLEEP_TIME];
+	date = [_date dateByAddingTimeInterval:GREAT_SLEEP_TIME];
 	_time4.text = [_dateFormatter stringFromDate:date];
 	_time4.alpha = GREAT_OPACITY;
 }
@@ -137,17 +143,37 @@
 	}
 }
 
+- (void)setDate:(NSDate *)date
+{
+	_date = date;
+	switch (_mode) {
+		case GNTimesViewControllerModeSleepTimes:
+			[self setTimesForSleepMode];
+			break;
+		case GNTimesViewControllerModeWakeTimes:
+		default:
+			[self setTimesForWakeMode];
+			break;
+	}
+}
+
 
 #pragma mark Animations
 
 - (void)animateIn
 {
-	
+	// Move text back below view
+
+	// animate
+	// Move text into view
 }
 
 - (void)animateOut
 {
+	// Move text out of view
 	
+	// animate
+	// Move text back below view
 }
 
 

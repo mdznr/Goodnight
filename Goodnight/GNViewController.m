@@ -29,6 +29,8 @@
 @property (strong, nonatomic) IBOutlet UIButton *infoButton;
 @property (strong, nonatomic) UIView *info;
 
+@property (strong, nonatomic) IBOutlet UIButton *dismissButton;
+
 @property (strong, nonatomic) IBOutlet UILabel *instructions;
 
 @property (strong, nonatomic) IBOutlet UIButton *sleepButton;
@@ -78,7 +80,11 @@
 	_dusk.motionEffects = @[vertical];
 	
 	_timesViewController = [[GNTimesViewController alloc] init];
-	[_scrollView addSubview:_timesViewController.view];
+	// Expand VC to fill current view
+	_timesViewController.view.frame = self.view.frame;
+	_timesViewController.view.alpha = 0.0f;
+	[_scrollView insertSubview:_timesViewController.view
+				  belowSubview:_dismissButton];
 	
 	// Add goodnight button action
 	[_goodnightButton addTarget:self
@@ -144,17 +150,123 @@
 
 - (void)tappedGoodnightButton:(id)sender
 {
-	NSLog(@"tappedGoodnightButton: %@", sender);
-#warning animate and show times
-	
-	if ( GNViewControllerModeSetSleepTime ) {
-		_timesViewController.mode = GNTimesViewControllerModeWakeTimes;
-	} else if ( GNViewControllerModeSetWakeTime ) {
-		_timesViewController.mode = GNTimesViewControllerModeSleepTimes;
+	switch (self.mode) {
+		case GNViewControllerModeSetWakeTime:
+			_timesViewController.mode = GNTimesViewControllerModeSleepTimes;
+			[self sleepMode];
+			break;
+		case GNViewControllerModeSetSleepTime:
+		default:
+			_timesViewController.mode = GNTimesViewControllerModeWakeTimes;
+			[self wakeMode];
+			break;
 	}
 	
 	_timesViewController.date = _datePicker.date;
-	[_timesViewController animateIn];
+	
+	// Hide instructional text
+	[UIView animateWithDuration:ANIMATION_DURATION/2
+						  delay:0.0f
+		 usingSpringWithDamping:1.0f
+		  initialSpringVelocity:1.0f
+						options:UIViewAnimationOptionBeginFromCurrentState
+					 animations:^{
+						 _instructions.alpha = 0.0f;
+					 }
+					 completion:^(BOOL finished) {
+						 _instructions.hidden = YES;
+					 }];
+	
+	// Move the main UI away
+	[UIView animateWithDuration:ANIMATION_DURATION
+						  delay:0.0f
+		 usingSpringWithDamping:1.0f
+		  initialSpringVelocity:1.0f
+						options:UIViewAnimationOptionBeginFromCurrentState
+					 animations:^{
+//						 _stars.alpha = 0.33f;
+						 
+#warning instructions will still display in visible frame
+						 _instructions.frame = CGRectOffset(_instructions.frame, 0, _yChange);
+						 _sleepButton.frame = CGRectOffset(_sleepButton.frame, 0, _yChange);
+						 _wakeButton.frame = CGRectOffset(_wakeButton.frame, 0, _yChange);
+						 _triangleMarker.frame = CGRectOffset(_triangleMarker.frame, 0, _yChange);
+						 _selectorView.frame = CGRectOffset(_selectorView.frame, 0, _yChange);
+						 _dusk.frame = CGRectOffset(_dusk.frame, 0, _yChange);
+						 _sunrise.frame = CGRectOffset(_sunrise.frame, 0, _yChange);
+					 }
+					 completion:^(BOOL finished) {}];
+	
+	// Show Times View Controller
+	[UIView animateWithDuration:ANIMATION_DURATION
+						  delay:0.0f
+		 usingSpringWithDamping:1.0f
+		  initialSpringVelocity:1.0f
+						options:UIViewAnimationOptionBeginFromCurrentState
+					 animations:^{
+						 _timesViewController.view.alpha = 1.0f;
+						 [_timesViewController animateIn];
+						 _dismissButton.alpha = 1.0f;
+					 }
+					 completion:^(BOOL finished) {}];
+}
+
+- (IBAction)dismissButtonTapped:(id)sender
+{
+	switch (_timesViewController.mode) {
+		case GNTimesViewControllerModeSleepTimes:
+			[self wakeMode];
+			break;
+		case GNTimesViewControllerModeWakeTimes:
+		default:
+			[self sleepMode];
+			break;
+	}
+	
+	// Make sure it's at alpha 0.0f?
+	_instructions.alpha = 0.0f;
+	_instructions.hidden = NO;
+	
+	[UIView animateWithDuration:ANIMATION_DURATION
+						  delay:0.0f
+		 usingSpringWithDamping:1.0f
+		  initialSpringVelocity:1.0f
+						options:UIViewAnimationOptionBeginFromCurrentState
+					 animations:^{
+						 _timesViewController.view.alpha = 0.0f;
+						 [_timesViewController animateOut];
+						 _dismissButton.alpha = 0.0f;
+					 }
+					 completion:^(BOOL finished) {
+						 if ( !_hasUsedAppBefore ) {
+							 [UIView animateWithDuration:ANIMATION_DURATION*2
+												   delay:0.0f
+								  usingSpringWithDamping:1.0f
+								   initialSpringVelocity:1.0f
+												 options:UIViewAnimationOptionBeginFromCurrentState
+											  animations:^{
+												  _instructions.alpha = 0.7f;
+											  }
+											  completion:^(BOOL finished) {}];
+						 }
+					 }];
+	
+	[UIView animateWithDuration:ANIMATION_DURATION
+						  delay:0.0f
+		 usingSpringWithDamping:1.0f
+		  initialSpringVelocity:1.0f
+						options:UIViewAnimationOptionBeginFromCurrentState
+					 animations:^{
+//						 _stars.alpha = 1.0f;
+						 
+						 _sleepButton.frame = CGRectOffset(_sleepButton.frame, 0, -_yChange);
+						 _wakeButton.frame = CGRectOffset(_wakeButton.frame, 0, -_yChange);
+						 _triangleMarker.frame = CGRectOffset(_triangleMarker.frame, 0, -_yChange);
+						 _selectorView.frame = CGRectOffset(_selectorView.frame, 0, -_yChange);
+						 _dusk.frame = CGRectOffset(_dusk.frame, 0, -_yChange);
+						 _sunrise.frame = CGRectOffset(_sunrise.frame, 0, -_yChange);
+					 }
+					 completion:^(BOOL finished) { }];
 }
 
 - (void)tappedInfoButton:(id)sender
@@ -269,12 +381,38 @@
 	
 	_mode = mode;
 	switch (mode) {
-		case GNViewControllerModeSetSleepTime:
+		case GNViewControllerModeSetSleepTime: {
 			[self sleepMode];
-			break;
-		case GNViewControllerModeSetWakeTime:
+			[UIView animateWithDuration:ANIMATION_DURATION
+								  delay:0.0f
+				 usingSpringWithDamping:1.0f
+				  initialSpringVelocity:1.0f
+								options:UIViewAnimationOptionBeginFromCurrentState
+							 animations:^{
+#warning UIButton does not animate between selected states
+								 _wakeButton.selected = NO;
+								 _sleepButton.selected = YES;
+								 
+								 _triangleMarker.center = (CGPoint){_sleepButton.center.x, _triangleMarker.center.y};
+							 }
+							 completion:^(BOOL finished) {}];
+		} break;
+		case GNViewControllerModeSetWakeTime: {
 			[self wakeMode];
-			break;
+			[UIView animateWithDuration:ANIMATION_DURATION
+								  delay:0.0f
+				 usingSpringWithDamping:1.0f
+				  initialSpringVelocity:1.0f
+								options:UIViewAnimationOptionBeginFromCurrentState
+							 animations:^{
+#warning UIButton does not animate between selected states
+								 _wakeButton.selected = YES;
+								 _sleepButton.selected = NO;
+								 
+								 _triangleMarker.center = (CGPoint){_wakeButton.center.x, _triangleMarker.center.y};
+							 }
+							 completion:^(BOOL finished) {}];
+		} break;
 	}
 		
 }
@@ -284,23 +422,16 @@
 	// Select Sleep segmented control button
 	// Hide sunrise
 	// Bring in stars
-	// Move triangle
 	[UIView animateWithDuration:ANIMATION_DURATION
 						  delay:0.0f
 		 usingSpringWithDamping:1.0f
 		  initialSpringVelocity:1.0f
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
-#warning UIButton does not animate between selected states
-						 _sleepButton.selected = YES;
-						 _wakeButton.selected = NO;
-						 
 						 _sunrise.alpha = 0.0f; // Animate down, too
 						 
 						 _stars.center = (CGPoint){_stars.center.x, _stars.center.y + 50.0f};
 						 _stars.alpha = 1.0f;
-						 
-						 _triangleMarker.center = (CGPoint){_sleepButton.center.x, _triangleMarker.center.y};
 					 }
 					 completion:^(BOOL finished) {}];
 	
@@ -331,23 +462,16 @@
 	// Select Sleep segmented control button
 	// Hide sunrise
 	// Bring in stars
-	// Move triangle
 	[UIView animateWithDuration:ANIMATION_DURATION
 						  delay:0.0f
 		 usingSpringWithDamping:1.0f
 		  initialSpringVelocity:1.0f
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
-#warning UIButton does not animate between selected states
-						 _wakeButton.selected = YES;
-						 _sleepButton.selected = NO;
-						 
 						 _dusk.alpha = 0.0f;	// Animate down, too
 						 
 						 _stars.center = (CGPoint){_stars.center.x, _stars.center.y - 50.0f};
 						 _stars.alpha = 0.0f;
-						 
-						 _triangleMarker.center = (CGPoint){_wakeButton.center.x, _triangleMarker.center.y};
 					 }
 					 completion:^(BOOL finished) {}];
 	
