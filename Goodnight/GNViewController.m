@@ -352,6 +352,7 @@
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
 						 _info.alpha = 0.0f;
+						 _dismissButton.alpha = 1.0f;
 					 }
 					 completion:^(BOOL finished) {
 						 [UIView animateWithDuration:ANIMATION_DURATION
@@ -360,7 +361,6 @@
 							   initialSpringVelocity:1.0f
 											 options:UIViewAnimationOptionBeginFromCurrentState
 										  animations:^{
-							 _dismissButton.alpha = 1.0f;
 						 } completion:^(BOOL finished) {}];
 						 
 						 if ( !_hasUsedAppBefore && _showingMainUI ) {
