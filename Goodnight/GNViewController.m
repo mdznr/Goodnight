@@ -202,7 +202,7 @@
 	
 	// Show Times View Controller
 	[UIView animateWithDuration:ANIMATION_DURATION
-						  delay:0.0f
+						  delay:ANIMATION_DURATION
 		 usingSpringWithDamping:1.0f
 		  initialSpringVelocity:1.0f
 						options:UIViewAnimationOptionBeginFromCurrentState
