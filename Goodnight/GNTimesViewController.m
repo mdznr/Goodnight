@@ -27,9 +27,9 @@
 #define SLEEP_IMAGE @"Sleep_Glyph_Small"
 #define WAKE_IMAGE @"Wake_Glyph_Small"
 
-#define BAD_OPACITY   0.7f
-#define FINE_OPACITY  0.8f
-#define GOOD_OPACITY  0.9f
+#define BAD_OPACITY   0.4f
+#define FINE_OPACITY  0.6f
+#define GOOD_OPACITY  0.8f
 #define GREAT_OPACITY 1.0f
 
 #define FALL_ASLEEP_TIME (14*60)
