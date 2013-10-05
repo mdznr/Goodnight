@@ -43,8 +43,7 @@
 @property (strong, nonatomic) IBOutlet MTZOutlinedButton *goodnightButton;
 
 @property (nonatomic) BOOL hasUsedAppBefore;
-
-@property (strong, nonatomic) NSDate *dateToResumeAnimatingInstructions;
+@property (nonatomic) BOOL showingMainUI;
 
 @property (nonatomic) CGFloat yChange;
 
@@ -115,9 +114,11 @@
 #warning store last used mode in preferences and use below
 	[self setMode:GNViewControllerModeSetSleepTime];
 	
+	_showingMainUI = YES;
+	
 #warning see if the app has been used
 	_hasUsedAppBefore = NO;
-	if ( !_hasUsedAppBefore ) {
+	if ( !_hasUsedAppBefore && _showingMainUI ) {
 		[UIView animateWithDuration:2 * ANIMATION_DURATION
 							  delay:2 * ANIMATION_DURATION
 							options:UIViewAnimationOptionBeginFromCurrentState
@@ -162,6 +163,7 @@
 			break;
 	}
 	
+	_showingMainUI = NO;
 	_timesViewController.date = _datePicker.date;
 	
 	// Hide instructional text
@@ -187,6 +189,7 @@
 //						 _stars.alpha = 0.33f;
 						 
 #warning instructions will still display in visible frame
+						 _infoButton.frame = (CGRect){0,self.view.frame.size.height-56,56,56};
 						 _instructions.frame = CGRectOffset(_instructions.frame, 0, _yChange);
 						 _sleepButton.frame = CGRectOffset(_sleepButton.frame, 0, _yChange);
 						 _wakeButton.frame = CGRectOffset(_wakeButton.frame, 0, _yChange);
@@ -223,9 +226,16 @@
 			break;
 	}
 	
+	_showingMainUI = YES;
+	
 	// Make sure it's at alpha 0.0f?
 	_instructions.alpha = 0.0f;
 	_instructions.hidden = NO;
+	
+	// Only show instructions if necessary
+	if ( !_hasUsedAppBefore && _showingMainUI ) {
+		[self fadeInstructionsOut];
+	}
 	
 	[UIView animateWithDuration:ANIMATION_DURATION
 						  delay:0.0f
@@ -238,7 +248,7 @@
 						 _dismissButton.alpha = 0.0f;
 					 }
 					 completion:^(BOOL finished) {
-						 if ( !_hasUsedAppBefore ) {
+						 if ( !_hasUsedAppBefore && _showingMainUI ) {
 							 [UIView animateWithDuration:ANIMATION_DURATION*2
 												   delay:0.0f
 								  usingSpringWithDamping:1.0f
@@ -259,6 +269,8 @@
 					 animations:^{
 //						 _stars.alpha = 1.0f;
 						 
+						 _infoButton.frame = (CGRect){0,20,56,56};
+						 _instructions.frame = CGRectOffset(_instructions.frame, 0, -_yChange);
 						 _sleepButton.frame = CGRectOffset(_sleepButton.frame, 0, -_yChange);
 						 _wakeButton.frame = CGRectOffset(_wakeButton.frame, 0, -_yChange);
 						 _triangleMarker.frame = CGRectOffset(_triangleMarker.frame, 0, -_yChange);
@@ -294,22 +306,27 @@
 						 _instructions.hidden = YES;
 					 }];
 	
-	[UIView animateWithDuration:ANIMATION_DURATION
-						  delay:0.0f
-		 usingSpringWithDamping:1.0f
-		  initialSpringVelocity:1.0f
-						options:UIViewAnimationOptionBeginFromCurrentState
-					 animations:^{
-//						 _stars.alpha = 0.33f;
-						 
-						 _sleepButton.frame = CGRectOffset(_sleepButton.frame, 0, _yChange);
-						 _wakeButton.frame = CGRectOffset(_wakeButton.frame, 0, _yChange);
-						 _triangleMarker.frame = CGRectOffset(_triangleMarker.frame, 0, _yChange);
-						 _selectorView.frame = CGRectOffset(_selectorView.frame, 0, _yChange);
-						 _dusk.frame = CGRectOffset(_dusk.frame, 0, _yChange);
-						 _sunrise.frame = CGRectOffset(_sunrise.frame, 0, _yChange);
-					 }
-					 completion:^(BOOL finished) {}];
+	if ( _showingMainUI ) {
+		[UIView animateWithDuration:ANIMATION_DURATION
+							  delay:0.0f
+			 usingSpringWithDamping:1.0f
+			  initialSpringVelocity:1.0f
+							options:UIViewAnimationOptionBeginFromCurrentState
+						 animations:^{
+//							 _stars.alpha = 0.33f;
+							 
+							 _sleepButton.frame = CGRectOffset(_sleepButton.frame, 0, _yChange);
+							 _wakeButton.frame = CGRectOffset(_wakeButton.frame, 0, _yChange);
+							 _triangleMarker.frame = CGRectOffset(_triangleMarker.frame, 0, _yChange);
+							 _selectorView.frame = CGRectOffset(_selectorView.frame, 0, _yChange);
+							 _dusk.frame = CGRectOffset(_dusk.frame, 0, _yChange);
+							 _sunrise.frame = CGRectOffset(_sunrise.frame, 0, _yChange);
+						 }
+						 completion:^(BOOL finished) {}];
+	} else {
+		// Animate times out
+		[_timesViewController animateOut];
+	}
 	
 	// Show Info text
 	[UIView animateWithDuration:ANIMATION_DURATION
@@ -338,7 +355,7 @@
 						 _info.alpha = 0.0f;
 					 }
 					 completion:^(BOOL finished) {
-						 if ( !_hasUsedAppBefore ) {
+						 if ( !_hasUsedAppBefore && _showingMainUI ) {
 							 [UIView animateWithDuration:ANIMATION_DURATION*2
 												   delay:0.0f
 								  usingSpringWithDamping:1.0f
@@ -351,22 +368,26 @@
 						 }
 					 }];
 	
-	[UIView animateWithDuration:ANIMATION_DURATION
-						  delay:0.0f
-		 usingSpringWithDamping:1.0f
-		  initialSpringVelocity:1.0f
-						options:UIViewAnimationOptionBeginFromCurrentState
-					 animations:^{
-//						 _stars.alpha = 1.0f;
-						 
-						 _sleepButton.frame = CGRectOffset(_sleepButton.frame, 0, -_yChange);
-						 _wakeButton.frame = CGRectOffset(_wakeButton.frame, 0, -_yChange);
-						 _triangleMarker.frame = CGRectOffset(_triangleMarker.frame, 0, -_yChange);
-						 _selectorView.frame = CGRectOffset(_selectorView.frame, 0, -_yChange);
-						 _dusk.frame = CGRectOffset(_dusk.frame, 0, -_yChange);
-						 _sunrise.frame = CGRectOffset(_sunrise.frame, 0, -_yChange);
-					 }
-					 completion:^(BOOL finished) { }];
+	if ( _showingMainUI ) {
+		[UIView animateWithDuration:ANIMATION_DURATION
+							  delay:0.0f
+			 usingSpringWithDamping:1.0f
+			  initialSpringVelocity:1.0f
+							options:UIViewAnimationOptionBeginFromCurrentState
+						 animations:^{
+//							 _stars.alpha = 1.0f;
+							 
+							 _sleepButton.frame = CGRectOffset(_sleepButton.frame, 0, -_yChange);
+							 _wakeButton.frame = CGRectOffset(_wakeButton.frame, 0, -_yChange);
+							 _triangleMarker.frame = CGRectOffset(_triangleMarker.frame, 0, -_yChange);
+							 _selectorView.frame = CGRectOffset(_selectorView.frame, 0, -_yChange);
+							 _dusk.frame = CGRectOffset(_dusk.frame, 0, -_yChange);
+							 _sunrise.frame = CGRectOffset(_sunrise.frame, 0, -_yChange);
+						 }
+						 completion:^(BOOL finished) { }];
+	} else {
+		[_timesViewController animateIn];
+	}
 }
 
 
@@ -375,7 +396,7 @@
 - (void)setMode:(GNViewControllerMode)mode
 {
 	// Only manipulate instructions if necessary
-	if ( _mode != mode && !_hasUsedAppBefore ) {
+	if ( _mode != mode && !_hasUsedAppBefore && _showingMainUI ) {
 		[self fadeInstructionsOut];
 	}
 	
