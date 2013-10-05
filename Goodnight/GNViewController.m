@@ -301,6 +301,7 @@
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
 						 _instructions.alpha = 0.0f;
+						 _dismissButton.alpha = 0.0f;
 					 }
 					 completion:^(BOOL finished) {
 						 _instructions.hidden = YES;
@@ -355,6 +356,15 @@
 						 _info.alpha = 0.0f;
 					 }
 					 completion:^(BOOL finished) {
+						 [UIView animateWithDuration:ANIMATION_DURATION
+											   delay:0.0f
+							  usingSpringWithDamping:1.0f
+							   initialSpringVelocity:1.0f
+											 options:UIViewAnimationOptionBeginFromCurrentState
+										  animations:^{
+							 _dismissButton.alpha = 1.0f;
+						 } completion:^(BOOL finished) {}];
+						 
 						 if ( !_hasUsedAppBefore && _showingMainUI ) {
 							 [UIView animateWithDuration:ANIMATION_DURATION*2
 												   delay:0.0f
@@ -545,7 +555,7 @@
 	}
 	
 	[UIView animateWithDuration:2 * ANIMATION_DURATION
-						  delay:2 * ANIMATION_DURATION
+						  delay:ANIMATION_DURATION
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
 						 _instructions.alpha = 0.75f;
