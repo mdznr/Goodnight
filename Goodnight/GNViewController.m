@@ -190,7 +190,6 @@
 						 
 #warning instructions will still display in visible frame
 						 _infoButton.frame = CGRectOffset(_infoButton.frame, 0, _yChange);
-						 _instructions.frame = CGRectOffset(_instructions.frame, 0, _yChange);
 						 _sleepButton.frame = CGRectOffset(_sleepButton.frame, 0, _yChange);
 						 _wakeButton.frame = CGRectOffset(_wakeButton.frame, 0, _yChange);
 						 _triangleMarker.frame = CGRectOffset(_triangleMarker.frame, 0, _yChange);
@@ -270,7 +269,6 @@
 //						 _stars.alpha = 1.0f;
 						 
 						 _infoButton.frame = CGRectOffset(_infoButton.frame, 0, -_yChange);
-						 _instructions.frame = CGRectOffset(_instructions.frame, 0, -_yChange);
 						 _sleepButton.frame = CGRectOffset(_sleepButton.frame, 0, -_yChange);
 						 _wakeButton.frame = CGRectOffset(_wakeButton.frame, 0, -_yChange);
 						 _triangleMarker.frame = CGRectOffset(_triangleMarker.frame, 0, -_yChange);
