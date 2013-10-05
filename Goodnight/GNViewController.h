@@ -15,6 +15,10 @@ typedef enum {
 
 @interface GNViewController : UIViewController
 
+///
 @property (nonatomic) GNViewControllerMode mode;
+
+/// Update the date picker to be the current time
+- (void)updateDatePicker;
 
 @end

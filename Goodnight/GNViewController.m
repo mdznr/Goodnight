@@ -7,11 +7,17 @@
 //
 
 #import "GNViewController.h"
-#import "MTZOutlinedButton.h"
-#import "MTZTriangleView.h"
+
+#import <QuartzCore/QuartzCore.h>
+
 #import "GNInfoViewController.h"
 #import "GNTimesViewController.h"
-#import <QuartzCore/QuartzCore.h>
+
+#import "MTZOutlinedButton.h"
+#import "MTZTriangleView.h"
+
+#warning Shouldn't have to do this:
+#import "GNAppDelegate.h"
 
 @interface GNViewController ()
 
@@ -133,6 +139,10 @@
 													 bundle:nil].view;
 	_info.alpha = 0.0f;
 	[_scrollView insertSubview:_info belowSubview:_infoButton];
+	
+	// Make sure App Delegate has reference
+#warning THIS IS REALLY BAD CODE UGH
+	((GNAppDelegate *)[UIApplication sharedApplication].delegate).viewController = self;
 }
 
 
@@ -577,6 +587,11 @@
 
 
 #pragma mark UIViewController Stuff
+
+- (void)updateDatePicker
+{
+	[_datePicker setDate:[NSDate date] animated:YES];
+}
 
 - (void)viewDidUnload
 {

@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+#import "GNViewController.h"
+
 @interface GNAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) GNViewController *viewController;
 
 @end
