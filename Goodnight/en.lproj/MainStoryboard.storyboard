@@ -58,14 +58,14 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                         <string key="text">Set the time you’d
 like to fall asleep at</string>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="24"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="26"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="XSM-hG-eiY" userLabel="Sleep">
                                         <rect key="frame" x="40" y="134" width="120" height="41"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="24"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="26"/>
                                         <state key="normal" title="Sleep">
                                             <color key="titleColor" red="1" green="0.9999350905418396" blue="0.99997484683990479" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
                                         </state>
@@ -79,7 +79,7 @@ like to fall asleep at</string>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="kyx-RC-jyU" userLabel="Wake">
                                         <rect key="frame" x="160" y="134" width="120" height="41"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="24"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="26"/>
                                         <state key="normal" title="Wake">
                                             <color key="titleColor" red="1" green="0.9999350905418396" blue="0.99997484683990479" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
                                         </state>
@@ -173,7 +173,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         </scene>
     </scenes>
     <resources>
-        <image name="BackButton" width="40" height="16"/>
+        <image name="BackButton" width="41" height="16"/>
         <image name="Close" width="32" height="32"/>
         <image name="Dusk" width="320" height="480"/>
         <image name="Info" width="32" height="32"/>
