@@ -62,7 +62,7 @@
 	// Do any additional setup after loading the view, typically from a nib.
 	
 	// Find necessary y change to hide main UI
-	_yChange = self.view.frame.size.height - _wakeButton.frame.origin.y;
+	_yChange = self.view.frame.size.height - 56 - 20;
 	
 	// Make sure sky imageView is tall enough
 	_sky.frame = (CGRect){_sky.frame.origin.x, _sky.frame.origin.y, _sky.image.size.width, _sky.image.size.height};
@@ -189,7 +189,7 @@
 //						 _stars.alpha = 0.33f;
 						 
 #warning instructions will still display in visible frame
-						 _infoButton.frame = (CGRect){0,self.view.frame.size.height-56,56,56};
+						 _infoButton.frame = CGRectOffset(_infoButton.frame, 0, _yChange);
 						 _instructions.frame = CGRectOffset(_instructions.frame, 0, _yChange);
 						 _sleepButton.frame = CGRectOffset(_sleepButton.frame, 0, _yChange);
 						 _wakeButton.frame = CGRectOffset(_wakeButton.frame, 0, _yChange);
@@ -269,7 +269,7 @@
 					 animations:^{
 //						 _stars.alpha = 1.0f;
 						 
-						 _infoButton.frame = (CGRect){0,20,56,56};
+						 _infoButton.frame = CGRectOffset(_infoButton.frame, 0, -_yChange);
 						 _instructions.frame = CGRectOffset(_instructions.frame, 0, -_yChange);
 						 _sleepButton.frame = CGRectOffset(_sleepButton.frame, 0, -_yChange);
 						 _wakeButton.frame = CGRectOffset(_wakeButton.frame, 0, -_yChange);
