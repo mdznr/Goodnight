@@ -17,10 +17,10 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *instructionalLabel;
 
-@property (strong, nonatomic) IBOutlet UILabel *time1;
-@property (strong, nonatomic) IBOutlet UILabel *time2;
-@property (strong, nonatomic) IBOutlet UILabel *time3;
-@property (strong, nonatomic) IBOutlet UILabel *time4;
+@property (strong, nonatomic) IBOutlet UIButton *time1;
+@property (strong, nonatomic) IBOutlet UIButton *time2;
+@property (strong, nonatomic) IBOutlet UIButton *time3;
+@property (strong, nonatomic) IBOutlet UIButton *time4;
 
 @end
 
@@ -85,19 +85,23 @@
 	// Times
 	NSDate *date;
 	date = [_date dateByAddingTimeInterval:-GREAT_SLEEP_TIME];
-	_time1.text = [_dateFormatter stringFromDate:date];
+	[_time1 setTitle:[_dateFormatter stringFromDate:date]
+			forState:UIControlStateNormal];
 	_time1.alpha = GREAT_OPACITY;
 	
 	date = [_date dateByAddingTimeInterval:-GOOD_SLEEP_TIME];
-	_time2.text = [_dateFormatter stringFromDate:date];
+	[_time2 setTitle:[_dateFormatter stringFromDate:date]
+			forState:UIControlStateNormal];
 	_time2.alpha = GOOD_OPACITY;
 	
 	date = [_date dateByAddingTimeInterval:-FINE_SLEEP_TIME];
-	_time3.text = [_dateFormatter stringFromDate:date];;
+	[_time3 setTitle:[_dateFormatter stringFromDate:date]
+			forState:UIControlStateNormal];
 	_time3.alpha = FINE_OPACITY;
 	
 	date = [_date dateByAddingTimeInterval:-BAD_SLEEP_TIME];
-	_time4.text = [_dateFormatter stringFromDate:date];
+	[_time4 setTitle:[_dateFormatter stringFromDate:date]
+			forState:UIControlStateNormal];
 	_time4.alpha = BAD_OPACITY;
 }
 
@@ -115,19 +119,23 @@
 	// Times
 	NSDate *date;
 	date = [_date dateByAddingTimeInterval:BAD_SLEEP_TIME];
-	_time1.text = [_dateFormatter stringFromDate:date];
+	[_time1 setTitle:[_dateFormatter stringFromDate:date]
+			forState:UIControlStateNormal];
 	_time1.alpha = BAD_OPACITY;
 	
 	date = [_date dateByAddingTimeInterval:FINE_SLEEP_TIME];
-	_time2.text = [_dateFormatter stringFromDate:date];
+	[_time2 setTitle:[_dateFormatter stringFromDate:date]
+			forState:UIControlStateNormal];
 	_time2.alpha = FINE_OPACITY;
 	
 	date = [_date dateByAddingTimeInterval:GOOD_SLEEP_TIME];
-	_time3.text = [_dateFormatter stringFromDate:date];;
+	[_time3 setTitle:[_dateFormatter stringFromDate:date]
+			forState:UIControlStateNormal];
 	_time3.alpha = GOOD_OPACITY;
 	
 	date = [_date dateByAddingTimeInterval:GREAT_SLEEP_TIME];
-	_time4.text = [_dateFormatter stringFromDate:date];
+	[_time4 setTitle:[_dateFormatter stringFromDate:date]
+			forState:UIControlStateNormal];
 	_time4.alpha = GREAT_OPACITY;
 }
 
