@@ -51,6 +51,7 @@
 	
 	_borderWidth = 1.0f;
 	
+	
 	// Light blue color
 	[self setTintColor:[UIColor colorWithRed: 52.0f/255.0f
 									   green:170.0f/255.0f
@@ -123,6 +124,11 @@
 	[self setBackgroundImage:selected forState:UIControlStateSelected];
 	[self setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
 #warning be smarter about title color
+}
+
+- (void)tintColorDidChange
+{
+	[super tintColorDidChange];
 }
 
 @end

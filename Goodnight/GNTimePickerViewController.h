@@ -27,6 +27,8 @@ typedef enum {
 
 @property (nonatomic) GNTimePickerMode mode;
 
+@property (strong, nonatomic) UIColor *tintColor;
+
 /// Update the date picker to be the current time
 - (void)updateDatePicker;
 

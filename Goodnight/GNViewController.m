@@ -415,7 +415,7 @@
 														  green: 75.0f/255.0f
 														   blue:212.0f/255.0f
 														  alpha:1.0f];
-						 _timePickerViewController.view.tintColor = color;
+						 _timePickerViewController.tintColor = color;
 					 }
 					 completion:^(BOOL finished) { }];
 }
@@ -449,7 +449,7 @@
 														  green:172.0f/255.0f
 														   blue:245.0f/255.0f
 														  alpha:1.0f];
-						 [_timePickerViewController.view setTintColor:color];
+						 _timePickerViewController.tintColor = color;
 					 }
 					 completion:^(BOOL finished) { }];
 }

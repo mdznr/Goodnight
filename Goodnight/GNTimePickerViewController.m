@@ -78,8 +78,6 @@
 	[self setMode:GNTimePickerModeSleep];
 	_wakeButton.selected = NO;
 	_sleepButton.selected = YES;
-	
-#warning view tint color did change method?
 }
 
 
@@ -230,6 +228,12 @@
 
 
 #pragma mark Misc.
+
+- (void)setTintColor:(UIColor *)tintColor
+{
+	_tintColor = tintColor;
+	_goodnightButton.tintColor = tintColor;
+}
 
 - (void)updateDatePicker
 {
