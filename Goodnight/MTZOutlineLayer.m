@@ -61,22 +61,23 @@
 
 - (CABasicAnimation *)makeAnimationForKey:(NSString *)key
 {
+	/*
 	CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:key];
 	anim.fromValue = [[self presentationLayer] valueForKey:key];
-	NSLog(@"%@", [self actions]);
+//	NSLog(@"%@", [self actions]);
 	CABasicAnimation *defaultAnim = (CABasicAnimation *)[CALayer defaultActionForKey:@"tintColor"];
 	anim.duration = defaultAnim.duration;
 	anim.timingFunction = defaultAnim.timingFunction;
 	return anim;
+	 */
 	
-	/*
 	CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:key];
 	anim.fromValue = [[self presentationLayer] valueForKey:key];
-	anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
-	anim.duration = 0.5;
+	anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault];
+#warning hard-coding in easing and duration is bad!
+	anim.duration = 2.25f;
 	
 	return anim;
-	 */
 }
 
 - (id<CAAction>)actionForKey:(NSString *)event

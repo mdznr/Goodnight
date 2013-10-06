@@ -154,7 +154,6 @@
 - (IBAction)didTapTime:(id)sender
 {
 	// Set date - switch depending on button
-	NSLog(@"%@", sender);
 	NSDate *date;
 	switch ( self.mode ) {
 		case GNTimesViewControllerModeWakeTimes: {
