@@ -13,7 +13,20 @@ typedef enum {
 	GNTimesViewControllerModeWakeTimes
 } GNTimesViewControllerMode;
 
+
+@protocol GNTimesViewControllerDelegate <NSObject>
+
+- (void)timesViewControllerRequestsDismissal;
+- (void)timesViewControllerSetSleepReminderForTime:(NSDate *)time;
+- (void)timesViewControllerSetWakeAlarmForTime:(NSDate *)time;
+
+@end
+
+
 @interface GNTimesViewController : UIViewController
+
+///
+@property (nonatomic) id<GNTimesViewControllerDelegate> delegate;
 
 /// The mode of the view controller.
 @property (nonatomic) GNTimesViewControllerMode mode;

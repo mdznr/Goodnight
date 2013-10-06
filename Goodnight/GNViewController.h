@@ -9,16 +9,13 @@
 #import <UIKit/UIKit.h>
 
 typedef enum {
-	GNViewControllerModeSetSleepTime,
-	GNViewControllerModeSetWakeTime
-} GNViewControllerMode;
+	GNSkyModeDusk,
+	GNSkyModeDawn
+} GNSkyMode;
 
 @interface GNViewController : UIViewController
 
 ///
-@property (nonatomic) GNViewControllerMode mode;
-
-/// Update the date picker to be the current time
-- (void)updateDatePicker;
+@property (nonatomic) GNSkyMode skyMode;
 
 @end

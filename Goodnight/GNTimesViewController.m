@@ -22,6 +22,8 @@
 @property (strong, nonatomic) IBOutlet UIButton *time3;
 @property (strong, nonatomic) IBOutlet UIButton *time4;
 
+@property (strong, nonatomic) IBOutlet UIView *backButton;
+
 @end
 
 #define SLEEP_IMAGE @"Sleep_Glyph_Small"
@@ -137,6 +139,31 @@
 	[_time4 setTitle:[_dateFormatter stringFromDate:date]
 			forState:UIControlStateNormal];
 	_time4.alpha = GREAT_OPACITY;
+}
+
+
+#pragma mark Button Actions
+
+- (IBAction)didTapBackButton:(id)sender
+{
+	if ( _delegate && [_delegate respondsToSelector:@selector(timesViewControllerRequestsDismissal)] ) {
+		[_delegate timesViewControllerRequestsDismissal];
+	}
+}
+
+- (IBAction)didTapTime:(id)sender
+{
+	// Set date - switch depending on button
+	NSLog(@"%@", sender);
+	NSDate *date;
+	switch ( self.mode ) {
+		case GNTimesViewControllerModeWakeTimes: {
+			[_delegate timesViewControllerSetWakeAlarmForTime:date];
+		} break;
+		case GNTimesViewControllerModeSleepTimes: {
+			[_delegate timesViewControllerSetSleepReminderForTime:date];
+		} break;
+	}
 }
 
 

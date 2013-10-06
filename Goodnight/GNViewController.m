@@ -11,15 +11,10 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "GNInfoViewController.h"
+#import "GNTimePickerViewController.h"
 #import "GNTimesViewController.h"
 
-#import "MTZOutlinedButton.h"
-#import "MTZTriangleView.h"
-
-#warning Shouldn't have to do this:
-#import "GNAppDelegate.h"
-
-@interface GNViewController ()
+@interface GNViewController () <GNTimePickerViewControllerDelegate, GNTimesViewControllerDelegate>
 
 #pragma mark Private Property
 
@@ -27,26 +22,14 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView *sky;
 @property (strong, nonatomic) IBOutlet UIImageView *stars;
-@property (strong, nonatomic) IBOutlet UIImageView *dusk;
-@property (strong, nonatomic) IBOutlet UIImageView *sunrise;
 
 @property (strong, nonatomic) GNTimesViewController *timesViewController;
+@property (strong, nonatomic) GNTimePickerViewController *timePickerViewController;
 
 @property (strong, nonatomic) IBOutlet UIButton *infoButton;
 @property (strong, nonatomic) UIView *info;
 
-@property (strong, nonatomic) IBOutlet UIButton *dismissButton;
-
 @property (strong, nonatomic) IBOutlet UILabel *instructions;
-
-@property (strong, nonatomic) IBOutlet UIButton *sleepButton;
-@property (strong, nonatomic) IBOutlet UIButton *wakeButton;
-
-@property (strong, nonatomic) IBOutlet MTZTriangleView *triangleMarker;
-
-@property (strong, nonatomic) IBOutlet UIView *selectorView;
-@property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
-@property (strong, nonatomic) IBOutlet MTZOutlinedButton *goodnightButton;
 
 @property (nonatomic) BOOL hasUsedAppBefore;
 @property (nonatomic) BOOL showingMainUI;
@@ -58,7 +41,6 @@
 #define ANIMATION_DURATION 0.75f
 
 @implementation GNViewController
-
 
 #pragma mark Setup
 
@@ -81,44 +63,29 @@
 	vertical.minimumRelativeValue = @(20);
 	vertical.maximumRelativeValue = @(-20);
 	_stars.motionEffects = @[horizontal, vertical];
-	_sunrise.motionEffects = @[vertical];
-	_dusk.motionEffects = @[vertical];
 	
+	// Time Picker View Controller
+	_timePickerViewController = [[GNTimePickerViewController alloc] init];
+	_timePickerViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+	_timePickerViewController.view.frame = self.view.frame;
+	[_scrollView addSubview:_timePickerViewController.view];
+	_timePickerViewController.delegate = self;
+	
+	// Times View Controller
 	_timesViewController = [[GNTimesViewController alloc] init];
-	// Expand VC to fill current view
+	_timesViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	_timesViewController.view.frame = self.view.frame;
 	_timesViewController.view.alpha = 0.0f;
-	[_scrollView insertSubview:_timesViewController.view
-				  belowSubview:_dismissButton];
+	[_scrollView addSubview:_timesViewController.view];
+	_timesViewController.delegate = self;
 	
-	// Add goodnight button action
-	[_goodnightButton addTarget:self
-						 action:@selector(tappedGoodnightButton:)
-			   forControlEvents:UIControlEventTouchUpInside];
-	
-	// Add Info button action
+	// Add Info Button Action
 	[_infoButton addTarget:self
 					action:@selector(tappedInfoButton:)
 		  forControlEvents:UIControlEventTouchUpInside];
 	
-	// Autoresize top and bottom views
-	_selectorView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-	
-	// Add targets to buttons for events
-	[_sleepButton addTarget:self
-					 action:@selector(tappedSleepButton:)
-		   forControlEvents:UIControlEventTouchUpInside];
-	[_wakeButton addTarget:self
-					action:@selector(tappedWakeButton:)
-		  forControlEvents:UIControlEventTouchUpInside];
-	
-	// Picker actions
-	[_datePicker addTarget:self
-					action:@selector(sleepPickerDidChange:)
-		  forControlEvents:UIControlEventValueChanged];
-	
 #warning store last used mode in preferences and use below
-	[self setMode:GNViewControllerModeSetSleepTime];
+	[self setSkyMode:GNSkyModeDusk];
 	
 	_showingMainUI = YES;
 	
@@ -139,42 +106,46 @@
 													 bundle:nil].view;
 	_info.alpha = 0.0f;
 	[_scrollView insertSubview:_info belowSubview:_infoButton];
-	
-	// Make sure App Delegate has reference
-#warning THIS IS REALLY BAD CODE UGH
-	((GNAppDelegate *)[UIApplication sharedApplication].delegate).viewController = self;
 }
 
 
-#pragma mark Button Actions
+#pragma mark Time Picker View Controller Delegate
 
-#warning able to tap two buttons near simultaneously
-- (IBAction)tappedSleepButton:(id)sender
+- (void)timePickerDidChangeToMode:(GNTimePickerMode)mode
 {
-	[self setMode:GNViewControllerModeSetSleepTime];
-}
-
-- (IBAction)tappedWakeButton:(id)sender
-{
-	[self setMode:GNViewControllerModeSetWakeTime];
-}
-
-- (void)tappedGoodnightButton:(id)sender
-{
-	switch (self.mode) {
-		case GNViewControllerModeSetWakeTime:
-			_timesViewController.mode = GNTimesViewControllerModeSleepTimes;
-			[self sleepMode];
-			break;
-		case GNViewControllerModeSetSleepTime:
-		default:
-			_timesViewController.mode = GNTimesViewControllerModeWakeTimes;
-			[self wakeMode];
-			break;
+	switch ( mode ) {
+		case GNTimePickerModeSleep: {
+//			_timesViewController.mode = GNTimesViewControllerModeWakeTimes;
+			[self animateToDusk];
+		} break;
+		case GNTimePickerModeWake: {
+//			_timesViewController.mode = GNTimesViewControllerModeSleepTimes;
+			[self animateToDawn];
+		} break;
 	}
 	
+	// Only manipulate instructions if necessary
+	if ( !_hasUsedAppBefore && _showingMainUI ) {
+		[self fadeInstructionsOut];
+	}
+}
+
+- (void)timePickerDidSayGoodnightWithSleepTime:(NSDate *)date
+									   forMode:(GNTimePickerMode)mode
+{
 	_showingMainUI = NO;
-	_timesViewController.date = _datePicker.date;
+	_timesViewController.date = date;
+	
+	switch ( mode ) {
+		case GNTimePickerModeSleep: {
+			_timesViewController.mode = GNTimesViewControllerModeWakeTimes;
+			[self animateToDawn];
+		} break;
+		case GNTimePickerModeWake: {
+			_timesViewController.mode = GNTimesViewControllerModeSleepTimes;
+			[self animateToDusk];
+		} break;
+	}
 	
 	// Hide instructional text
 	[UIView animateWithDuration:ANIMATION_DURATION/2
@@ -196,16 +167,8 @@
 		  initialSpringVelocity:1.0f
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
-//						 _stars.alpha = 0.33f;
-						 
-#warning instructions will still display in visible frame
 						 _infoButton.frame = CGRectOffset(_infoButton.frame, 0, _yChange);
-						 _sleepButton.frame = CGRectOffset(_sleepButton.frame, 0, _yChange);
-						 _wakeButton.frame = CGRectOffset(_wakeButton.frame, 0, _yChange);
-						 _triangleMarker.frame = CGRectOffset(_triangleMarker.frame, 0, _yChange);
-						 _selectorView.frame = CGRectOffset(_selectorView.frame, 0, _yChange);
-						 _dusk.frame = CGRectOffset(_dusk.frame, 0, _yChange);
-						 _sunrise.frame = CGRectOffset(_sunrise.frame, 0, _yChange);
+						 _timePickerViewController.view.frame = CGRectOffset(_timePickerViewController.view.frame, 0, _yChange);
 					 }
 					 completion:^(BOOL finished) {}];
 	
@@ -218,20 +181,22 @@
 					 animations:^{
 						 _timesViewController.view.alpha = 1.0f;
 						 [_timesViewController animateIn];
-						 _dismissButton.alpha = 1.0f;
 					 }
 					 completion:^(BOOL finished) {}];
 }
 
-- (IBAction)dismissButtonTapped:(id)sender
+
+#pragma mark Times View Controller Delegate
+
+- (void)timesViewControllerRequestsDismissal
 {
-	switch (_timesViewController.mode) {
+	switch ( _timesViewController.mode ) {
 		case GNTimesViewControllerModeSleepTimes:
-			[self wakeMode];
+			[self animateToDawn];
 			break;
 		case GNTimesViewControllerModeWakeTimes:
 		default:
-			[self sleepMode];
+			[self animateToDusk];
 			break;
 	}
 	
@@ -254,7 +219,6 @@
 					 animations:^{
 						 _timesViewController.view.alpha = 0.0f;
 						 [_timesViewController animateOut];
-						 _dismissButton.alpha = 0.0f;
 					 }
 					 completion:^(BOOL finished) {
 						 if ( !_hasUsedAppBefore && _showingMainUI ) {
@@ -279,15 +243,23 @@
 //						 _stars.alpha = 1.0f;
 						 
 						 _infoButton.frame = CGRectOffset(_infoButton.frame, 0, -_yChange);
-						 _sleepButton.frame = CGRectOffset(_sleepButton.frame, 0, -_yChange);
-						 _wakeButton.frame = CGRectOffset(_wakeButton.frame, 0, -_yChange);
-						 _triangleMarker.frame = CGRectOffset(_triangleMarker.frame, 0, -_yChange);
-						 _selectorView.frame = CGRectOffset(_selectorView.frame, 0, -_yChange);
-						 _dusk.frame = CGRectOffset(_dusk.frame, 0, -_yChange);
-						 _sunrise.frame = CGRectOffset(_sunrise.frame, 0, -_yChange);
+						 _timePickerViewController.view.frame = CGRectOffset(_timePickerViewController.view.frame, 0, -_yChange);
 					 }
 					 completion:^(BOOL finished) { }];
 }
+
+- (void)timesViewControllerSetSleepReminderForTime:(NSDate *)time
+{
+	
+}
+
+- (void)timesViewControllerSetWakeAlarmForTime:(NSDate *)time
+{
+	
+}
+
+
+#pragma mark Button Actions
 
 - (void)tappedInfoButton:(id)sender
 {
@@ -309,7 +281,6 @@
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
 						 _instructions.alpha = 0.0f;
-						 _dismissButton.alpha = 0.0f;
 					 }
 					 completion:^(BOOL finished) {
 						 _instructions.hidden = YES;
@@ -323,13 +294,7 @@
 							options:UIViewAnimationOptionBeginFromCurrentState
 						 animations:^{
 //							 _stars.alpha = 0.33f;
-							 
-							 _sleepButton.frame = CGRectOffset(_sleepButton.frame, 0, _yChange);
-							 _wakeButton.frame = CGRectOffset(_wakeButton.frame, 0, _yChange);
-							 _triangleMarker.frame = CGRectOffset(_triangleMarker.frame, 0, _yChange);
-							 _selectorView.frame = CGRectOffset(_selectorView.frame, 0, _yChange);
-							 _dusk.frame = CGRectOffset(_dusk.frame, 0, _yChange);
-							 _sunrise.frame = CGRectOffset(_sunrise.frame, 0, _yChange);
+							 _timePickerViewController.view.frame = CGRectOffset(_timePickerViewController.view.frame, 0, _yChange);
 						 }
 						 completion:^(BOOL finished) {}];
 	} else {
@@ -362,7 +327,6 @@
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
 						 _info.alpha = 0.0f;
-						 _dismissButton.alpha = 1.0f;
 					 }
 					 completion:^(BOOL finished) {
 						 [UIView animateWithDuration:ANIMATION_DURATION
@@ -393,14 +357,7 @@
 			  initialSpringVelocity:1.0f
 							options:UIViewAnimationOptionBeginFromCurrentState
 						 animations:^{
-//							 _stars.alpha = 1.0f;
-							 
-							 _sleepButton.frame = CGRectOffset(_sleepButton.frame, 0, -_yChange);
-							 _wakeButton.frame = CGRectOffset(_wakeButton.frame, 0, -_yChange);
-							 _triangleMarker.frame = CGRectOffset(_triangleMarker.frame, 0, -_yChange);
-							 _selectorView.frame = CGRectOffset(_selectorView.frame, 0, -_yChange);
-							 _dusk.frame = CGRectOffset(_dusk.frame, 0, -_yChange);
-							 _sunrise.frame = CGRectOffset(_sunrise.frame, 0, -_yChange);
+							 _timePickerViewController.view.frame = CGRectOffset(_timePickerViewController.view.frame, 0, -_yChange);
 						 }
 						 completion:^(BOOL finished) { }];
 	} else {
@@ -411,72 +368,34 @@
 
 #pragma mark Modes
 
-- (void)setMode:(GNViewControllerMode)mode
+- (void)setSkyMode:(GNSkyMode)skyMode
 {
-	// Only manipulate instructions if necessary
-	if ( _mode != mode && !_hasUsedAppBefore && _showingMainUI ) {
-		[self fadeInstructionsOut];
-	}
-	
-	_mode = mode;
-	switch (mode) {
-		case GNViewControllerModeSetSleepTime: {
-			[self sleepMode];
-			[UIView animateWithDuration:ANIMATION_DURATION
-								  delay:0.0f
-				 usingSpringWithDamping:1.0f
-				  initialSpringVelocity:1.0f
-								options:UIViewAnimationOptionBeginFromCurrentState
-							 animations:^{
-#warning UIButton does not animate between selected states
-								 _wakeButton.selected = NO;
-								 _sleepButton.selected = YES;
-								 
-								 _triangleMarker.center = (CGPoint){_sleepButton.center.x, _triangleMarker.center.y};
-							 }
-							 completion:^(BOOL finished) {}];
+	switch ( skyMode ) {
+		case GNSkyModeDawn: {
+			[self animateToDawn];
 		} break;
-		case GNViewControllerModeSetWakeTime: {
-			[self wakeMode];
-			[UIView animateWithDuration:ANIMATION_DURATION
-								  delay:0.0f
-				 usingSpringWithDamping:1.0f
-				  initialSpringVelocity:1.0f
-								options:UIViewAnimationOptionBeginFromCurrentState
-							 animations:^{
-#warning UIButton does not animate between selected states
-								 _wakeButton.selected = YES;
-								 _sleepButton.selected = NO;
-								 
-								 _triangleMarker.center = (CGPoint){_wakeButton.center.x, _triangleMarker.center.y};
-							 }
-							 completion:^(BOOL finished) {}];
+		case GNSkyModeDusk: {
+			[self animateToDusk];
 		} break;
 	}
-		
 }
 
-- (void)sleepMode
+- (void)animateToDusk
 {
-	// Select Sleep segmented control button
-	// Hide sunrise
-	// Bring in stars
+	// Show stars
 	[UIView animateWithDuration:ANIMATION_DURATION
 						  delay:0.0f
 		 usingSpringWithDamping:1.0f
 		  initialSpringVelocity:1.0f
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
-						 _sunrise.alpha = 0.0f; // Animate down, too
-						 
-						 _stars.center = (CGPoint){_stars.center.x, _stars.center.y + 50.0f};
 						 _stars.alpha = 1.0f;
 					 }
 					 completion:^(BOOL finished) {}];
 	
 	// Animate sky
 	// Bring up dusk
-	// Change goodnight button tint color
+	// Change time picker tint color
 	[UIView animateWithDuration:ANIMATION_DURATION * 3
 						  delay:0.0f
 		 usingSpringWithDamping:10.0f
@@ -485,32 +404,26 @@
 					 animations:^{
 						 CGPoint skyStart = (CGPoint){self.view.frame.size.width/2, -20+(_sky.image.size.height/2)};
 						 _sky.center = skyStart;
-						 _dusk.alpha = 1.0f;	// Animate up, too
 						 
 						 UIColor *color = [UIColor colorWithRed:157.0f/255.0f
 														  green: 75.0f/255.0f
 														   blue:212.0f/255.0f
 														  alpha:1.0f];
-						 [_goodnightButton setTintColor:color];
+						 _timePickerViewController.view.tintColor = color;
 					 }
 					 completion:^(BOOL finished) { }];
 }
 
-- (void)wakeMode
+- (void)animateToDawn
 {
-	// Select Sleep segmented control button
-	// Hide sunrise
-	// Bring in stars
+	// Dim Stars
 	[UIView animateWithDuration:ANIMATION_DURATION
 						  delay:0.0f
 		 usingSpringWithDamping:1.0f
 		  initialSpringVelocity:1.0f
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
-						 _dusk.alpha = 0.0f;	// Animate down, too
-						 
-						 _stars.center = (CGPoint){_stars.center.x, _stars.center.y - 50.0f};
-						 _stars.alpha = 0.0f;
+						 _stars.alpha = 0.2f;
 					 }
 					 completion:^(BOOL finished) {}];
 	
@@ -525,13 +438,12 @@
 					 animations:^{
 						 CGPoint skyEnd = (CGPoint){self.view.frame.size.width/2, 20+self.view.bounds.size.height-(_sky.image.size.height/2)};
 						 _sky.center = skyEnd;
-						 _sunrise.alpha = 0.5f; // Animate up, too
 						 
 						 UIColor *color = [UIColor colorWithRed: 69.0f/255.0f
 														  green:172.0f/255.0f
 														   blue:245.0f/255.0f
 														  alpha:1.0f];
-						 [_goodnightButton setTintColor:color];
+						 [_timePickerViewController.view setTintColor:color];
 					 }
 					 completion:^(BOOL finished) { }];
 }
@@ -555,14 +467,18 @@
 
 - (void)fadeInstructionsIn
 {
-	#warning get localized string
-	if ( _mode == GNViewControllerModeSetWakeTime ) {
-		_instructions.text = @"Set the time you’d\nlike to wake up at";
-	} else {
-		_instructions.text = @"Set the time you’d\nlike to fall asleep at";
+	switch ( _timePickerViewController.mode ) {
+		case GNTimePickerModeSleep:
+#warning get localized string
+			_instructions.text = @"Set the time you’d\nlike to fall asleep at";
+			break;
+		case GNTimePickerModeWake:
+#warning get localized string
+			_instructions.text = @"Set the time you’d\nlike to wake up at";
+			break;
 	}
 	
-	[UIView animateWithDuration:2 * ANIMATION_DURATION
+	[UIView animateWithDuration:ANIMATION_DURATION * 2
 						  delay:ANIMATION_DURATION
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
@@ -572,26 +488,7 @@
 }
 
 
-#pragma mark Picker actions
-
-- (void)sleepPickerDidChange:(id)sender
-{
-	
-}
-
-
-- (void)wakePickerDidChange:(id)sender
-{
-
-}
-
-
 #pragma mark UIViewController Stuff
-
-- (void)updateDatePicker
-{
-	[_datePicker setDate:[NSDate date] animated:YES];
-}
 
 - (void)viewDidUnload
 {
