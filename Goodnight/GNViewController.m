@@ -68,7 +68,8 @@
 	_timePickerViewController = [[GNTimePickerViewController alloc] init];
 	_timePickerViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	_timePickerViewController.view.frame = self.view.frame;
-	[_scrollView addSubview:_timePickerViewController.view];
+	[_scrollView insertSubview:_timePickerViewController.view
+				  belowSubview:_infoButton];
 	_timePickerViewController.delegate = self;
 	
 	// Times View Controller
@@ -76,7 +77,8 @@
 	_timesViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	_timesViewController.view.frame = self.view.frame;
 	_timesViewController.view.alpha = 0.0f;
-	[_scrollView addSubview:_timesViewController.view];
+	[_scrollView insertSubview:_timesViewController.view
+				  belowSubview:_infoButton];
 	_timesViewController.delegate = self;
 	
 	// Add Info Button Action
