@@ -8,6 +8,9 @@
 #import "MTZOutlinedButton.h"
 #import "UIImage+BezierPath.h"
 
+#define DEFAULT_THICKNESS 1.0f
+
+
 @interface MTZOutlinedButton () {
 	MTZOutlineLayer *_outlineLayer;
 }
@@ -15,6 +18,7 @@
 @property (nonatomic) CGFloat borderWidth;
 
 @end
+
 
 @implementation MTZOutlinedButton
 
@@ -49,7 +53,7 @@
 {
 	// Setting up some defaults
 	
-	_borderWidth = 1.0f;
+	_borderWidth = DEFAULT_THICKNESS;
 	
 	
 	// Light blue color
