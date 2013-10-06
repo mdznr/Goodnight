@@ -30,4 +30,10 @@ typedef enum {
 /// Update the date picker to be the current time
 - (void)updateDatePicker;
 
+///
+- (void)hideSun;
+
+///
+- (void)showSun;
+
 @end

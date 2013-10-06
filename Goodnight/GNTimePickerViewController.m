@@ -76,6 +76,8 @@
 		  forControlEvents:UIControlEventValueChanged];
 	
 	[self setMode:GNTimePickerModeSleep];
+	_wakeButton.selected = NO;
+	_sleepButton.selected = YES;
 	
 #warning view tint color did change method?
 }
@@ -97,6 +99,43 @@
 {
 	[_delegate timePickerDidSayGoodnightWithSleepTime:_datePicker.date
 											  forMode:_mode];
+}
+
+
+#pragma mark Sun
+
+- (void)hideSun
+{
+	[UIView animateWithDuration:ANIMATION_DURATION
+						  delay:0.0f
+		 usingSpringWithDamping:1.0f
+		  initialSpringVelocity:1.0f
+						options:UIViewAnimationOptionBeginFromCurrentState
+					 animations:^{
+						 _dusk.alpha = 0.0f;
+						 _sunrise.alpha = 0.0f;
+					 }
+					 completion:^(BOOL finished) {}];
+}
+
+- (void)showSun
+{
+	[UIView animateWithDuration:ANIMATION_DURATION
+						  delay:ANIMATION_DURATION
+		 usingSpringWithDamping:1.0f
+		  initialSpringVelocity:1.0f
+						options:UIViewAnimationOptionBeginFromCurrentState
+					 animations:^{
+						 switch ( _mode ) {
+							 case GNTimePickerModeSleep: {
+								 _dusk.alpha = 1.0f;
+							 } break;
+							 case GNTimePickerModeWake: {
+								 _sunrise.alpha = 0.5f;
+							 } break;
+						 }
+					 }
+					 completion:^(BOOL finished) {}];
 }
 
 

@@ -136,6 +136,8 @@
 	_showingMainUI = NO;
 	_timesViewController.date = date;
 	
+	[_timePickerViewController hideSun];
+	
 	switch ( mode ) {
 		case GNTimePickerModeSleep: {
 			_timesViewController.mode = GNTimesViewControllerModeWakeTimes;
@@ -201,6 +203,8 @@
 	}
 	
 	_showingMainUI = YES;
+	
+	[_timePickerViewController showSun];
 	
 	// Make sure it's at alpha 0.0f?
 	_instructions.alpha = 0.0f;
