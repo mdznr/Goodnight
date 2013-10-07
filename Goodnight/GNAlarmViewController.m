@@ -2,13 +2,18 @@
 //  GNAlarmViewController.m
 //  Goodnight
 //
-//  Created by Matt on 10/6/13.
-//  Copyright (c) 2013 Matt. All rights reserved.
+//  Created by Matt Zanchelli on 10/6/13.
+//  Copyright (c) 2013 Matt Zanchelli. All rights reserved.
 //
 
 #import "GNAlarmViewController.h"
+#import "MTZOutlinedButton.h"
 
 @interface GNAlarmViewController ()
+
+@property (strong, nonatomic) IBOutlet UILabel *alarmTimeLabel;
+@property (strong, nonatomic) IBOutlet UIView *containerView;
+@property (strong, nonatomic) IBOutlet MTZOutlinedButton *cancelButton;
 
 @end
 
@@ -27,7 +32,28 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+	
+	_cancelButton.tintColor = [UIColor whiteColor];
 }
+
+
+#pragma mark Public API
+
+- (CGRect)alarmTimeLabelFrame
+{
+	return [self.view convertRect:_alarmTimeLabel.frame
+						 fromView:_containerView];
+}
+
+- (IBAction)didCancelAlarm:(id)sender
+{
+	if ( _delegate && [_delegate respondsToSelector:@selector(alarmViewControllerDidCancelAlarm)] ) {
+		[_delegate alarmViewControllerDidCancelAlarm];
+	}
+}
+
+
+#pragma UIViewController Misc.
 
 - (void)didReceiveMemoryWarning
 {

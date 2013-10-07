@@ -259,14 +259,21 @@
 					 completion:^(BOOL finished) { }];
 }
 
-- (void)timesViewControllerSetSleepReminderForTime:(NSDate *)time
+- (void)timesViewControllerDidSetAlarm
 {
-	
+	[self animateToDusk];
 }
 
-- (void)timesViewControllerSetWakeAlarmForTime:(NSDate *)time
+- (void)timesViewControllerDidCancelAlarm
 {
-	
+	switch ( _timesViewController.mode ) {
+		case GNTimesViewControllerModeSleepTimes:
+			[self animateToDusk];
+			break;
+		case GNTimesViewControllerModeWakeTimes:
+			[self animateToDawn];
+			break;
+	}
 }
 
 

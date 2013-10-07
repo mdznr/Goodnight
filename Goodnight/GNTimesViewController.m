@@ -8,7 +8,9 @@
 
 #import "GNTimesViewController.h"
 
-@interface GNTimesViewController ()
+#import "GNAlarmViewController.h"
+
+@interface GNTimesViewController () <GNAlarmViewControllerDelegate>
 
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
 
@@ -22,7 +24,12 @@
 @property (strong, nonatomic) IBOutlet UIButton *time3;
 @property (strong, nonatomic) IBOutlet UIButton *time4;
 
+@property (strong, nonatomic) UIButton *selectedTime;
+@property (nonatomic) CGRect timeFrame;
+
 @property (strong, nonatomic) IBOutlet UIView *backButton;
+
+@property (strong, nonatomic) GNAlarmViewController *alarmViewController;
 
 @end
 
@@ -40,6 +47,8 @@
 #define FINE_SLEEP_TIME  (FALL_ASLEEP_TIME+(4*SLEEP_CYCLE_TIME))
 #define GOOD_SLEEP_TIME  (FALL_ASLEEP_TIME+(5*SLEEP_CYCLE_TIME))
 #define GREAT_SLEEP_TIME (FALL_ASLEEP_TIME+(6*SLEEP_CYCLE_TIME))
+
+#define ANIMATION_DURATION 0.75f
 
 @implementation GNTimesViewController
 
@@ -71,6 +80,12 @@
 	} else if ( _mode == GNTimesViewControllerModeWakeTimes ) {
 		[self setupForWakeMode];
 	}
+	
+	_alarmViewController = [[GNAlarmViewController alloc] initWithNibName:@"GNAlarmViewController" bundle:nil];
+	_alarmViewController.view.frame = self.view.frame;
+	_alarmViewController.view.alpha = 0.0f;
+	[self.view addSubview:_alarmViewController.view];
+	_alarmViewController.delegate = self;
 }
 
 - (void)setupForSleepMode
@@ -151,18 +166,76 @@
 	}
 }
 
-- (IBAction)didTapTime:(id)sender
+- (IBAction)didTapTime:(UIButton *)sender
 {
 	// Set date - switch depending on button
 	NSDate *date;
 	switch ( self.mode ) {
 		case GNTimesViewControllerModeWakeTimes: {
-			[_delegate timesViewControllerSetWakeAlarmForTime:date];
 		} break;
 		case GNTimesViewControllerModeSleepTimes: {
-			[_delegate timesViewControllerSetSleepReminderForTime:date];
 		} break;
 	}
+	
+	[_delegate timesViewControllerDidSetAlarm];
+	
+	// Keep track of the time's frame
+	_selectedTime = sender;
+	_timeFrame = sender.frame;
+	[UIView animateWithDuration:ANIMATION_DURATION
+						  delay:0.0f
+		 usingSpringWithDamping:1.0f
+		  initialSpringVelocity:1.0f
+						options:UIViewAnimationOptionBeginFromCurrentState
+					 animations:^{
+						 sender.frame = _alarmViewController.alarmTimeLabelFrame;
+						 _alarmViewController.view.alpha = 1.0f;
+						 
+						 _headerImage.alpha = 0.0f;
+						 _headerLabel.alpha = 0.0f;
+						 _instructionalLabel.alpha = 0.0f;
+						 
+						 if ( sender != _time1 ) _time1.alpha = 0.0f;
+						 if ( sender != _time2 ) _time2.alpha = 0.0f;
+						 if ( sender != _time3 ) _time3.alpha = 0.0f;
+						 if ( sender != _time4 ) _time4.alpha = 0.0f;
+						 
+						 sender.alpha = 0.7f;
+						 
+						 _backButton.alpha = 0.0f;
+					 }
+					 completion:^(BOOL finished) {}];
+}
+
+
+#pragma mark Alarm View Controller Delegate
+
+- (void)alarmViewControllerDidCancelAlarm
+{
+	[UIView animateWithDuration:ANIMATION_DURATION
+						  delay:0.0f
+		 usingSpringWithDamping:1.0f
+		  initialSpringVelocity:1.0f
+						options:UIViewAnimationOptionBeginFromCurrentState
+					 animations:^{
+						 _selectedTime.frame = _timeFrame;
+						 _alarmViewController.view.alpha = 0.0f;
+						 
+						 _headerImage.alpha = 1.0f;
+						 _headerLabel.alpha = 1.0f;
+						 _instructionalLabel.alpha = 1.0f;
+						 
+						 // Indirectly resets alphas for times
+						 [self setDate:_date];
+						 
+						 _backButton.alpha = 1.0f;
+					 }
+					 completion:^(BOOL finished) {
+//						 _selectedTime = nil;
+//						 _timeFrame = CGRectZero;
+					 }];
+	
+	[_delegate timesViewControllerDidCancelAlarm];
 }
 
 
