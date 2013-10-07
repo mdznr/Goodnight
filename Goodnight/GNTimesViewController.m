@@ -182,15 +182,13 @@
 	// Keep track of the time's frame
 	_selectedTime = sender;
 	_timeFrame = sender.frame;
+	
 	[UIView animateWithDuration:ANIMATION_DURATION
 						  delay:0.0f
 		 usingSpringWithDamping:1.0f
 		  initialSpringVelocity:1.0f
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
-						 sender.frame = _alarmViewController.alarmTimeLabelFrame;
-						 _alarmViewController.view.alpha = 1.0f;
-						 
 						 _headerImage.alpha = 0.0f;
 						 _headerLabel.alpha = 0.0f;
 						 _instructionalLabel.alpha = 0.0f;
@@ -200,9 +198,30 @@
 						 if ( sender != _time3 ) _time3.alpha = 0.0f;
 						 if ( sender != _time4 ) _time4.alpha = 0.0f;
 						 
-						 sender.alpha = 0.7f;
-						 
 						 _backButton.alpha = 0.0f;
+						 
+						 sender.alpha = 0.7f;
+					 }
+					 completion:^(BOOL finished) {}];
+	
+	[UIView animateWithDuration:ANIMATION_DURATION
+						  delay:0.0f
+		 usingSpringWithDamping:1.0f
+		  initialSpringVelocity:1.0f
+						options:UIViewAnimationOptionBeginFromCurrentState
+					 animations:^{
+						 sender.frame = _alarmViewController.alarmTimeLabelFrame;
+					 }
+					 completion:^(BOOL finished) {}];
+	
+	[UIView animateWithDuration:ANIMATION_DURATION
+						  delay:ANIMATION_DURATION/3
+		 usingSpringWithDamping:1.0f
+		  initialSpringVelocity:1.0f
+						options:UIViewAnimationOptionBeginFromCurrentState
+					 animations:^{
+						 _alarmViewController.view.alpha = 1.0f;
+						 
 					 }
 					 completion:^(BOOL finished) {}];
 }
@@ -218,9 +237,29 @@
 		  initialSpringVelocity:1.0f
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
-						 _selectedTime.frame = _timeFrame;
 						 _alarmViewController.view.alpha = 0.0f;
-						 
+					 }
+					 completion:^(BOOL finished) {
+//						 _selectedTime = nil;
+//						 _timeFrame = CGRectZero;
+					 }];
+	
+	[UIView animateWithDuration:ANIMATION_DURATION
+						  delay:0.0f
+		 usingSpringWithDamping:1.0f
+		  initialSpringVelocity:1.0f
+						options:UIViewAnimationOptionBeginFromCurrentState
+					 animations:^{
+						 _selectedTime.frame = _timeFrame;
+					 }
+					 completion:^(BOOL finished) {}];
+	
+	[UIView animateWithDuration:ANIMATION_DURATION
+						  delay:ANIMATION_DURATION/3
+		 usingSpringWithDamping:1.0f
+		  initialSpringVelocity:1.0f
+						options:UIViewAnimationOptionBeginFromCurrentState
+					 animations:^{
 						 _headerImage.alpha = 1.0f;
 						 _headerLabel.alpha = 1.0f;
 						 _instructionalLabel.alpha = 1.0f;
@@ -230,10 +269,7 @@
 						 
 						 _backButton.alpha = 1.0f;
 					 }
-					 completion:^(BOOL finished) {
-//						 _selectedTime = nil;
-//						 _timeFrame = CGRectZero;
-					 }];
+					 completion:^(BOOL finished) {}];
 	
 	[_delegate timesViewControllerDidCancelAlarm];
 }
