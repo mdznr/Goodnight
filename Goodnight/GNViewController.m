@@ -486,11 +486,11 @@
 	switch ( _timePickerViewController.mode ) {
 		case GNTimePickerModeSleep:
 #warning get localized string
-			_instructions.text = @"Set the time you’d\nlike to fall asleep at";
+			_instructions.text = @"Set the time you’d\nlike to fall asleep";
 			break;
 		case GNTimePickerModeWake:
 #warning get localized string
-			_instructions.text = @"Set the time you’d\nlike to wake up at";
+			_instructions.text = @"Set the time you’d\nlike to wake up";
 			break;
 	}
 	
