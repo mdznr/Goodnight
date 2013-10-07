@@ -49,8 +49,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 	
-	// Find necessary y change to hide main UI
-	_yChange = self.view.frame.size.height - 56 - 20;
+	[self calculateYChange];
 	
 	// Make sure sky imageView is tall enough
 	_sky.frame = (CGRect){_sky.frame.origin.x, _sky.frame.origin.y, _sky.image.size.width, _sky.image.size.height};
@@ -110,6 +109,12 @@
 	[_scrollView insertSubview:_info belowSubview:_infoButton];
 }
 
+- (void)calculateYChange
+{
+	// Find necessary y change to hide main UI
+	_yChange = self.view.frame.size.height - 56 - 20;
+}
+
 
 #pragma mark Time Picker View Controller Delegate
 
@@ -117,11 +122,11 @@
 {
 	switch ( mode ) {
 		case GNTimePickerModeSleep: {
-//			_timesViewController.mode = GNTimesViewControllerModeWakeTimes;
+			_timesViewController.mode = GNTimesViewControllerModeWakeTimes;
 			[self animateToDusk];
 		} break;
 		case GNTimePickerModeWake: {
-//			_timesViewController.mode = GNTimesViewControllerModeSleepTimes;
+			_timesViewController.mode = GNTimesViewControllerModeSleepTimes;
 			[self animateToDawn];
 		} break;
 	}
@@ -135,11 +140,6 @@
 - (void)timePickerDidSayGoodnightWithSleepTime:(NSDate *)date
 									   forMode:(GNTimePickerMode)mode
 {
-	_showingMainUI = NO;
-	_timesViewController.date = date;
-	
-	[_timePickerViewController hideSun];
-	
 	switch ( mode ) {
 		case GNTimePickerModeSleep: {
 			_timesViewController.mode = GNTimesViewControllerModeWakeTimes;
@@ -150,6 +150,11 @@
 			[self animateToDusk];
 		} break;
 	}
+	
+	_showingMainUI = NO;
+	_timesViewController.date = date;
+	
+	[_timePickerViewController hideSun];
 	
 	// Hide instructional text
 	[UIView animateWithDuration:ANIMATION_DURATION/2

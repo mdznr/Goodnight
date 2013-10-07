@@ -76,6 +76,7 @@
 		  forControlEvents:UIControlEventValueChanged];
 	
 	[self setMode:GNTimePickerModeSleep];
+	_mode = GNTimePickerModeSleep;
 	_wakeButton.selected = NO;
 	_sleepButton.selected = YES;
 }

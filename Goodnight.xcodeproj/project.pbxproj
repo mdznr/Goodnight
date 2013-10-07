@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		C91DBA9F180093AD0007DC21 /* GNTimePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C91DBA9D180093AD0007DC21 /* GNTimePickerViewController.m */; };
 		C91DBAA0180093AD0007DC21 /* GNTimePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C91DBA9E180093AD0007DC21 /* GNTimePickerViewController.xib */; };
+		C91DBAED180265A70007DC21 /* GNAlarmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C91DBAEB180265A70007DC21 /* GNAlarmViewController.m */; };
+		C91DBAEE180265A70007DC21 /* GNAlarmViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C91DBAEC180265A70007DC21 /* GNAlarmViewController.xib */; };
 		C968CC3917E91711005CD5F4 /* MTZOutlineLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C968CC3817E91711005CD5F4 /* MTZOutlineLayer.m */; };
 		C968CC4417EA676F005CD5F4 /* GNInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C968CC4217EA676F005CD5F4 /* GNInfoViewController.m */; };
 		C968CC4517EA676F005CD5F4 /* GNInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C968CC4317EA676F005CD5F4 /* GNInfoViewController.xib */; };
@@ -34,6 +36,9 @@
 		C91DBA9C180093AD0007DC21 /* GNTimePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTimePickerViewController.h; sourceTree = "<group>"; };
 		C91DBA9D180093AD0007DC21 /* GNTimePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNTimePickerViewController.m; sourceTree = "<group>"; };
 		C91DBA9E180093AD0007DC21 /* GNTimePickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GNTimePickerViewController.xib; sourceTree = "<group>"; };
+		C91DBAEA180265A70007DC21 /* GNAlarmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNAlarmViewController.h; sourceTree = "<group>"; };
+		C91DBAEB180265A70007DC21 /* GNAlarmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNAlarmViewController.m; sourceTree = "<group>"; };
+		C91DBAEC180265A70007DC21 /* GNAlarmViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GNAlarmViewController.xib; sourceTree = "<group>"; };
 		C968CC3717E91711005CD5F4 /* MTZOutlineLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTZOutlineLayer.h; sourceTree = "<group>"; };
 		C968CC3817E91711005CD5F4 /* MTZOutlineLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTZOutlineLayer.m; sourceTree = "<group>"; };
 		C968CC4117EA676F005CD5F4 /* GNInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNInfoViewController.h; sourceTree = "<group>"; };
@@ -126,6 +131,9 @@
 				C9F0677917EBB1B9006E243F /* GNTimesViewController.h */,
 				C9F0677A17EBB1B9006E243F /* GNTimesViewController.m */,
 				C9F0677B17EBB1B9006E243F /* GNTimesViewController.xib */,
+				C91DBAEA180265A70007DC21 /* GNAlarmViewController.h */,
+				C91DBAEB180265A70007DC21 /* GNAlarmViewController.m */,
+				C91DBAEC180265A70007DC21 /* GNAlarmViewController.xib */,
 				C969821F17E54F6D00AB44F6 /* UIImage+BezierPath.h */,
 				C969822017E54F6D00AB44F6 /* UIImage+BezierPath.m */,
 				C969822517E6C52C00AB44F6 /* MTZOutlinedButton.h */,
@@ -212,6 +220,7 @@
 				C9ED790A15549BCB002064B2 /* InfoPlist.strings in Resources */,
 				C9E6CFD417E2326100E65CE9 /* Images.xcassets in Resources */,
 				C91DBAA0180093AD0007DC21 /* GNTimePickerViewController.xib in Resources */,
+				C91DBAEE180265A70007DC21 /* GNAlarmViewController.xib in Resources */,
 				C9ED791215549BCB002064B2 /* Goodnight.entitlements in Resources */,
 				C968CC4517EA676F005CD5F4 /* GNInfoViewController.xib in Resources */,
 				C9F0677D17EBB1B9006E243F /* GNTimesViewController.xib in Resources */,
@@ -227,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C969822717E6C52C00AB44F6 /* MTZOutlinedButton.m in Sources */,
+				C91DBAED180265A70007DC21 /* GNAlarmViewController.m in Sources */,
 				C968CC4417EA676F005CD5F4 /* GNInfoViewController.m in Sources */,
 				C91DBA9F180093AD0007DC21 /* GNTimePickerViewController.m in Sources */,
 				C969822117E54F6D00AB44F6 /* UIImage+BezierPath.m in Sources */,
