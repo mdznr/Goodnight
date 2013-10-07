@@ -176,7 +176,6 @@
 		  initialSpringVelocity:1.0f
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
-						 _infoButton.frame = CGRectOffset(_infoButton.frame, 0, _yChange);
 						 _timePickerViewController.view.frame = CGRectOffset(_timePickerViewController.view.frame, 0, _yChange);
 					 }
 					 completion:^(BOOL finished) {}];
@@ -253,7 +252,6 @@
 					 animations:^{
 //						 _stars.alpha = 1.0f;
 						 
-						 _infoButton.frame = CGRectOffset(_infoButton.frame, 0, -_yChange);
 						 _timePickerViewController.view.frame = CGRectOffset(_timePickerViewController.view.frame, 0, -_yChange);
 					 }
 					 completion:^(BOOL finished) { }];
