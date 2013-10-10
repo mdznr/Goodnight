@@ -1,0 +1,8 @@
+@font-face {
+	font-family: 'MyriadPro-Light';
+	src: url('fonts/MyriadPro-Light.eot');
+	src: local('☺'), url('fonts/MyriadPro-Light.woff') format('woff'), url('fonts/MyriadPro-Light.ttf') format('truetype'), url('fonts/MyriadPro-Light.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
