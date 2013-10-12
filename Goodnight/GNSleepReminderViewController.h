@@ -2,8 +2,8 @@
 //  GNSleepReminderViewController.h
 //  Goodnight
 //
-//  Created by Matt on 10/11/13.
-//  Copyright (c) 2013 Matt. All rights reserved.
+//  Created by Matt Zanchelli on 10/11/13.
+//  Copyright (c) 2013 Matt Zanchelli. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -11,7 +11,7 @@
 @protocol GNSleepReminderViewControllerDelegate <NSObject>
 
 ///
-- (void)alarmViewControllerDidCancelAlarm;
+- (void)alarmViewControllerDidCancelReminder;
 
 @end
 

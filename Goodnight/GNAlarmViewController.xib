@@ -8,7 +8,6 @@
             <connections>
                 <outlet property="alarmTimeLabel" destination="mgf-NW-EqX" id="aaI-gO-20H"/>
                 <outlet property="cancelButton" destination="qQ4-FC-CKf" id="xfP-Du-wuM"/>
-                <outlet property="containerView" destination="GuF-2h-hMc" id="wpB-JX-9ki"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
@@ -18,7 +17,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" id="GuF-2h-hMc" userLabel="Container">
-                    <rect key="frame" x="0.0" y="128" width="320" height="164"/>
+                    <rect key="frame" x="0.0" y="133" width="320" height="164"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sleep_Glyph" id="ggx-jP-bG7" userLabel="Glyph">

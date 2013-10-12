@@ -12,7 +12,6 @@
 @interface GNAlarmViewController ()
 
 @property (strong, nonatomic) IBOutlet UILabel *alarmTimeLabel;
-@property (strong, nonatomic) IBOutlet UIView *containerView;
 @property (strong, nonatomic) IBOutlet MTZOutlinedButton *cancelButton;
 
 @end
@@ -42,7 +41,7 @@
 - (CGRect)alarmTimeLabelFrame
 {
 	return [self.view convertRect:_alarmTimeLabel.frame
-						 fromView:_containerView];
+						 fromView:_alarmTimeLabel.superview];
 }
 
 - (IBAction)didCancelAlarm:(id)sender
