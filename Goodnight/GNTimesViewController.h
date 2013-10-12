@@ -17,8 +17,12 @@ typedef enum {
 @protocol GNTimesViewControllerDelegate <NSObject>
 
 - (void)timesViewControllerRequestsDismissal;
-- (void)timesViewControllerDidSetAlarm;
+
+- (void)timesViewControllerDidSetAlarm:(NSDate *)date;
 - (void)timesViewControllerDidCancelAlarm;
+
+- (void)timesViewControllerDidSetSleepReminder:(NSDate *)date;
+- (void)timesViewControllerDidCancelSleepReminder;
 
 @end
 

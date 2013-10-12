@@ -257,12 +257,29 @@
 					 completion:^(BOOL finished) { }];
 }
 
-- (void)timesViewControllerDidSetAlarm
+- (void)timesViewControllerDidSetAlarm:(NSDate *)date
+{
+	[self animateToDusk];
+}
+
+- (void)timesViewControllerDidSetSleepReminder:(NSDate *)date
 {
 	[self animateToDusk];
 }
 
 - (void)timesViewControllerDidCancelAlarm
+{
+	switch ( _timesViewController.mode ) {
+		case GNTimesViewControllerModeSleepTimes:
+			[self animateToDusk];
+			break;
+		case GNTimesViewControllerModeWakeTimes:
+			[self animateToDawn];
+			break;
+	}
+}
+
+- (void)timesViewControllerDidCancelSleepReminder
 {
 	switch ( _timesViewController.mode ) {
 		case GNTimesViewControllerModeSleepTimes:

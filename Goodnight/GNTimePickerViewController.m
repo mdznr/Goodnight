@@ -159,6 +159,8 @@
 
 - (void)sleepMode
 {
+#warning set datePicker minuteInterval?
+	_datePicker.minuteInterval = 1;
 	if ( self.mode != GNTimePickerModeSleep ) {
 		[UIView animateWithDuration:ANIMATION_DURATION
 							  delay:0.0f
@@ -194,6 +196,8 @@
 
 - (void)wakeMode
 {
+#warning set datePicker minuteInterval?
+	_datePicker.minuteInterval = 5;
 	if ( self.mode != GNTimePickerModeWake ) {
 		[UIView animateWithDuration:ANIMATION_DURATION
 							  delay:0.0f
