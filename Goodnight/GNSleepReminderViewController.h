@@ -11,7 +11,7 @@
 @protocol GNSleepReminderViewControllerDelegate <NSObject>
 
 ///
-- (void)alarmViewControllerDidCancelReminder;
+- (void)sleepReminderViewControllerDidCancelReminder;
 
 @end
 

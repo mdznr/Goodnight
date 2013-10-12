@@ -46,8 +46,8 @@
 
 - (IBAction)didCancelReminder:(id)sender
 {
-	if ( _delegate && [_delegate respondsToSelector:@selector(alarmViewControllerDidCancelReminder)] ) {
-		[_delegate alarmViewControllerDidCancelReminder];
+	if ( _delegate && [_delegate respondsToSelector:@selector(sleepReminderViewControllerDidCancelReminder)] ) {
+		[_delegate sleepReminderViewControllerDidCancelReminder];
 	}
 }
 
