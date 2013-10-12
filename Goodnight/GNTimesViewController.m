@@ -9,6 +9,7 @@
 #import "GNTimesViewController.h"
 
 #import "GNAlarmViewController.h"
+#import "GNSleepReminderViewController.h"
 
 @interface GNTimesViewController () <GNAlarmViewControllerDelegate>
 
@@ -30,6 +31,7 @@
 @property (strong, nonatomic) IBOutlet UIView *backButton;
 
 @property (strong, nonatomic) GNAlarmViewController *alarmViewController;
+@property (strong, nonatomic) GNSleepReminderViewController *sleepReminderViewController;
 
 @end
 
@@ -86,6 +88,12 @@
 	_alarmViewController.view.alpha = 0.0f;
 	[self.view addSubview:_alarmViewController.view];
 	_alarmViewController.delegate = self;
+	
+	_sleepReminderViewController = [[GNSleepReminderViewController alloc] initWithNibName:@"GNSleepReminderViewController" bundle:nil];
+	_sleepReminderViewController.view.frame = self.view.frame;
+	_sleepReminderViewController.view.alpha = 0.0f;
+	[self.view addSubview:_sleepReminderViewController.view];
+	_sleepReminderViewController.delegate = self;
 }
 
 - (void)setupForSleepMode
