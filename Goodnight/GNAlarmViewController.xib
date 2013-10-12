@@ -18,7 +18,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" id="GuF-2h-hMc" userLabel="Container">
-                    <rect key="frame" x="0.0" y="125" width="320" height="174"/>
+                    <rect key="frame" x="0.0" y="128" width="320" height="164"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sleep_Glyph" id="ggx-jP-bG7" userLabel="Glyph">
@@ -33,14 +33,14 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your alarm is set for" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zW4-ny-O8C" userLabel="Alarm Subtitle">
-                            <rect key="frame" x="0.0" y="99" width="320" height="21"/>
+                            <rect key="frame" x="0.0" y="92" width="320" height="21"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="24"/>
                             <color key="textColor" white="1" alpha="0.70000000000000007" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9:41 AM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mgf-NW-EqX" userLabel="Alarm Time">
-                            <rect key="frame" x="0.0" y="130" width="320" height="44"/>
+                            <rect key="frame" x="0.0" y="120" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="36"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

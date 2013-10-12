@@ -33,7 +33,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 	
-	_cancelButton.tintColor = [UIColor whiteColor];
+	_cancelButton.tintColor = [UIColor colorWithWhite:1.0f alpha:0.3f];
 }
 
 
