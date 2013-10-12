@@ -7,6 +7,7 @@
 //
 
 #import "GNTimesViewController.h"
+#import <CoreText/CoreText.h>
 
 #import "GNAlarmViewController.h"
 #import "GNSleepReminderViewController.h"
@@ -99,6 +100,22 @@
 	_sleepReminderViewController.view.alpha = 0.0f;
 	[self.view addSubview:_sleepReminderViewController.view];
 	_sleepReminderViewController.delegate = self;
+	
+	NSArray *timeFeatureSettings = @[ @{UIFontFeatureTypeIdentifierKey:@(kNumberSpacingType),
+										UIFontFeatureSelectorIdentifierKey:@(kProportionalNumbersSelector)},
+                                      @{UIFontFeatureTypeIdentifierKey:@(kCharacterAlternativesType),
+										UIFontFeatureSelectorIdentifierKey:@(1)}
+									];
+	UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Light" size:36.0f];
+	UIFontDescriptor *originalDescriptor = [font fontDescriptor];
+	UIFontDescriptor *timeDescriptor =
+	[originalDescriptor fontDescriptorByAddingAttributes:@{UIFontDescriptorFeatureSettingsAttribute:timeFeatureSettings}];
+	UIFont *timeFont = [UIFont fontWithDescriptor:timeDescriptor size:36.0f];
+	
+	_time1.titleLabel.font = timeFont;
+	_time2.titleLabel.font = timeFont;
+	_time3.titleLabel.font = timeFont;
+	_time4.titleLabel.font = timeFont;
 }
 
 - (void)setupForSleepMode
