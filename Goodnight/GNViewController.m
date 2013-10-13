@@ -257,12 +257,12 @@
 					 completion:^(BOOL finished) { }];
 }
 
-- (void)timesViewControllerDidSetAlarm:(NSDate *)date
+- (void)timesViewControllerDidSetAlarm:(NSDate *)alarmTime
 {
 	[self animateToDusk];
 }
 
-- (void)timesViewControllerDidSetSleepReminder:(NSDate *)date
+- (void)timesViewControllerDidSetSleepReminder:(NSDate *)reminderTime forWakeUpTime:(NSDate *)wakeTime;
 {
 	[self animateToDusk];
 }

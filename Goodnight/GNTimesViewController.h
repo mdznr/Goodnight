@@ -18,10 +18,10 @@ typedef enum {
 
 - (void)timesViewControllerRequestsDismissal;
 
-- (void)timesViewControllerDidSetAlarm:(NSDate *)date;
+- (void)timesViewControllerDidSetAlarm:(NSDate *)alarmTime;
 - (void)timesViewControllerDidCancelAlarm;
 
-- (void)timesViewControllerDidSetSleepReminder:(NSDate *)date;
+- (void)timesViewControllerDidSetSleepReminder:(NSDate *)reminderTime forWakeUpTime:(NSDate *)wakeTime;
 - (void)timesViewControllerDidCancelSleepReminder;
 
 @end
