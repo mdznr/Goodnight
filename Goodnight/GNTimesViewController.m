@@ -124,7 +124,7 @@
 	
 	_headerImage.image = [UIImage imageNamed:SLEEP_IMAGE];
 	
-	_instructionalLabel.text = @"Try falling asleep at\none of these times:";
+	_instructionalLabel.text = @"Try falling asleep at\none of these times";
 }
 
 - (void)setTimesForSleepMode
@@ -157,7 +157,7 @@
 	
 	_headerImage.image = [UIImage imageNamed:WAKE_IMAGE];
 	
-	_instructionalLabel.text = @"Try waking up at\none of these times:";
+	_instructionalLabel.text = @"Try waking up at\none of these times";
 }
 
 - (void)setTimesForWakeMode
@@ -209,7 +209,7 @@
 			[self didTapAlarmTime:sender];
 		} break;
 		case GNTimesViewControllerModeSleepTimes: {
-			[_delegate timesViewControllerDidSetSleepReminder:date];
+			[_delegate timesViewControllerDidSetSleepReminder:date forWakeUpTime:_date];
 			[self didTapSleepReminderTime:sender];
 		} break;
 	}
