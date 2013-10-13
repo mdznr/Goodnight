@@ -14,7 +14,7 @@
 #import "GNTimePickerViewController.h"
 #import "GNTimesViewController.h"
 
-@interface GNViewController () <GNTimePickerViewControllerDelegate, GNTimesViewControllerDelegate>
+@interface GNViewController () <UIScrollViewDelegate, GNTimePickerViewControllerDelegate, GNTimesViewControllerDelegate>
 
 #pragma mark Private Property
 
@@ -34,8 +34,6 @@
 @property (nonatomic) BOOL hasUsedAppBefore;
 @property (nonatomic) BOOL showingMainUI;
 
-@property (nonatomic) CGFloat yChange;
-
 @end
 
 #define ANIMATION_DURATION 0.75f
@@ -49,8 +47,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 	
-	[self calculateYChange];
-	
 	// Make sure sky imageView is tall enough
 	_sky.frame = (CGRect){_sky.frame.origin.x, _sky.frame.origin.y, _sky.image.size.width, _sky.image.size.height};
 	
@@ -63,12 +59,18 @@
 	vertical.maximumRelativeValue = @(-20);
 	_stars.motionEffects = @[horizontal, vertical];
 	
+	_scrollView.contentOffset = (CGPoint){0,self.view.frame.size.height};
+	_scrollView.contentSize = (CGSize){self.view.frame.size.width, self.view.frame.size.height * 2};
+	
+	// Move instructions down to second (bottom) page
+	_instructions.frame = CGRectOffset(_instructions.frame, 0, _scrollView.frame.size.height);
+	
 	// Time Picker View Controller
 	_timePickerViewController = [[GNTimePickerViewController alloc] init];
 	_timePickerViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	_timePickerViewController.view.frame = self.view.frame;
+	_timePickerViewController.view.frame = CGRectOffset(self.view.frame, 0, self.view.frame.size.height);
 	[_scrollView insertSubview:_timePickerViewController.view
-				  belowSubview:_infoButton];
+				  belowSubview:_instructions];
 	_timePickerViewController.delegate = self;
 	
 	// Times View Controller
@@ -107,12 +109,6 @@
 													 bundle:nil].view;
 	_info.alpha = 0.0f;
 	[_scrollView insertSubview:_info belowSubview:_infoButton];
-}
-
-- (void)calculateYChange
-{
-	// Find necessary y change to hide main UI
-	_yChange = self.view.frame.size.height - 56 - 20;
 }
 
 
@@ -176,7 +172,7 @@
 		  initialSpringVelocity:1.0f
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
-						 _timePickerViewController.view.frame = CGRectOffset(_timePickerViewController.view.frame, 0, _yChange);
+						 _scrollView.contentOffset = (CGPoint){0,0};
 					 }
 					 completion:^(BOOL finished) {}];
 	
@@ -251,8 +247,7 @@
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
 //						 _stars.alpha = 1.0f;
-						 
-						 _timePickerViewController.view.frame = CGRectOffset(_timePickerViewController.view.frame, 0, -_yChange);
+						 _scrollView.contentOffset = (CGPoint){0,_scrollView.frame.size.height};
 					 }
 					 completion:^(BOOL finished) { }];
 }
@@ -292,6 +287,18 @@
 }
 
 
+#pragma mark UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+	CGFloat scrollOffset = _scrollView.contentOffset.y;
+	CGFloat scrollTotal = _scrollView.contentSize.height - _scrollView.frame.size.height;
+	CGFloat scrollFraction = scrollOffset / scrollTotal;
+	
+	
+}
+
+
 #pragma mark Button Actions
 
 - (void)tappedInfoButton:(id)sender
@@ -327,7 +334,7 @@
 							options:UIViewAnimationOptionBeginFromCurrentState
 						 animations:^{
 //							 _stars.alpha = 0.33f;
-							 _timePickerViewController.view.frame = CGRectOffset(_timePickerViewController.view.frame, 0, _yChange);
+							 _scrollView.contentOffset = (CGPoint){0, self.view.frame.size.height};
 						 }
 						 completion:^(BOOL finished) {}];
 	} else {
@@ -349,7 +356,7 @@
 
 - (void)hideInfo
 {
-	// make sure it's at alpha 0.0f?
+	// Make sure it's at alpha 0.0f?
 	_instructions.alpha = 0.0f;
 	_instructions.hidden = NO;
 	
@@ -390,7 +397,7 @@
 			  initialSpringVelocity:1.0f
 							options:UIViewAnimationOptionBeginFromCurrentState
 						 animations:^{
-							 _timePickerViewController.view.frame = CGRectOffset(_timePickerViewController.view.frame, 0, -_yChange);
+							 _scrollView.contentOffset = (CGPoint){0,0};
 						 }
 						 completion:^(BOOL finished) { }];
 	} else {
