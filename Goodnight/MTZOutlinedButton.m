@@ -84,7 +84,7 @@
 			 brightness:&b
 				  alpha:&a];
 	
-#warning be smarter about disbled color
+#warning be smarter about disabled color
 	UIColor *disabledColor = [UIColor colorWithHue:h
 										saturation:0.0f
 										brightness:b
