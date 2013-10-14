@@ -25,15 +25,22 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AK7-kH-Fn4" userLabel="Instructions">
+                                    <view contentMode="scaleToFill" id="QAj-cO-5Kh">
                                         <rect key="frame" x="0.0" y="42" width="320" height="70"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
-                                        <string key="text">Set the time you’d
+                                        <subviews>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AK7-kH-Fn4" userLabel="Instructions">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <string key="text">Set the time you’d
 like to fall asleep</string>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="26"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="26"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                                 <connections>
                                     <outlet property="delegate" destination="2" id="Y0u-v9-bz1"/>
@@ -59,6 +66,7 @@ like to fall asleep</string>
                     <connections>
                         <outlet property="infoButton" destination="K7H-ig-wDJ" id="lEJ-Fb-iPs"/>
                         <outlet property="instructions" destination="AK7-kH-Fn4" id="y0C-v5-Zmr"/>
+                        <outlet property="instructionsView" destination="QAj-cO-5Kh" id="dLc-wu-8D0"/>
                         <outlet property="scrollView" destination="SA5-6k-wYl" id="FNC-Lc-Lhc"/>
                         <outlet property="sky" destination="cFv-YR-Paa" id="wJc-ZQ-tLE"/>
                         <outlet property="stars" destination="npO-0j-4k0" id="ttp-2P-zPI"/>

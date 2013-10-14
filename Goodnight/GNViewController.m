@@ -29,6 +29,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *infoButton;
 @property (strong, nonatomic) UIView *info;
 
+@property (strong, nonatomic) IBOutlet UIView *instructionsView;
 @property (strong, nonatomic) IBOutlet UILabel *instructions;
 
 @property (nonatomic) BOOL hasUsedAppBefore;
@@ -59,18 +60,18 @@
 	vertical.maximumRelativeValue = @(-20);
 	_stars.motionEffects = @[horizontal, vertical];
 	
-	_scrollView.contentOffset = (CGPoint){0,self.view.frame.size.height};
 	_scrollView.contentSize = (CGSize){self.view.frame.size.width, self.view.frame.size.height * 2};
+	_scrollView.contentOffset = (CGPoint){0,self.view.frame.size.height};
 	
 	// Move instructions down to second (bottom) page
-	_instructions.frame = CGRectOffset(_instructions.frame, 0, _scrollView.frame.size.height);
+	_instructionsView.frame = CGRectOffset(_instructionsView.frame, 0, _scrollView.frame.size.height);
 	
 	// Time Picker View Controller
 	_timePickerViewController = [[GNTimePickerViewController alloc] initWithNibName:@"GNTimePickerViewController" bundle:nil];
 	_timePickerViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	_timePickerViewController.view.frame = CGRectOffset(self.view.frame, 0, self.view.frame.size.height);
 	[_scrollView insertSubview:_timePickerViewController.view
-				  belowSubview:_instructions];
+				  belowSubview:_instructionsView];
 	_timePickerViewController.delegate = self;
 	
 	// Times View Controller
@@ -94,15 +95,7 @@
 	
 #warning see if the app has been used
 	_hasUsedAppBefore = NO;
-	if ( !_hasUsedAppBefore && _showingMainUI ) {
-		[UIView animateWithDuration:2 * ANIMATION_DURATION
-							  delay:2 * ANIMATION_DURATION
-							options:UIViewAnimationOptionBeginFromCurrentState
-						 animations:^{
-							 _instructions.alpha = 0.7f;
-						 }
-						 completion:^(BOOL finished) {}];
-	}
+	[self fadeInstructionsOut];
 	
 	// Setup instructions
 	_info = [[GNInfoViewController alloc] initWithNibName:@"GNInfoViewController"
@@ -149,20 +142,7 @@
 		} break;
 	}
 	
-	[self topMode];
-	
-	// Hide instructional text
-	[UIView animateWithDuration:ANIMATION_DURATION/2
-						  delay:0.0f
-		 usingSpringWithDamping:1.0f
-		  initialSpringVelocity:1.0f
-						options:UIViewAnimationOptionBeginFromCurrentState
-					 animations:^{
-						 _instructions.alpha = 0.0f;
-					 }
-					 completion:^(BOOL finished) {}];
-	
-	[_scrollView scrollRectToVisible:(CGRect){0,0,1,1} animated:YES];
+//	[_scrollView scrollRectToVisible:(CGRect){0,0,1,1} animated:YES];
 	
 	// Scroll up
 	[UIView animateWithDuration:ANIMATION_DURATION
@@ -171,9 +151,11 @@
 		  initialSpringVelocity:1.0f
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
-						 //_scrollView.contentOffset = CGPointZero;
+						 _scrollView.contentOffset = CGPointZero;
 					 }
-					 completion:^(BOOL finished) {}];
+					 completion:^(BOOL finished) {
+						 [self topMode];
+					 }];
 	
 	// Show Times View Controller
 	[UIView animateWithDuration:ANIMATION_DURATION
@@ -193,8 +175,6 @@
 
 - (void)timesViewControllerRequestsDismissal
 {
-	[self bottomMode];
-	
 	[UIView animateWithDuration:ANIMATION_DURATION
 						  delay:0.0f
 		 usingSpringWithDamping:1.0f
@@ -204,19 +184,7 @@
 						 _timesViewController.view.alpha = 0.0f;
 						 [_timesViewController animateOut];
 					 }
-					 completion:^(BOOL finished) {
-						 if ( !_hasUsedAppBefore && _showingMainUI ) {
-							 [UIView animateWithDuration:ANIMATION_DURATION*2
-												   delay:0.0f
-								  usingSpringWithDamping:1.0f
-								   initialSpringVelocity:1.0f
-												 options:UIViewAnimationOptionBeginFromCurrentState
-											  animations:^{
-												  _instructions.alpha = 0.7f;
-											  }
-											  completion:^(BOOL finished) {}];
-						 }
-					 }];
+					 completion:^(BOOL finished) {}];
 	
 	[UIView animateWithDuration:ANIMATION_DURATION
 						  delay:0.0f
@@ -226,7 +194,9 @@
 					 animations:^{
 						 _scrollView.contentOffset = (CGPoint){0,_scrollView.frame.size.height};
 					 }
-					 completion:^(BOOL finished) {}];
+					 completion:^(BOOL finished) {
+						 [self bottomMode];
+					 }];
 }
 
 - (void)timesViewControllerDidSetAlarm:(NSDate *)alarmTime
@@ -278,10 +248,8 @@
 	CGFloat scrollTotal = _scrollView.contentSize.height - _scrollView.frame.size.height;
 	CGFloat scrollFraction = scrollOffset / scrollTotal;
 	
-#warning this doesn't really work when scrolling and changing modes (the text also fades in). Maybe wrap the view?
 	// y = -1.5|x-1|+1
-	CGFloat originalInstructionsAlpha = 0.7f;
-	_instructions.alpha = (-1.5 * ABS(scrollFraction-1) + 1) * originalInstructionsAlpha;
+	_instructionsView.alpha = (-1.5 * ABS(scrollFraction-1) + 1);
 	
 	CGFloat duskR = 157.0f/255.0f;
 	CGFloat duskG = 75.0f/255.0f;
@@ -343,7 +311,8 @@
 	
 	_showingMainUI = NO;
 	
-	[self fadeInstructionsOut];
+	_instructionsView.alpha = 0.0f;
+	_instructions.alpha = 0.f;
 	
 	[_timePickerViewController hideSun];
 }
@@ -354,6 +323,8 @@
 	_scrollView.scrollEnabled = NO;
 	
 	_showingMainUI = YES;
+	
+	_instructionsView.alpha = 1.0f;
 	
 	[_timePickerViewController showSun];
 	
@@ -379,16 +350,6 @@
 
 - (void)showInfo
 {
-	[UIView animateWithDuration:ANIMATION_DURATION/2
-						  delay:0.0f
-		 usingSpringWithDamping:1.0f
-		  initialSpringVelocity:1.0f
-						options:UIViewAnimationOptionBeginFromCurrentState
-					 animations:^{
-						 _instructions.alpha = 0.0f;
-					 }
-					 completion:^(BOOL finished) {}];
-	
 	if ( _showingMainUI ) {
 		[UIView animateWithDuration:ANIMATION_DURATION
 							  delay:0.0f
@@ -396,7 +357,6 @@
 			  initialSpringVelocity:1.0f
 							options:UIViewAnimationOptionBeginFromCurrentState
 						 animations:^{
-//							 _stars.alpha = 0.33f;
 							 _scrollView.contentOffset = (CGPoint){0, self.view.frame.size.height};
 						 }
 						 completion:^(BOOL finished) {}];
@@ -419,9 +379,6 @@
 
 - (void)hideInfo
 {
-	// Make sure it's at alpha 0.0f?
-	_instructions.alpha = 0.0f;
-	
 	[UIView animateWithDuration:ANIMATION_DURATION
 						  delay:0.0f
 		 usingSpringWithDamping:1.0f
@@ -430,27 +387,7 @@
 					 animations:^{
 						 _info.alpha = 0.0f;
 					 }
-					 completion:^(BOOL finished) {
-						 [UIView animateWithDuration:ANIMATION_DURATION
-											   delay:0.0f
-							  usingSpringWithDamping:1.0f
-							   initialSpringVelocity:1.0f
-											 options:UIViewAnimationOptionBeginFromCurrentState
-										  animations:^{
-						 } completion:^(BOOL finished) {}];
-						 
-						 if ( !_hasUsedAppBefore && _showingMainUI ) {
-							 [UIView animateWithDuration:ANIMATION_DURATION*2
-												   delay:0.0f
-								  usingSpringWithDamping:1.0f
-								   initialSpringVelocity:1.0f
-												 options:UIViewAnimationOptionBeginFromCurrentState
-											  animations:^{
-												  _instructions.alpha = 0.7f;
-											  }
-											  completion:^(BOOL finished) {}];
-						 }
-					 }];
+					 completion:^(BOOL finished) {}];
 	
 	if ( _showingMainUI ) {
 		[UIView animateWithDuration:ANIMATION_DURATION
@@ -502,6 +439,8 @@
 														   blue:212.0f/255.0f
 														  alpha:1.0f];
 						 _timePickerViewController.tintColor = color;
+
+						 _stars.alpha = 0.7f;
 					 }
 					 completion:^(BOOL finished) {}];
 }
@@ -526,6 +465,8 @@
 														   blue:245.0f/255.0f
 														  alpha:1.0f];
 						 _timePickerViewController.tintColor = color;
+						 
+						 _stars.alpha = 0.1f;
 					 }
 					 completion:^(BOOL finished) {}];
 }
