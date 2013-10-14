@@ -109,13 +109,23 @@
 	UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Light" size:36.0f];
 	UIFontDescriptor *originalDescriptor = [font fontDescriptor];
 	UIFontDescriptor *timeDescriptor =
-	[originalDescriptor fontDescriptorByAddingAttributes:@{UIFontDescriptorFeatureSettingsAttribute:timeFeatureSettings}];
+		[originalDescriptor fontDescriptorByAddingAttributes:
+  			@{UIFontDescriptorFeatureSettingsAttribute:timeFeatureSettings}];
 	UIFont *timeFont = [UIFont fontWithDescriptor:timeDescriptor size:36.0f];
 	
 	_time1.titleLabel.font = timeFont;
 	_time2.titleLabel.font = timeFont;
 	_time3.titleLabel.font = timeFont;
 	_time4.titleLabel.font = timeFont;
+	
+	NSArray *altFontSettings = @[ @{UIFontFeatureTypeIdentifierKey:@(kCharacterAlternativesType),
+									UIFontFeatureSelectorIdentifierKey:@(1)} ];
+	UIFont *altFont = _instructionalLabel.font;
+	originalDescriptor = [altFont fontDescriptor];
+	UIFontDescriptor *altDescriptor =
+		[originalDescriptor fontDescriptorByAddingAttributes:
+  			@{UIFontDescriptorFeatureSettingsAttribute:altFontSettings}];
+	_instructionalLabel.font = [UIFont fontWithDescriptor:altDescriptor size:28.0f];
 }
 
 - (void)setupForSleepMode
@@ -124,7 +134,7 @@
 	
 	_headerImage.image = [UIImage imageNamed:SLEEP_IMAGE];
 	
-	_instructionalLabel.text = @"Try falling asleep at\none of these times";
+	_instructionalLabel.text = @"Try falling asleep at\none of these times:";
 }
 
 - (void)setTimesForSleepMode
@@ -157,7 +167,7 @@
 	
 	_headerImage.image = [UIImage imageNamed:WAKE_IMAGE];
 	
-	_instructionalLabel.text = @"Try waking up at\none of these times";
+	_instructionalLabel.text = @"Try waking up at\none of these times:";
 }
 
 - (void)setTimesForWakeMode
@@ -438,6 +448,8 @@
 
 - (void)animateIn
 {
+	self.view.alpha = 1.0f;
+	
 	// Move text back below view
 
 	// animate
@@ -446,6 +458,8 @@
 
 - (void)animateOut
 {
+	self.view.alpha = 0.0f;
+	
 	// Move text out of view
 	
 	// animate

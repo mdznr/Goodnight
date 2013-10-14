@@ -50,10 +50,16 @@
     // Do any additional setup after loading the view from its nib.
 	
 	// Setup background motion effects
-	UIInterpolatingMotionEffect *horizontal = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
+	UIInterpolatingMotionEffect *horizontal =
+		[[UIInterpolatingMotionEffect alloc]
+		 	initWithKeyPath:@"center.x"
+					   type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
 	horizontal.minimumRelativeValue = @(20);
 	horizontal.maximumRelativeValue = @(-20);
-	UIInterpolatingMotionEffect *vertical = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
+	UIInterpolatingMotionEffect *vertical =
+		[[UIInterpolatingMotionEffect alloc]
+		 	initWithKeyPath:@"center.y"
+		               type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
 	vertical.minimumRelativeValue = @(20);
 	vertical.maximumRelativeValue = @(-20);
 	
@@ -116,7 +122,7 @@
 	_sunpeak = sunpeak;
 	_sunpeakView.alpha = sunpeak;
 	_sunpeakView.frame = (CGRect){_sunpeakView.frame.origin.x,
-								  (_sunpeakView.frame.size.height * MIN(MAX(ABS(1-sunpeak),0),1)) - 20,
+								  (_sunpeakView.frame.size.height * MIN(MAX(0,ABS(1-sunpeak)),1)) - 20,
 		                          _sunpeakView.frame.size.width,
 		                          _sunpeakView.frame.size.height};
 }

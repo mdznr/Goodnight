@@ -65,6 +65,7 @@
 	
 	// Move instructions down to second (bottom) page
 	_instructionsView.frame = CGRectOffset(_instructionsView.frame, 0, _scrollView.frame.size.height);
+	_instructions.alpha = 0.0f;
 	
 	// Time Picker View Controller
 	_timePickerViewController = [[GNTimePickerViewController alloc] initWithNibName:@"GNTimePickerViewController" bundle:nil];
@@ -134,17 +135,14 @@
 	switch ( mode ) {
 		case GNTimePickerModeSleep: {
 			_timesViewController.mode = GNTimesViewControllerModeWakeTimes;
-			[self animateToDawn];
 		} break;
 		case GNTimePickerModeWake: {
 			_timesViewController.mode = GNTimesViewControllerModeSleepTimes;
-			[self animateToDusk];
 		} break;
 	}
 	
-//	[_scrollView scrollRectToVisible:(CGRect){0,0,1,1} animated:YES];
-	
 	// Scroll up
+//	[_scrollView scrollRectToVisible:(CGRect){0,0,1,1} animated:YES];
 	[UIView animateWithDuration:ANIMATION_DURATION
 						  delay:0.0f
 		 usingSpringWithDamping:1.0f
@@ -159,12 +157,11 @@
 	
 	// Show Times View Controller
 	[UIView animateWithDuration:ANIMATION_DURATION
-						  delay:ANIMATION_DURATION
+						  delay:ANIMATION_DURATION/2
 		 usingSpringWithDamping:1.0f
 		  initialSpringVelocity:1.0f
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
-						 _timesViewController.view.alpha = 1.0f;
 						 [_timesViewController animateIn];
 					 }
 					 completion:^(BOOL finished) {}];
@@ -181,18 +178,8 @@
 		  initialSpringVelocity:1.0f
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
-						 _timesViewController.view.alpha = 0.0f;
-						 [_timesViewController animateOut];
-					 }
-					 completion:^(BOOL finished) {}];
-	
-	[UIView animateWithDuration:ANIMATION_DURATION
-						  delay:0.0f
-		 usingSpringWithDamping:1.0f
-		  initialSpringVelocity:1.0f
-						options:UIViewAnimationOptionBeginFromCurrentState
-					 animations:^{
 						 _scrollView.contentOffset = (CGPoint){0,_scrollView.frame.size.height};
+						 [_timesViewController animateOut];
 					 }
 					 completion:^(BOOL finished) {
 						 [self bottomMode];
