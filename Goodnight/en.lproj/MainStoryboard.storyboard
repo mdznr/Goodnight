@@ -21,7 +21,7 @@
                                 <rect key="frame" x="29" y="10" width="262" height="242"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="SA5-6k-wYl">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="SA5-6k-wYl">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
@@ -35,6 +35,9 @@ like to fall asleep</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <connections>
+                                    <outlet property="delegate" destination="2" id="Y0u-v9-bz1"/>
+                                </connections>
                             </scrollView>
                             <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="K7H-ig-wDJ" userLabel="Info">
                                 <rect key="frame" x="264" y="20" width="56" height="56"/>

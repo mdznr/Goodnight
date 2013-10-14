@@ -36,7 +36,7 @@
 
 @end
 
-#define ANIMATION_DURATION 0.75f
+#define ANIMATION_DURATION 0.85f
 
 @implementation GNViewController
 
@@ -66,7 +66,7 @@
 	_instructions.frame = CGRectOffset(_instructions.frame, 0, _scrollView.frame.size.height);
 	
 	// Time Picker View Controller
-	_timePickerViewController = [[GNTimePickerViewController alloc] init];
+	_timePickerViewController = [[GNTimePickerViewController alloc] initWithNibName:@"GNTimePickerViewController" bundle:nil];
 	_timePickerViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	_timePickerViewController.view.frame = CGRectOffset(self.view.frame, 0, self.view.frame.size.height);
 	[_scrollView insertSubview:_timePickerViewController.view
@@ -136,6 +136,8 @@
 - (void)timePickerDidSayGoodnightWithSleepTime:(NSDate *)date
 									   forMode:(GNTimePickerMode)mode
 {
+	_timesViewController.date = date;
+	
 	switch ( mode ) {
 		case GNTimePickerModeSleep: {
 			_timesViewController.mode = GNTimesViewControllerModeWakeTimes;
@@ -147,10 +149,7 @@
 		} break;
 	}
 	
-	_showingMainUI = NO;
-	_timesViewController.date = date;
-	
-	[_timePickerViewController hideSun];
+	[self topMode];
 	
 	// Hide instructional text
 	[UIView animateWithDuration:ANIMATION_DURATION/2
@@ -165,14 +164,16 @@
 						 _instructions.hidden = YES;
 					 }];
 	
-	// Move the main UI away
+	[_scrollView scrollRectToVisible:(CGRect){0,0,1,1} animated:YES];
+	
+	// Scroll up
 	[UIView animateWithDuration:ANIMATION_DURATION
 						  delay:0.0f
 		 usingSpringWithDamping:1.0f
 		  initialSpringVelocity:1.0f
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
-						 _scrollView.contentOffset = (CGPoint){0,0};
+						 //_scrollView.contentOffset = CGPointZero;
 					 }
 					 completion:^(BOOL finished) {}];
 	
@@ -194,28 +195,7 @@
 
 - (void)timesViewControllerRequestsDismissal
 {
-	switch ( _timesViewController.mode ) {
-		case GNTimesViewControllerModeSleepTimes:
-			[self animateToDawn];
-			break;
-		case GNTimesViewControllerModeWakeTimes:
-		default:
-			[self animateToDusk];
-			break;
-	}
-	
-	_showingMainUI = YES;
-	
-	[_timePickerViewController showSun];
-	
-	// Make sure it's at alpha 0.0f?
-	_instructions.alpha = 0.0f;
-	_instructions.hidden = NO;
-	
-	// Only show instructions if necessary
-	if ( !_hasUsedAppBefore && _showingMainUI ) {
-		[self fadeInstructionsOut];
-	}
+	[self bottomMode];
 	
 	[UIView animateWithDuration:ANIMATION_DURATION
 						  delay:0.0f
@@ -246,19 +226,20 @@
 		  initialSpringVelocity:1.0f
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
-//						 _stars.alpha = 1.0f;
 						 _scrollView.contentOffset = (CGPoint){0,_scrollView.frame.size.height};
 					 }
-					 completion:^(BOOL finished) { }];
+					 completion:^(BOOL finished) {}];
 }
 
 - (void)timesViewControllerDidSetAlarm:(NSDate *)alarmTime
 {
+	_scrollView.scrollEnabled = NO;
 	[self animateToDusk];
 }
 
 - (void)timesViewControllerDidSetSleepReminder:(NSDate *)reminderTime forWakeUpTime:(NSDate *)wakeTime;
 {
+	_scrollView.scrollEnabled = NO;
 	[self animateToDusk];
 }
 
@@ -272,6 +253,8 @@
 			[self animateToDawn];
 			break;
 	}
+	
+	_scrollView.scrollEnabled = YES;
 }
 
 - (void)timesViewControllerDidCancelSleepReminder
@@ -284,6 +267,8 @@
 			[self animateToDawn];
 			break;
 	}
+	
+	_scrollView.scrollEnabled = YES;
 }
 
 
@@ -295,7 +280,91 @@
 	CGFloat scrollTotal = _scrollView.contentSize.height - _scrollView.frame.size.height;
 	CGFloat scrollFraction = scrollOffset / scrollTotal;
 	
+#warning this doesn't really work when scrolling and changing modes (the text also fades in). Maybe wrap the view?
+	// y = -1.5|x-1|+1
+	CGFloat originalInstructionsAlpha = 0.7f;
+	_instructions.alpha = (-1.5 * ABS(scrollFraction-1) + 1) * originalInstructionsAlpha;
 	
+	CGFloat duskR = 157.0f/255.0f;
+	CGFloat duskG = 75.0f/255.0f;
+	CGFloat duskB = 212.0f/255.0f;
+	
+	CGFloat dawnR = 69.0f/255.0f;
+	CGFloat dawnG = 172.0f/255.0f;
+	CGFloat dawnB = 245.0f/255.0f;
+	
+	CGFloat r,g,b;
+	
+	CGFloat skyStart = -20 + (_sky.image.size.height/2);
+	CGFloat skyEnd = 20 + _scrollView.frame.size.height - (_sky.image.size.height/2);
+	CGFloat midSkyWidth = _sky.image.size.width / 2;
+	CGFloat yOffset;
+	CGFloat colorWeight = MIN(MAX(0,scrollFraction),1);
+	switch ( _timePickerViewController.mode ) {
+		case GNTimePickerModeSleep: {
+			// Dusk
+			yOffset = (scrollFraction * skyStart) + ((1-scrollFraction) * skyEnd);
+			_stars.alpha = scrollFraction * 1.0f;
+			
+			r = (colorWeight * duskR) + ((1-colorWeight) * dawnR);
+			g = (colorWeight * duskG) + ((1-colorWeight) * dawnG);
+			b = (colorWeight * duskB) + ((1-colorWeight) * dawnB);
+		} break;
+		case GNTimePickerModeWake: {
+			// Dawn
+			yOffset = (scrollFraction * skyEnd) + ((1-scrollFraction) * skyStart);
+			_stars.alpha = scrollFraction * 0.2f;
+			
+			r = (colorWeight * dawnR) + ((1-colorWeight) * duskR);
+			g = (colorWeight * dawnG) + ((1-colorWeight) * duskG);
+			b = (colorWeight * dawnB) + ((1-colorWeight) * duskB);
+		} break;
+	}
+	yOffset = MAX(MIN(skyStart, yOffset), skyEnd);
+	_sky.center = (CGPoint){midSkyWidth, yOffset};
+	_timePickerViewController.tintColor = [UIColor colorWithRed:r
+														  green:g
+														   blue:b
+														  alpha:1.0f];
+	
+	_timePickerViewController.sunpeak = scrollFraction;
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+	if ( scrollView.contentOffset.y >= scrollView.frame.size.height ) {
+		[self bottomMode];
+	} else {
+		[self topMode];
+	}
+}
+
+- (void)topMode
+{
+	_scrollView.scrollEnabled = YES;
+	
+	_showingMainUI = NO;
+	
+	[_timePickerViewController hideSun];
+}
+
+- (void)bottomMode
+{
+	// Do not allow scrolling when showing picker.
+	_scrollView.scrollEnabled = NO;
+	
+	_showingMainUI = YES;
+	
+	[_timePickerViewController showSun];
+	
+//	// Make sure it's at alpha 0.0f?
+//	_instructions.alpha = 0.0f;
+//	_instructions.hidden = NO;
+	
+	// Only show instructions if necessary
+	if ( !_hasUsedAppBefore && _showingMainUI ) {
+		[self fadeInstructionsOut];
+	}
 }
 
 
@@ -397,9 +466,9 @@
 			  initialSpringVelocity:1.0f
 							options:UIViewAnimationOptionBeginFromCurrentState
 						 animations:^{
-							 _scrollView.contentOffset = (CGPoint){0,0};
+							 _scrollView.contentOffset = CGPointZero;
 						 }
-						 completion:^(BOOL finished) { }];
+						 completion:^(BOOL finished) {}];
 	} else {
 		[_timesViewController animateIn];
 	}
@@ -423,27 +492,17 @@
 - (void)animateToDusk
 {
 	// Show stars
-	[UIView animateWithDuration:ANIMATION_DURATION
-						  delay:0.0f
-		 usingSpringWithDamping:1.0f
-		  initialSpringVelocity:1.0f
-						options:UIViewAnimationOptionBeginFromCurrentState
-					 animations:^{
-						 _stars.alpha = 1.0f;
-					 }
-					 completion:^(BOOL finished) {}];
-	
 	// Animate sky
 	// Bring up dusk
 	// Change time picker tint color
-	[UIView animateWithDuration:ANIMATION_DURATION * 3
+	[UIView animateWithDuration:ANIMATION_DURATION * 2
 						  delay:0.0f
 		 usingSpringWithDamping:10.0f
 		  initialSpringVelocity:1.0f
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
-						 CGPoint skyStart = (CGPoint){self.view.frame.size.width/2, -20+(_sky.image.size.height/2)};
-						 _sky.center = skyStart;
+						 CGFloat skyStart = -20 + (_sky.image.size.height/2);
+						 _sky.center = (CGPoint){_sky.image.size.width/2, skyStart};
 						 
 						 UIColor *color = [UIColor colorWithRed:157.0f/255.0f
 														  green: 75.0f/255.0f
@@ -451,33 +510,23 @@
 														  alpha:1.0f];
 						 _timePickerViewController.tintColor = color;
 					 }
-					 completion:^(BOOL finished) { }];
+					 completion:^(BOOL finished) {}];
 }
 
 - (void)animateToDawn
 {
 	// Dim Stars
-	[UIView animateWithDuration:ANIMATION_DURATION
-						  delay:0.0f
-		 usingSpringWithDamping:1.0f
-		  initialSpringVelocity:1.0f
-						options:UIViewAnimationOptionBeginFromCurrentState
-					 animations:^{
-						 _stars.alpha = 0.2f;
-					 }
-					 completion:^(BOOL finished) {}];
-	
 	// Animate sky
 	// Bring up dusk
 	// Change goodnight button tint color
-	[UIView animateWithDuration:ANIMATION_DURATION * 3
+	[UIView animateWithDuration:ANIMATION_DURATION * 2
 						  delay:0.0f
 		 usingSpringWithDamping:10.0f
 		  initialSpringVelocity:1.0f
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
-						 CGPoint skyEnd = (CGPoint){self.view.frame.size.width/2, 20+self.view.bounds.size.height-(_sky.image.size.height/2)};
-						 _sky.center = skyEnd;
+						 CGFloat skyEnd = 20 + _scrollView.frame.size.height - (_sky.image.size.height/2);
+						 _sky.center = (CGPoint){_sky.image.size.width/2, skyEnd};
 						 
 						 UIColor *color = [UIColor colorWithRed: 69.0f/255.0f
 														  green:172.0f/255.0f
@@ -485,7 +534,7 @@
 														  alpha:1.0f];
 						 _timePickerViewController.tintColor = color;
 					 }
-					 completion:^(BOOL finished) { }];
+					 completion:^(BOOL finished) {}];
 }
 
 - (void)fadeInstructionsOut

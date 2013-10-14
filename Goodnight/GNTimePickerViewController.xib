@@ -11,6 +11,7 @@
                 <outlet property="goodnightButton" destination="NtL-7o-v4V" id="mu5-ww-TXR"/>
                 <outlet property="selectorView" destination="FHq-Lg-fxg" id="TMd-pV-bK6"/>
                 <outlet property="sleepButton" destination="K5L-sc-iNz" id="L5p-Tp-dVc"/>
+                <outlet property="sunpeakView" destination="jwC-f1-Duz" id="fUJ-CB-urh"/>
                 <outlet property="sunrise" destination="fYC-l5-Npu" id="sSj-Fb-l4o"/>
                 <outlet property="triangleMarker" destination="k9A-PH-4xR" id="x8Y-7F-JRA"/>
                 <outlet property="view" destination="1" id="3"/>
@@ -22,14 +23,21 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dusk" id="A9h-1v-ABH" userLabel="Dusk">
+                <view contentMode="scaleToFill" id="jwC-f1-Duz">
                     <rect key="frame" x="0.0" y="-20" width="320" height="238"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                </imageView>
-                <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sunrise" id="fYC-l5-Npu" userLabel="Sunrise">
-                    <rect key="frame" x="0.0" y="-20" width="320" height="238"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                </imageView>
+                    <subviews>
+                        <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dusk" id="A9h-1v-ABH" userLabel="Dusk">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="238"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </imageView>
+                        <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sunrise" id="fYC-l5-Npu" userLabel="Sunrise">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="238"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="K5L-sc-iNz" userLabel="Sleep">
                     <rect key="frame" x="40" y="134" width="120" height="41"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
