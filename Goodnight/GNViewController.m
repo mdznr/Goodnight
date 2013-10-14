@@ -99,7 +99,7 @@
 							  delay:2 * ANIMATION_DURATION
 							options:UIViewAnimationOptionBeginFromCurrentState
 						 animations:^{
-							 _instructions.alpha = 0.7;
+							 _instructions.alpha = 0.7f;
 						 }
 						 completion:^(BOOL finished) {}];
 	}
@@ -160,9 +160,7 @@
 					 animations:^{
 						 _instructions.alpha = 0.0f;
 					 }
-					 completion:^(BOOL finished) {
-						 _instructions.hidden = YES;
-					 }];
+					 completion:^(BOOL finished) {}];
 	
 	[_scrollView scrollRectToVisible:(CGRect){0,0,1,1} animated:YES];
 	
@@ -345,6 +343,8 @@
 	
 	_showingMainUI = NO;
 	
+	[self fadeInstructionsOut];
+	
 	[_timePickerViewController hideSun];
 }
 
@@ -357,12 +357,8 @@
 	
 	[_timePickerViewController showSun];
 	
-//	// Make sure it's at alpha 0.0f?
-//	_instructions.alpha = 0.0f;
-//	_instructions.hidden = NO;
-	
 	// Only show instructions if necessary
-	if ( !_hasUsedAppBefore && _showingMainUI ) {
+	if ( !_hasUsedAppBefore) {
 		[self fadeInstructionsOut];
 	}
 }
@@ -391,9 +387,7 @@
 					 animations:^{
 						 _instructions.alpha = 0.0f;
 					 }
-					 completion:^(BOOL finished) {
-						 _instructions.hidden = YES;
-					 }];
+					 completion:^(BOOL finished) {}];
 	
 	if ( _showingMainUI ) {
 		[UIView animateWithDuration:ANIMATION_DURATION
@@ -427,7 +421,6 @@
 {
 	// Make sure it's at alpha 0.0f?
 	_instructions.alpha = 0.0f;
-	_instructions.hidden = NO;
 	
 	[UIView animateWithDuration:ANIMATION_DURATION
 						  delay:0.0f
