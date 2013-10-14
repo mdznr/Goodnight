@@ -10,7 +10,7 @@
                 <outlet property="dusk" destination="A9h-1v-ABH" id="PdN-TP-QO4"/>
                 <outlet property="goodnightButton" destination="NtL-7o-v4V" id="mu5-ww-TXR"/>
                 <outlet property="selectorView" destination="FHq-Lg-fxg" id="TMd-pV-bK6"/>
-                <outlet property="sleepButton" destination="K5L-sc-iNz" id="L5p-Tp-dVc"/>
+                <outlet property="sleepButton" destination="yTf-UG-hcb" id="4gz-7O-pTw"/>
                 <outlet property="sunpeakView" destination="jwC-f1-Duz" id="fUJ-CB-urh"/>
                 <outlet property="sunrise" destination="fYC-l5-Npu" id="sSj-Fb-l4o"/>
                 <outlet property="triangleMarker" destination="k9A-PH-4xR" id="x8Y-7F-JRA"/>
@@ -38,32 +38,38 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="K5L-sc-iNz" userLabel="Sleep">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yTf-UG-hcb" userLabel="Sleep">
                     <rect key="frame" x="40" y="134" width="120" height="41"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="26"/>
                     <state key="normal" title="Sleep">
-                        <color key="titleColor" red="1" green="0.99988895654678345" blue="0.99995952844619751" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="disabled">
+                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <state key="selected">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <state key="highlighted">
-                        <color key="titleColor" white="1" alpha="0.69999999999999996" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="wK4-Bp-YvE" userLabel="Wake">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wK4-Bp-YvE" userLabel="Wake">
                     <rect key="frame" x="160" y="134" width="120" height="41"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="26"/>
                     <state key="normal" title="Wake">
-                        <color key="titleColor" red="1" green="0.99993509049999996" blue="0.99997484680000004" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="disabled">
+                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <state key="selected">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <state key="highlighted">
-                        <color key="titleColor" white="1" alpha="0.69999999999999996" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
                 <view contentMode="scaleToFill" id="k9A-PH-4xR" userLabel="Triangle" customClass="MTZTriangleView">

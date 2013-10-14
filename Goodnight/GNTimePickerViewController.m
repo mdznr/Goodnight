@@ -20,6 +20,9 @@
 @property (strong, nonatomic) IBOutlet UIButton *sleepButton;
 @property (strong, nonatomic) IBOutlet UIButton *wakeButton;
 
+@property (strong, nonatomic) UIColor *selectedColor;
+@property (strong, nonatomic) UIColor *defaultColor;
+
 @property (strong, nonatomic) IBOutlet MTZTriangleView *triangleMarker;
 
 @property (strong, nonatomic) IBOutlet UIView *selectorView;
@@ -78,8 +81,12 @@
 	
 	[self setMode:GNTimePickerModeSleep];
 	_mode = GNTimePickerModeSleep;
-	_wakeButton.selected = NO;
-	_sleepButton.selected = YES;
+	
+	_defaultColor = [UIColor colorWithWhite:1.0f alpha:0.5f];
+	_selectedColor = [UIColor colorWithWhite:1.0f alpha:1.0f];
+	
+	// Sleep button is selected by default
+	[_sleepButton setTitleColor:_selectedColor forState:UIControlStateNormal];
 }
 
 
@@ -106,47 +113,12 @@
 
 - (void)setSunpeak:(CGFloat)sunpeak
 {
-#warning move down and change alpha
 	_sunpeak = sunpeak;
+	_sunpeakView.alpha = sunpeak;
 	_sunpeakView.frame = (CGRect){_sunpeakView.frame.origin.x,
 								  (_sunpeakView.frame.size.height * MIN(MAX(ABS(1-sunpeak),0),1)) - 20,
 		                          _sunpeakView.frame.size.width,
 		                          _sunpeakView.frame.size.height};
-	_sunpeakView.alpha = sunpeak;
-}
-
-- (void)hideSun
-{
-	[UIView animateWithDuration:ANIMATION_DURATION
-						  delay:0.0f
-		 usingSpringWithDamping:1.0f
-		  initialSpringVelocity:1.0f
-						options:UIViewAnimationOptionBeginFromCurrentState
-					 animations:^{
-						 _dusk.alpha = 0.0f;
-						 _sunrise.alpha = 0.0f;
-					 }
-					 completion:^(BOOL finished) {}];
-}
-
-- (void)showSun
-{
-	[UIView animateWithDuration:ANIMATION_DURATION
-						  delay:ANIMATION_DURATION
-		 usingSpringWithDamping:1.0f
-		  initialSpringVelocity:1.0f
-						options:UIViewAnimationOptionBeginFromCurrentState
-					 animations:^{
-						 switch ( _mode ) {
-							 case GNTimePickerModeSleep: {
-								 _dusk.alpha = 1.0f;
-							 } break;
-							 case GNTimePickerModeWake: {
-								 _sunrise.alpha = 0.5f;
-							 } break;
-						 }
-					 }
-					 completion:^(BOOL finished) {}];
 }
 
 
@@ -181,10 +153,11 @@
 							options:UIViewAnimationOptionBeginFromCurrentState
 						 animations:^{
 #warning UIButton does not animate between selected states
-							 _wakeButton.selected = NO;
-							 _sleepButton.selected = YES;
+							 [_sleepButton setTitleColor:_selectedColor
+												forState:UIControlStateNormal];
+							 [_wakeButton setTitleColor:_defaultColor
+											   forState:UIControlStateNormal];
 							 
-#warning move sunrise down
 							 _sunrise.alpha = 0.0f;
 							 
 							 _triangleMarker.center = (CGPoint){_sleepButton.center.x, _triangleMarker.center.y};
@@ -197,7 +170,6 @@
 			  initialSpringVelocity:1.0f
 							options:UIViewAnimationOptionBeginFromCurrentState
 						 animations:^{
-#warning move dusk up
 							 _dusk.alpha = 1.0f;
 						 }
 						 completion:^(BOOL finished) {}];
@@ -218,10 +190,11 @@
 							options:UIViewAnimationOptionBeginFromCurrentState
 						 animations:^{
 #warning UIButton does not animate between selected states
-							 _wakeButton.selected = YES;
-							 _sleepButton.selected = NO;
+							 [_wakeButton setTitleColor:_selectedColor
+											   forState:UIControlStateNormal];
+							 [_sleepButton setTitleColor:_defaultColor
+												forState:UIControlStateNormal];
 							 
-#warning move dusk down
 							 _dusk.alpha = 0.0f;
 							 
 							 _triangleMarker.center = (CGPoint){_wakeButton.center.x, _triangleMarker.center.y};
@@ -234,7 +207,6 @@
 			  initialSpringVelocity:1.0f
 							options:UIViewAnimationOptionBeginFromCurrentState
 						 animations:^{
-#warning move sunrise up
 							 _sunrise.alpha = 0.5f;
 						 }
 						 completion:^(BOOL finished) {}];
