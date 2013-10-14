@@ -313,8 +313,6 @@
 	
 	_instructionsView.alpha = 0.0f;
 	_instructions.alpha = 0.f;
-	
-	[_timePickerViewController hideSun];
 }
 
 - (void)bottomMode
@@ -325,8 +323,6 @@
 	_showingMainUI = YES;
 	
 	_instructionsView.alpha = 1.0f;
-	
-	[_timePickerViewController showSun];
 	
 	// Only show instructions if necessary
 	if ( !_hasUsedAppBefore) {
@@ -492,11 +488,9 @@
 {
 	switch ( _timePickerViewController.mode ) {
 		case GNTimePickerModeSleep:
-#warning get localized string
 			_instructions.text = @"Set the time you’d\nlike to fall asleep";
 			break;
 		case GNTimePickerModeWake:
-#warning get localized string
 			_instructions.text = @"Set the time you’d\nlike to wake up";
 			break;
 	}
