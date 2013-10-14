@@ -13,6 +13,7 @@
 
 @interface GNTimePickerViewController ()
 
+@property (strong, nonatomic) IBOutlet UIView *sunpeakView;
 @property (strong, nonatomic) IBOutlet UIImageView *dusk;
 @property (strong, nonatomic) IBOutlet UIImageView *sunrise;
 
@@ -102,6 +103,17 @@
 
 
 #pragma mark Sun
+
+- (void)setSunpeak:(CGFloat)sunpeak
+{
+#warning move down and change alpha
+	_sunpeak = sunpeak;
+	_sunpeakView.frame = (CGRect){_sunpeakView.frame.origin.x,
+								  (_sunpeakView.frame.size.height * MIN(MAX(ABS(1-sunpeak),0),1)) - 20,
+		                          _sunpeakView.frame.size.width,
+		                          _sunpeakView.frame.size.height};
+	_sunpeakView.alpha = sunpeak;
+}
 
 - (void)hideSun
 {

@@ -29,6 +29,9 @@ typedef enum {
 
 @property (strong, nonatomic) UIColor *tintColor;
 
+/// The level at which the sun peaks out from behind the picker.
+@property (nonatomic) CGFloat sunpeak;
+
 /// Update the date picker to be the current time
 - (void)updateDatePicker;
 
