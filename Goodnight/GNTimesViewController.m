@@ -101,12 +101,12 @@
 	[self.view addSubview:_sleepReminderViewController.view];
 	_sleepReminderViewController.delegate = self;
 	
-	NSArray *timeFeatureSettings = @[ @{UIFontFeatureTypeIdentifierKey:@(kNumberSpacingType),
+	NSArray *timeFeatureSettings = @[ @{UIFontFeatureTypeIdentifierKey:    @(kNumberSpacingType),
 										UIFontFeatureSelectorIdentifierKey:@(kProportionalNumbersSelector)},
-                                      @{UIFontFeatureTypeIdentifierKey:@(kCharacterAlternativesType),
+                                      @{UIFontFeatureTypeIdentifierKey:    @(kCharacterAlternativesType),
 										UIFontFeatureSelectorIdentifierKey:@(1)}
 									];
-	UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Light" size:36.0f];
+	UIFont *font = _time1.titleLabel.font;
 	UIFontDescriptor *originalDescriptor = [font fontDescriptor];
 	UIFontDescriptor *timeDescriptor =
 		[originalDescriptor fontDescriptorByAddingAttributes:
@@ -448,7 +448,32 @@
 
 - (void)animateIn
 {
-	self.view.alpha = 1.0f;
+	self.view.alpha = 0.0f;
+	_backButton.alpha = 0.0f;
+	_backButton.frame = CGRectOffset(_backButton.frame, 0, 16);
+	
+	// Bring overall alpha up
+	[UIView animateWithDuration:ANIMATION_DURATION
+						  delay:0.0f
+		 usingSpringWithDamping:1.0f
+		  initialSpringVelocity:1.0f
+						options:UIViewAnimationOptionBeginFromCurrentState
+					 animations:^{
+						 self.view.alpha = 1.0f;
+					 }
+					 completion:^(BOOL finished) {}];
+	
+	// Animate back button in secondary
+	[UIView animateWithDuration:ANIMATION_DURATION
+						  delay:ANIMATION_DURATION/3
+		 usingSpringWithDamping:1.0f
+		  initialSpringVelocity:1.0f
+						options:0
+					 animations:^{
+						 _backButton.alpha = 1.0f;
+						 _backButton.frame = CGRectOffset(_backButton.frame, 0, -16);
+					 }
+					 completion:^(BOOL finished) {}];
 	
 	// Move text back below view
 
@@ -458,7 +483,18 @@
 
 - (void)animateOut
 {
-	self.view.alpha = 0.0f;
+	[UIView animateWithDuration:ANIMATION_DURATION
+						  delay:0.0f
+		 usingSpringWithDamping:1.0f
+		  initialSpringVelocity:1.0f
+						options:UIViewAnimationOptionBeginFromCurrentState
+					 animations:^{
+						 self.view.alpha = 0.0f;
+					 }
+					 completion:^(BOOL finished) {
+						 _backButton.alpha = 0.0f;
+						 _backButton.frame = CGRectOffset(_backButton.frame, 0, 64);
+					 }];
 	
 	// Move text out of view
 	
