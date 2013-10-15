@@ -448,11 +448,8 @@
 
 - (void)animateIn
 {
-	self.view.alpha = 0.0f;
-	_backButton.alpha = 0.0f;
-	_backButton.frame = CGRectOffset(_backButton.frame, 0, 16);
-	
 	// Bring overall alpha up
+	self.view.alpha = 0.0f;
 	[UIView animateWithDuration:ANIMATION_DURATION
 						  delay:0.0f
 		 usingSpringWithDamping:1.0f
@@ -463,7 +460,9 @@
 					 }
 					 completion:^(BOOL finished) {}];
 	
-	// Animate back button in secondary
+	// Animate back button in
+	_backButton.alpha = 0.0f;
+	_backButton.frame = CGRectOffset(_backButton.frame, 0, 16);
 	[UIView animateWithDuration:ANIMATION_DURATION
 						  delay:ANIMATION_DURATION/3
 		 usingSpringWithDamping:1.0f
@@ -491,9 +490,7 @@
 					 animations:^{
 						 self.view.alpha = 0.0f;
 					 }
-					 completion:^(BOOL finished) {
-						 _backButton.alpha = 0.0f;
-					 }];
+					 completion:^(BOOL finished) {}];
 	
 	// Move text out of view
 	

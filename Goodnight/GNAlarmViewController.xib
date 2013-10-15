@@ -20,7 +20,7 @@
                     <rect key="frame" x="0.0" y="133" width="320" height="164"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sleep_Glyph" id="ggx-jP-bG7" userLabel="Glyph">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Alarm_Glyph" id="ggx-jP-bG7" userLabel="Glyph">
                             <rect key="frame" x="141" y="0.0" width="38" height="38"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         </imageView>
@@ -68,6 +68,6 @@
         </view>
     </objects>
     <resources>
-        <image name="Sleep_Glyph" width="38" height="38"/>
+        <image name="Alarm_Glyph" width="38" height="38"/>
     </resources>
 </document>

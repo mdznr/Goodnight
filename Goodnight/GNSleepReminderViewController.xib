@@ -20,7 +20,7 @@
                     <rect key="frame" x="0.0" y="148" width="320" height="147"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Reminder_Glyph" id="gGe-A8-tQ1" userLabel="Glyph">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sleep_Glyph" id="gGe-A8-tQ1" userLabel="Glyph">
                             <rect key="frame" x="141" y="0.0" width="38" height="38"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         </imageView>
@@ -63,6 +63,6 @@ scheduled for just before</string>
         </view>
     </objects>
     <resources>
-        <image name="Reminder_Glyph" width="38" height="38"/>
+        <image name="Sleep_Glyph" width="38" height="38"/>
     </resources>
 </document>
