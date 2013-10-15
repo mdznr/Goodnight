@@ -130,8 +130,6 @@
 - (void)timePickerDidSayGoodnightWithSleepTime:(NSDate *)date
 									   forMode:(GNTimePickerMode)mode
 {
-	_timesViewController.date = date;
-	
 	switch ( mode ) {
 		case GNTimePickerModeSleep: {
 			_timesViewController.mode = GNTimesViewControllerModeWakeTimes;
@@ -141,30 +139,24 @@
 		} break;
 	}
 	
+	_timesViewController.date = date;
+	
+	// Show Times View Controller
+	[_timesViewController performSelector:@selector(animateIn) withObject:Nil afterDelay:ANIMATION_DURATION/2];
+	
 	// Scroll up
 //	[_scrollView scrollRectToVisible:(CGRect){0,0,1,1} animated:YES];
 	[UIView animateWithDuration:ANIMATION_DURATION
 						  delay:0.0f
 		 usingSpringWithDamping:1.0f
 		  initialSpringVelocity:1.0f
-						options:UIViewAnimationOptionBeginFromCurrentState
+						options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionAllowUserInteraction
 					 animations:^{
 						 _scrollView.contentOffset = CGPointZero;
 					 }
 					 completion:^(BOOL finished) {
 						 [self topMode];
 					 }];
-	
-	// Show Times View Controller
-	[UIView animateWithDuration:ANIMATION_DURATION
-						  delay:ANIMATION_DURATION/2
-		 usingSpringWithDamping:1.0f
-		  initialSpringVelocity:1.0f
-						options:UIViewAnimationOptionBeginFromCurrentState
-					 animations:^{
-						 [_timesViewController animateIn];
-					 }
-					 completion:^(BOOL finished) {}];
 }
 
 
@@ -172,6 +164,9 @@
 
 - (void)timesViewControllerRequestsDismissal
 {
+	// Hide Times View Controller
+	[_timesViewController animateOut];
+	
 	[UIView animateWithDuration:ANIMATION_DURATION
 						  delay:0.0f
 		 usingSpringWithDamping:1.0f
@@ -179,11 +174,11 @@
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
 						 _scrollView.contentOffset = (CGPoint){0,_scrollView.frame.size.height};
-						 [_timesViewController animateOut];
 					 }
 					 completion:^(BOOL finished) {
 						 [self bottomMode];
 					 }];
+	
 }
 
 - (void)timesViewControllerDidSetAlarm:(NSDate *)alarmTime
