@@ -306,6 +306,8 @@
 	
 	_instructionsView.alpha = 1.0f;
 	
+	[_timesViewController animateOut];
+	
 	// Only show instructions if necessary
 	if ( !_hasUsedAppBefore) {
 		[self fadeInstructionsOut];

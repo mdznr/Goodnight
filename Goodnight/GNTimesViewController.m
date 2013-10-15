@@ -493,7 +493,6 @@
 					 }
 					 completion:^(BOOL finished) {
 						 _backButton.alpha = 0.0f;
-						 _backButton.frame = CGRectOffset(_backButton.frame, 0, 64);
 					 }];
 	
 	// Move text out of view
