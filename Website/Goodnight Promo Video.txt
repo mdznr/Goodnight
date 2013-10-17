@@ -1,0 +1,23 @@
+Goodnight promo video
+
+- No faces
+- Extremely smooth
+- Zoomed in
+- No mistakes selecting times
+- Status bar time needs to be accurate
+- Battery full
+- Full service
+- In home (WiFi)
+- Outdoor (No WiFi)
+- Saturated colors
+
+Scenes:
+	In home:
+	Sleep time at 12:27 AM - Select 9:41 AM
+	
+	Wake up early (camping):
+	Wake up time at 8:00 AM - Select 12:16 AM
+
+Shots:
+	Alarm being set by the user's side, fast forward with stars animating (the status bar time needs to update, too)
+	
