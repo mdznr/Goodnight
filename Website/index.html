@@ -14,10 +14,26 @@
 			// "Snap" to pages
 			clearTimeout($.data(this, 'scrollTimer'));
 			$.data(this, 'scrollTimer', setTimeout(function() {
-				// do something
-				$("html, body").animate({scrollTop: ($('div.full').height() * section)}, 50, "swing");
-				console.log("Haven't scrolled in 250ms!");
+				// Do something
+				//$("html, body").animate({scrollTop: ($('div.full').height() * section)}, 50, "swing");
+				//console.log("Haven't scrolled in 250ms!");
 			}, 50));
+			
+			// Change iPhone screenshot (temporary for now)
+			var backgroundImage;
+			switch ( Math.round(section) ) {
+				case 0:
+					backgroundImage = "alarm"; break;
+				case 1:
+					backgroundImage = "picker"; break;
+				case 2:
+					backgroundImage = "cycles"; break;
+				//case 3:
+					//backgroundImage = "morning"; break;
+				default:
+					backgroundImage = "alarm"; break;
+			}
+			$("#iPhone").css({"background": "url(\"screenshots/"+backgroundImage+".png\") center right no-repeat"});
 			
 			// Animate Sky Color
 			$("#skyBackground1").animate({opacity: -section+1}, animation_duration, "swing");
@@ -135,6 +151,7 @@
 		body {
 			background-color: #08002F;
 			color: #fff;
+			text-shadow: 0px 1px 3px rgba(0,0,0,0.2);
 			font-family: "MyriadPro-Light", "Myriad Pro", "Myriad Pro FontFace", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 			font-size: 24px;
 			font-weight: 100;
@@ -273,9 +290,9 @@
 		}
 		#iPhone {
 			display: block;
-			background: url("screenshots/iPhone.png") no-repeat;
+			background: url("screenshots/alarm.png") no-repeat;
 			background-size: 492px, 327px;
-			background-position: 100% 55%;
+			background-position: 100% 52%;
 			width: 100%;
 			height: 100%;
 			max-width: 832px;
@@ -294,7 +311,27 @@
 			background: url("Download_on_the_App_Store_Badge_US-UK_162x48_Hover@2x.svg") center no-repeat;
 		}
 		.AppStoreDownload:active {
-			opacity: .7;
+			opacity: .75;
+		}
+		.bottom {
+			bottom: 32px;
+			margin: auto;
+			left: 0;
+			right: 0;
+			position: absolute;
+			font-size: 18px;
+			text-align: center;
+		}
+		.bottom span, .bottom a {
+			margin: 0 16px;
+		}
+		.bottom a {
+			color: #fff;
+			text-decoration: none;
+			border-bottom: 1px solid rgba(255,255,255,0.5);
+		}
+		.bottom a:hover {
+			border-color: #fff;
 		}
 		.play {
 			width: 18px;
@@ -326,7 +363,7 @@
 		only screen and (                min-resolution: 2dppx)
 		{ 
 			#iPhone {
-				background: url("screenshots/iPhone@2x.png") no-repeat;
+				background: url("screenshots/alarm@2x.png") no-repeat;
 			}
 		}
 		
@@ -384,6 +421,10 @@
 					</audio>
 				</span>
 				<br />Feel refreshed and awake.</p>
+		</div>
+		<div class="bottom">
+			<!-- TODO: Put in links -->
+			<span>Copyright &copy; 2013 Matt Zanchelli</span> <a href="#">App Store</a> <a href="#">Contact</a> <a href="#">Press Kit</a>
 		</div>
 	</div>
 	
