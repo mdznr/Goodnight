@@ -21,7 +21,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+		// Listen to UIContentSizeCategoryDidChangeNotification (Dynamic Type)
 		[[NSNotificationCenter defaultCenter] addObserver:self
 												 selector:@selector(preferredContentSizeDidChange:)
 													 name:UIContentSizeCategoryDidChangeNotification
@@ -32,7 +32,7 @@
 
 - (void)preferredContentSizeDidChange:(id)sender
 {
-	NSLog(@"preferredContentSizeDidChange");
+	// Dynamic type size changed
 	_firstParagraph.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
 	[_firstParagraph invalidateIntrinsicContentSize];
 	[_scrollView invalidateIntrinsicContentSize];
