@@ -54,7 +54,7 @@
 			
 			// Rotates clock-wise
 			//$("#stars").css({WebkitTransform: "rotate("+(rotation)+"deg)"});
-			// $("#stars").css({rotate: rotation+"deg"});
+			//$("#stars").css({rotate: rotation+"deg"});
 			//$("#stars").transform({rotate: (rotation)+"deg", origin:[(section),(section)]});
 			$("#stars").transform({rotate: (rotation)+"deg", origin:["125%","0%"]});
 			
@@ -64,6 +64,36 @@
 			// Animate through opacity
 			$("#stars").animate({opacity: (-Math.abs(section-1)/1.5)+1}, animation_duration, "swing");
 		});
+				
+		// Testimonails
+		var quotes = ["I've never been so excited about going to sleep",
+		              "Waking up is so much easier now",
+		              "An absolutely beautiful app designed with the best of iOS 7 principles"];
+		var authors = ["John Gruber",
+		               "Another Person",
+		               "Beautiful Pixels"];
+		var currentTestimonial = 0;
+		
+		// Animate through testimonials
+		function animateTestimonials() {
+			console.log(currentTestimonial);
+			currentTestimonial = (currentTestimonial+1) % quotes.length;
+			console.log(currentTestimonial);
+			var duration = 500;
+			$("#quote").fadeOut(duration, "swing");
+			$("#author").fadeOut(duration, "swing");
+			// TODO: These should be done qith jQuery
+			$(window).delay(duration);
+			setTimeout(function() {
+				document.getElementById("quote").innerText = "\""+quotes[currentTestimonial]+"\"";
+				document.getElementById("author").innerText = authors[currentTestimonial];
+				$("#quote").fadeIn(duration, "swing");
+				$("#author").fadeIn(duration, "swing");
+			}, duration);
+		}
+		
+		// Periodically go through testimonials
+		setInterval(animateTestimonials, 6000);
 		
 		/*
 		var is_touch_device = 'ontouchstart' in document.documentElement;
@@ -267,11 +297,11 @@
 			width: 320px;
 			margin-top: 16px;
 		}
-		.quote {
+		#quote {
 			font-size: 28px;
 			line-height: 32px;
 		}
-		.author {
+		#author {
 			padding-top: 9px;
 			font-size: 18px;
 			text-align: right;
@@ -393,8 +423,8 @@
 				<a href="" class="AppStoreDownload" alt="Download on the App Store"></a>
 			</div>
 			<div id="testimonials">
-				<p class="quote">"I've never been so excited about going to sleep"</p>
-				<p class="author">John Gruber</p>
+				<p id="quote">"I've never been so excited about going to sleep"</p>
+				<p id="author">John Gruber</p>
 			</div>
 		</div>
 	</div>

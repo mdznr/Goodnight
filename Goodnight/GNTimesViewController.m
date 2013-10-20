@@ -134,7 +134,9 @@
 	
 	_headerImage.image = [UIImage imageNamed:SLEEP_IMAGE];
 	
-	_instructionalLabel.text = @"Try falling asleep at\none of these times:";
+	NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"Try falling asleep at\none of these times:"];
+	[string addAttribute:NSBaselineOffsetAttributeName value:@-3 range:NSMakeRange(string.length-1, 1)];
+	_instructionalLabel.attributedText = string;
 }
 
 - (void)setTimesForSleepMode
@@ -167,7 +169,9 @@
 	
 	_headerImage.image = [UIImage imageNamed:WAKE_IMAGE];
 	
-	_instructionalLabel.text = @"Try waking up at\none of these times:";
+	NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"Try waking up at\none of these times:"];
+	[string addAttribute:NSBaselineOffsetAttributeName value:@-3 range:NSMakeRange(string.length-1, 1)];
+	_instructionalLabel.attributedText = string;
 }
 
 - (void)setTimesForWakeMode
