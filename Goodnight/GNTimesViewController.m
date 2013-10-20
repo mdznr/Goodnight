@@ -49,7 +49,7 @@
 #define GOOD_OPACITY  0.8f
 #define GREAT_OPACITY 1.0f
 
-#define FALL_ASLEEP_TIME (14*60)
+#define FALL_ASLEEP_TIME (15*60)
 #define SLEEP_CYCLE_TIME (90*60)
 #define BAD_SLEEP_TIME   (FALL_ASLEEP_TIME+(3*SLEEP_CYCLE_TIME))
 #define FINE_SLEEP_TIME  (FALL_ASLEEP_TIME+(4*SLEEP_CYCLE_TIME))
@@ -135,29 +135,31 @@
 	_headerImage.image = [UIImage imageNamed:SLEEP_IMAGE];
 	
 	NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"Try falling asleep at\none of these times:"];
-	[string addAttribute:NSBaselineOffsetAttributeName value:@-3 range:NSMakeRange(string.length-1, 1)];
+	[string addAttribute:NSBaselineOffsetAttributeName
+				   value:@-3
+				   range:NSMakeRange(string.length-1, 1)];
 	_instructionalLabel.attributedText = string;
 }
 
 - (void)setTimesForSleepMode
 {
 	// Times
-	_date1 = [_date dateByAddingTimeInterval:-(GREAT_SLEEP_TIME+(1*60))];
+	_date1 = [_date dateByAddingTimeInterval:-(GREAT_SLEEP_TIME)];
 	[_time1 setTitle:[_dateFormatter stringFromDate:_date1]
 			forState:UIControlStateNormal];
 	_time1.alpha = GREAT_OPACITY;
 	
-	_date2 = [_date dateByAddingTimeInterval:-(GOOD_SLEEP_TIME+(1*60))];
+	_date2 = [_date dateByAddingTimeInterval:-(GOOD_SLEEP_TIME)];
 	[_time2 setTitle:[_dateFormatter stringFromDate:_date2]
 			forState:UIControlStateNormal];
 	_time2.alpha = GOOD_OPACITY;
 	
-	_date3 = [_date dateByAddingTimeInterval:-(FINE_SLEEP_TIME+(1*60))];
+	_date3 = [_date dateByAddingTimeInterval:-(FINE_SLEEP_TIME)];
 	[_time3 setTitle:[_dateFormatter stringFromDate:_date3]
 			forState:UIControlStateNormal];
 	_time3.alpha = FINE_OPACITY;
 	
-	_date4 = [_date dateByAddingTimeInterval:-(BAD_SLEEP_TIME+(1*60))];
+	_date4 = [_date dateByAddingTimeInterval:-(BAD_SLEEP_TIME)];
 	[_time4 setTitle:[_dateFormatter stringFromDate:_date4]
 			forState:UIControlStateNormal];
 	_time4.alpha = BAD_OPACITY;
@@ -170,7 +172,9 @@
 	_headerImage.image = [UIImage imageNamed:WAKE_IMAGE];
 	
 	NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"Try waking up at\none of these times:"];
-	[string addAttribute:NSBaselineOffsetAttributeName value:@-3 range:NSMakeRange(string.length-1, 1)];
+	[string addAttribute:NSBaselineOffsetAttributeName
+				   value:@-3
+				   range:NSMakeRange(string.length-1, 1)];
 	_instructionalLabel.attributedText = string;
 }
 

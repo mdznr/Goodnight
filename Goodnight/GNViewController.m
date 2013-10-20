@@ -27,7 +27,7 @@
 @property (strong, nonatomic) GNTimePickerViewController *timePickerViewController;
 
 @property (strong, nonatomic) IBOutlet UIButton *infoButton;
-@property (strong, nonatomic) UIView *info;
+@property (strong, nonatomic) GNInfoViewController *infoViewController;
 
 @property (strong, nonatomic) IBOutlet UIView *instructionsView;
 @property (strong, nonatomic) IBOutlet UILabel *instructions;
@@ -99,10 +99,12 @@
 	[self fadeInstructionsOut];
 	
 	// Setup instructions
-	_info = [[GNInfoViewController alloc] initWithNibName:@"GNInfoViewController"
-													 bundle:nil].view;
-	_info.alpha = 0.0f;
-	[_scrollView insertSubview:_info belowSubview:_infoButton];
+	_infoViewController = [[GNInfoViewController alloc] initWithNibName:@"GNInfoViewController"
+																 bundle:nil];
+	_infoViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+	_infoViewController.view.frame = self.view.frame;
+	_infoViewController.view.alpha = 0.0f;
+	[_scrollView insertSubview:_infoViewController.view belowSubview:_infoButton];
 }
 
 
@@ -352,9 +354,11 @@
 		  initialSpringVelocity:1.0f
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
-						 _info.alpha = 1.0f;
+						 _infoViewController.view.alpha = 1.0f;
 					 }
 					 completion:^(BOOL finished) {}];
+	
+	_scrollView.scrollEnabled = NO;
 }
 
 - (void)hideInfo
@@ -365,7 +369,7 @@
 		  initialSpringVelocity:1.0f
 						options:UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
-						 _info.alpha = 0.0f;
+						 _infoViewController.view.alpha = 0.0f;
 					 }
 					 completion:^(BOOL finished) {}];
 	
@@ -382,6 +386,8 @@
 	} else {
 		[_timesViewController animateIn];
 	}
+	
+	_scrollView.scrollEnabled = YES;
 }
 
 

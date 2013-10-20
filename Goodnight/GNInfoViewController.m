@@ -10,6 +10,9 @@
 
 @interface GNInfoViewController ()
 
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet UILabel *firstParagraph;
+
 @end
 
 @implementation GNInfoViewController
@@ -19,8 +22,20 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+		[[NSNotificationCenter defaultCenter] addObserver:self
+												 selector:@selector(preferredContentSizeDidChange:)
+													 name:UIContentSizeCategoryDidChangeNotification
+												   object:nil];
     }
     return self;
+}
+
+- (void)preferredContentSizeDidChange:(id)sender
+{
+	NSLog(@"preferredContentSizeDidChange");
+	_firstParagraph.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+	[_firstParagraph invalidateIntrinsicContentSize];
+	[_scrollView invalidateIntrinsicContentSize];
 }
 
 - (void)viewDidLoad

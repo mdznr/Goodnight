@@ -33,6 +33,9 @@
 
 #define ANIMATION_DURATION 0.75f
 
+#define WAKE_MODE_DATE_PICKER_MINUTE_INTERVAL 5
+#define SLEEP_MODE_DATE_PICKER_MINUTE_INTERVAL 5
+
 @implementation GNTimePickerViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -149,8 +152,7 @@
 
 - (void)sleepMode
 {
-#warning set datePicker minuteInterval?
-	_datePicker.minuteInterval = 1;
+	_datePicker.minuteInterval = SLEEP_MODE_DATE_PICKER_MINUTE_INTERVAL;
 	if ( self.mode != GNTimePickerModeSleep ) {
 		[UIView animateWithDuration:ANIMATION_DURATION
 							  delay:0.0f
@@ -186,8 +188,7 @@
 
 - (void)wakeMode
 {
-#warning set datePicker minuteInterval?
-	_datePicker.minuteInterval = 5;
+	_datePicker.minuteInterval = WAKE_MODE_DATE_PICKER_MINUTE_INTERVAL;
 	if ( self.mode != GNTimePickerModeWake ) {
 		[UIView animateWithDuration:ANIMATION_DURATION
 							  delay:0.0f
