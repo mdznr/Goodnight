@@ -104,7 +104,7 @@
 	_infoViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	_infoViewController.view.frame = self.view.frame;
 	_infoViewController.view.alpha = 0.0f;
-	[_scrollView insertSubview:_infoViewController.view belowSubview:_infoButton];
+	[self.view insertSubview:_infoViewController.view belowSubview:_infoButton];
 }
 
 
@@ -332,6 +332,8 @@
 
 - (void)showInfo
 {
+	[_infoViewController show];
+	
 	if ( _showingMainUI ) {
 		[UIView animateWithDuration:ANIMATION_DURATION
 							  delay:0.0f
@@ -339,39 +341,19 @@
 			  initialSpringVelocity:1.0f
 							options:UIViewAnimationOptionBeginFromCurrentState
 						 animations:^{
-							 _scrollView.contentOffset = (CGPoint){0, self.view.frame.size.height};
+							 // Hide main UI
 						 }
 						 completion:^(BOOL finished) {}];
 	} else {
 		// Animate times out
 		[_timesViewController animateOut];
+		_scrollView.scrollEnabled = NO;
 	}
-	
-	// Show Info text
-	[UIView animateWithDuration:ANIMATION_DURATION
-						  delay:0.0f
-		 usingSpringWithDamping:1.0f
-		  initialSpringVelocity:1.0f
-						options:UIViewAnimationOptionBeginFromCurrentState
-					 animations:^{
-						 _infoViewController.view.alpha = 1.0f;
-					 }
-					 completion:^(BOOL finished) {}];
-	
-	_scrollView.scrollEnabled = NO;
 }
 
 - (void)hideInfo
 {
-	[UIView animateWithDuration:ANIMATION_DURATION
-						  delay:0.0f
-		 usingSpringWithDamping:1.0f
-		  initialSpringVelocity:1.0f
-						options:UIViewAnimationOptionBeginFromCurrentState
-					 animations:^{
-						 _infoViewController.view.alpha = 0.0f;
-					 }
-					 completion:^(BOOL finished) {}];
+	[_infoViewController hide];
 	
 	if ( _showingMainUI ) {
 		[UIView animateWithDuration:ANIMATION_DURATION
@@ -380,14 +362,13 @@
 			  initialSpringVelocity:1.0f
 							options:UIViewAnimationOptionBeginFromCurrentState
 						 animations:^{
-							 _scrollView.contentOffset = CGPointZero;
+							 // Bring back main UI
 						 }
 						 completion:^(BOOL finished) {}];
 	} else {
 		[_timesViewController animateIn];
+		_scrollView.scrollEnabled = YES;
 	}
-	
-	_scrollView.scrollEnabled = YES;
 }
 
 

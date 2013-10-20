@@ -12,4 +12,7 @@
 
 @property (strong, nonatomic) id delegate;
 
+- (void)show;
+- (void)hide;
+
 @end

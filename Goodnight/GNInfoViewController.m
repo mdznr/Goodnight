@@ -15,6 +15,8 @@
 
 @end
 
+#define ANIMATION_DURATION 0.75f
+
 @implementation GNInfoViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -42,6 +44,34 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)show
+{
+	[UIView animateWithDuration:ANIMATION_DURATION
+						  delay:0.0f
+		 usingSpringWithDamping:1.0f
+		  initialSpringVelocity:1.0f
+						options:UIViewAnimationOptionBeginFromCurrentState
+					 animations:^{
+						 self.view.alpha = 1.0f;
+					 }
+					 completion:^(BOOL finished) {}];
+}
+
+- (void)hide
+{
+	[UIView animateWithDuration:ANIMATION_DURATION
+						  delay:0.0f
+		 usingSpringWithDamping:1.0f
+		  initialSpringVelocity:1.0f
+						options:UIViewAnimationOptionBeginFromCurrentState
+					 animations:^{
+						 self.view.alpha = 0.0f;
+					 }
+					 completion:^(BOOL finished) {
+						 [_scrollView scrollRectToVisible:CGRectZero animated:NO];
+					 }];
 }
 
 - (void)didReceiveMemoryWarning
