@@ -89,6 +89,8 @@
 		[self setupForWakeMode];
 	}
 	
+	_showingTimes = YES;
+	
 	_alarmViewController = [[GNAlarmViewController alloc] initWithNibName:@"GNAlarmViewController" bundle:nil];
 	_alarmViewController.view.frame = self.view.frame;
 	_alarmViewController.view.alpha = 0.0f;
@@ -231,6 +233,8 @@
 			[self didTapSleepReminderTime:sender];
 		} break;
 	}
+	
+	_showingTimes = NO;
 }
 
 - (void)didTapAlarmTime:(UIButton *)sender
@@ -375,6 +379,8 @@
 					 completion:^(BOOL finished) {}];
 	
 	[_delegate timesViewControllerDidCancelAlarm];
+	
+	_showingTimes = YES;
 }
 
 
@@ -423,6 +429,8 @@
 					 completion:^(BOOL finished) {}];
 	
 	[_delegate timesViewControllerDidCancelSleepReminder];
+	
+	_showingTimes = YES;
 }
 
 
@@ -468,19 +476,21 @@
 					 }
 					 completion:^(BOOL finished) {}];
 	
-	// Animate back button in
-	_backButton.alpha = 0.0f;
-	_backButton.frame = CGRectOffset(_backButton.frame, 0, 16);
-	[UIView animateWithDuration:ANIMATION_DURATION
-						  delay:ANIMATION_DURATION/3
-		 usingSpringWithDamping:1.0f
-		  initialSpringVelocity:1.0f
-						options:0
-					 animations:^{
-						 _backButton.alpha = 1.0f;
-						 _backButton.frame = CGRectOffset(_backButton.frame, 0, -16);
-					 }
-					 completion:^(BOOL finished) {}];
+	if ( _showingTimes ) {
+		// Animate back button in
+		_backButton.alpha = 0.0f;
+		_backButton.frame = CGRectOffset(_backButton.frame, 0, 16);
+		[UIView animateWithDuration:ANIMATION_DURATION
+							  delay:ANIMATION_DURATION/3
+			 usingSpringWithDamping:1.0f
+			  initialSpringVelocity:1.0f
+							options:0
+						 animations:^{
+							 _backButton.alpha = 1.0f;
+							 _backButton.frame = CGRectOffset(_backButton.frame, 0, -16);
+						 }
+						 completion:^(BOOL finished) {}];
+	}
 	
 	// Move text back below view
 

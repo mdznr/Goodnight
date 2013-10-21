@@ -367,7 +367,7 @@
 						 completion:^(BOOL finished) {}];
 	} else {
 		[_timesViewController animateIn];
-		_scrollView.scrollEnabled = YES;
+		_scrollView.scrollEnabled = [_timesViewController showingTimes];
 	}
 }
 
