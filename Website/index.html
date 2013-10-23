@@ -75,28 +75,38 @@
 			$("#stars").animate({opacity: (-Math.abs(section-1)/1.5)+1}, animation_duration, "swing");
 		});
 				
-		// Testimonails
-		var quotes = ["I've never been so excited about going to sleep",
+		// Testimonials
+		var testimonialQuotes = ["I've never been so excited about going to sleep",
 		              "Waking up is so much easier now",
 		              "An absolutely beautiful app designed with the best of iOS 7 principles"];
-		var authors = ["John Gruber",
+		var testimonialAuthors = ["John Gruber",
 		               "Another Person",
 		               "Beautiful Pixels"];
+		var testimonialLinks = ["http://daringfireball.net",
+								 "",
+								 "http://beautifulpixels.com"];
 		var currentTestimonial = 0;
 		
 		// Animate through testimonials
 		function animateTestimonials() {
 			console.log(currentTestimonial);
-			currentTestimonial = (currentTestimonial+1) % quotes.length;
+			currentTestimonial = (currentTestimonial+1) % testimonialQuotes.length;
 			console.log(currentTestimonial);
 			var duration = 500;
 			$("#quote").fadeOut(duration, "swing");
 			$("#author").fadeOut(duration, "swing");
-			// TODO: These should be done qith jQuery
+			// TODO: These should be done with jQuery
 			$(window).delay(duration);
 			setTimeout(function() {
-				document.getElementById("quote").innerText = "\""+quotes[currentTestimonial]+"\"";
-				document.getElementById("author").innerText = authors[currentTestimonial];
+				var link = testimonialLinks[currentTestimonial];
+				var quote = testimonialQuotes[currentTestimonial];
+				var author = testimonialAuthors[currentTestimonial];
+				document.getElementById("quote").innerText = "\"" + quote + "\"";
+				if ( link.length > 0 ) {
+					document.getElementById("author").innerHTML = "<a href=\"" + link + "\">" + author + "</a>";
+				} else {
+					document.getElementById("author").innerHTML = author;
+				}
 				$("#quote").fadeIn(duration, "swing");
 				$("#author").fadeIn(duration, "swing");
 			}, duration);
@@ -105,7 +115,7 @@
 		var animateTestimonialsInterval;
 		function startTestimonialAnimationInterval() {
 			// Periodically go through testimonials
-			animateTestimonialsInterval = setInterval(animateTestimonials, 6000);
+			animateTestimonialsInterval = setInterval(animateTestimonials, 4000);
 		}
 		startTestimonialAnimationInterval();
 		
@@ -321,6 +331,13 @@
 			text-align: right;
 			color: rgba(255,255,255,0.75);
 		}
+		#author a {
+			color: rgba(255,255,255,0.75);
+			text-decoration: none;
+		}
+		#author a:hover {
+			text-decoration: underline;
+		}
 		#centering {
 			position: fixed;
 			height: 100%;
@@ -438,7 +455,7 @@
 			</div>
 			<div id="testimonials">
 				<p id="quote">"I've never been so excited about going to sleep"</p>
-				<p id="author">John Gruber</p>
+				<p id="author"><a href="http://daringfireball.net">John Gruber</a></p>
 			</div>
 		</div>
 	</div>
