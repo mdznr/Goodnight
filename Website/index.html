@@ -6,6 +6,16 @@
 	<script type="text/javascript" src="jquery.transform-0.9.3.min.js"></script>
 	<script>
 		
+		window.onload = function() {
+			
+			// Don't fade out testimonials when the user is hovering over it
+			$("#testimonials").mouseenter( function() {
+				clearInterval(animateTestimonialsInterval);
+			}).mouseleave( function() {
+				startTestimonialAnimationInterval();
+			});
+		};
+		
 		// This should also be called on page load
 		var animation_duration = 8;
 		jQuery(window).scroll(function(event) {
@@ -92,8 +102,12 @@
 			}, duration);
 		}
 		
-		// Periodically go through testimonials
-		setInterval(animateTestimonials, 6000);
+		var animateTestimonialsInterval;
+		function startTestimonialAnimationInterval() {
+			// Periodically go through testimonials
+			animateTestimonialsInterval = setInterval(animateTestimonials, 6000);
+		}
+		startTestimonialAnimationInterval();
 		
 		/*
 		var is_touch_device = 'ontouchstart' in document.documentElement;
