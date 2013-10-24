@@ -19,6 +19,23 @@
 		
 		// This should also be called on page load
 		var animation_duration = 0;
+		var currentScreenshotIndex = 0;
+		
+		var fadeScreenshotBackIn;
+		
+		function fadeScreenshotOut(duration) {
+			$("#iPhone").fadeOut(duration, "swing");
+			clearTimeout(fadeScreenshotBackIn);	
+		}
+		
+		function fadeScreenshotIn(backgroundImage, duration) {
+			clearTimeout(fadeScreenshotBackIn);
+			fadeScreenshotBackIn = setTimeout(function() {
+				$("#iPhone").css({"background": "url(\"screenshots/"+backgroundImage+".png\") center right no-repeat"});
+				$("#iPhone").fadeIn(duration, "swing");
+			}, duration);
+		}
+		
 		jQuery(window).scroll(function(event) {
 			var section = jQuery(window).scrollTop() / $('div.section').height();
 			
@@ -32,19 +49,19 @@
 			
 			// Change iPhone screenshot (temporary for now)
 			var backgroundImage;
-			switch ( Math.round(section) ) {
-				case 0:
-					backgroundImage = "alarm"; break;
-				case 1:
-					backgroundImage = "picker"; break;
-				case 2:
-					backgroundImage = "cycles"; break;
-				case 3:
-					backgroundImage = "morning"; break;
-				default:
-					backgroundImage = "alarm"; break;
+			var newScreenshotIndex = Math.max(Math.min(Math.round(section),3),0);
+			if ( newScreenshotIndex != currentScreenshotIndex ) {
+				currentScreenshotIndex = newScreenshotIndex
+				switch ( currentScreenshotIndex ) {
+					case 0: backgroundImage = "alarm"; break;
+					case 1: backgroundImage = "picker"; break;
+					case 2: backgroundImage = "cycles"; break;
+					case 3: backgroundImage = "morning"; break;
+				}
+				var duration = 100;
+				fadeScreenshotOut(duration);
+				fadeScreenshotIn(backgroundImage, duration);
 			}
-			$("#iPhone").css({"background": "url(\"screenshots/"+backgroundImage+".png\") center right no-repeat"});
 			
 			// Animate Sky Color
 			$("#skyBackground1").animate({opacity: -section+1}, animation_duration, "swing");
@@ -104,7 +121,7 @@
 				var author = testimonialAuthors[currentTestimonial];
 				document.getElementById("quote").innerText = "\"" + quote + "\"";
 				if ( link.length > 0 ) {
-					document.getElementById("author").innerHTML = "<a href=\"" + link + "\">" + author + "</a>";
+					document.getElementById("author").innerHTML = "<a href=\"" + link + " target=\"_blank\" \">" + author + "</a>";
 				} else {
 					document.getElementById("author").innerHTML = author;
 				}
@@ -456,7 +473,7 @@
 			</div>
 			<div id="testimonials">
 				<p id="quote">"I've never been so excited about going to sleep"</p>
-				<p id="author"><a href="http://daringfireball.net">John Gruber</a></p>
+				<p id="author"><a href="http://daringfireball.net" target="_blank">John Gruber</a></p>
 			</div>
 		</div>
 	</div>
