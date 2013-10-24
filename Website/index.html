@@ -18,7 +18,7 @@
 		};
 		
 		// This should also be called on page load
-		var animation_duration = 8;
+		var animation_duration = 0;
 		jQuery(window).scroll(function(event) {
 			var section = jQuery(window).scrollTop() / $('div.section').height();
 			
@@ -39,8 +39,8 @@
 					backgroundImage = "picker"; break;
 				case 2:
 					backgroundImage = "cycles"; break;
-				//case 3:
-					//backgroundImage = "morning"; break;
+				case 3:
+					backgroundImage = "morning"; break;
 				default:
 					backgroundImage = "alarm"; break;
 			}
