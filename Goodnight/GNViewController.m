@@ -159,6 +159,8 @@
 					 completion:^(BOOL finished) {
 						 [self topMode];
 					 }];
+	
+	_showingMainUI = NO;
 }
 
 
@@ -345,8 +347,15 @@
 						 }
 						 completion:^(BOOL finished) {}];
 	} else {
-		// Animate times out
-		[_timesViewController animateOut];
+		[UIView animateWithDuration:ANIMATION_DURATION
+							  delay:0.0f
+			 usingSpringWithDamping:1.0f
+			  initialSpringVelocity:1.0f
+							options:UIViewAnimationOptionBeginFromCurrentState
+						 animations:^{
+							 _scrollView.alpha = 0.0f;
+						 }
+						 completion:^(BOOL finished) {}];
 		_scrollView.scrollEnabled = NO;
 	}
 }
@@ -366,7 +375,15 @@
 						 }
 						 completion:^(BOOL finished) {}];
 	} else {
-		[_timesViewController animateIn];
+		[UIView animateWithDuration:ANIMATION_DURATION
+							  delay:0.0f
+			 usingSpringWithDamping:1.0f
+			  initialSpringVelocity:1.0f
+							options:UIViewAnimationOptionBeginFromCurrentState
+						 animations:^{
+							 _scrollView.alpha = 1.0f;
+						 }
+						 completion:^(BOOL finished) {}];
 		_scrollView.scrollEnabled = [_timesViewController showingTimes];
 	}
 }
