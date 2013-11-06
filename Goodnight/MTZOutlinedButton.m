@@ -10,10 +10,7 @@
 
 #define DEFAULT_THICKNESS 1.0f
 
-
-@interface MTZOutlinedButton () {
-	MTZOutlineLayer *_outlineLayer;
-}
+@interface MTZOutlinedButton ()
 
 @property (nonatomic) CGFloat borderWidth;
 
@@ -52,32 +49,16 @@
 - (void)setup
 {
 	// Setting up some defaults
-	
 	_borderWidth = DEFAULT_THICKNESS;
-	
-	
-	// Light blue color
-	[self setTintColor:[UIColor colorWithRed: 52.0f/255.0f
-									   green:170.0f/255.0f
-										blue:220.0f/255.0f
-									   alpha:1.0f]];
-	
 	_cornerRadius = 8.0f;
-	
-	_outlineLayer = [MTZOutlineLayer layer];
-	_outlineLayer.frame = self.bounds;
-	_outlineLayer.color = self.tintColor.CGColor;
-	_outlineLayer.thickness = _borderWidth;
-	_outlineLayer.radius = _cornerRadius;
-	[self.layer addSublayer:_outlineLayer];
 }
 
 - (void)setTintColor:(UIColor *)normalColor
 {
 	[super setTintColor:normalColor];
-	_outlineLayer.color = normalColor.CGColor;
 	return;
 	
+	// If I went the background image route
 	CGFloat h,s,b,a;
 	[normalColor getHue:&h
 			 saturation:&s
@@ -133,6 +114,25 @@
 - (void)tintColorDidChange
 {
 	[super tintColorDidChange];
+	[self setNeedsDisplay];
+}
+
+- (void)drawRect:(CGRect)rect
+{
+	[super drawRect:rect];
+	
+	CGRect innerRect = CGRectInset(rect, self.borderWidth/2, self.borderWidth/2);
+	UIBezierPath *bp = [UIBezierPath bezierPathWithRoundedRect:innerRect
+												  cornerRadius:self.cornerRadius];
+	bp.lineWidth = self.borderWidth;
+	
+	CGContextRef ctx = UIGraphicsGetCurrentContext();
+	CGContextAddPath(ctx, bp.CGPath);
+	CGContextSetFillColorWithColor(ctx, self.tintColor.CGColor);
+	CGContextSetStrokeColorWithColor(ctx, self.tintColor.CGColor);
+	CGContextSetLineWidth(ctx, self.borderWidth);
+//	CGContextDrawPath(ctx, kCGPathFillStroke);
+	CGContextDrawPath(ctx, kCGPathStroke);
 }
 
 @end

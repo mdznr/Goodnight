@@ -11,7 +11,6 @@
 		C91DBAA0180093AD0007DC21 /* GNTimePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C91DBA9E180093AD0007DC21 /* GNTimePickerViewController.xib */; };
 		C91DBAED180265A70007DC21 /* GNAlarmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C91DBAEB180265A70007DC21 /* GNAlarmViewController.m */; };
 		C91DBAEE180265A70007DC21 /* GNAlarmViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C91DBAEC180265A70007DC21 /* GNAlarmViewController.xib */; };
-		C968CC3917E91711005CD5F4 /* MTZOutlineLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C968CC3817E91711005CD5F4 /* MTZOutlineLayer.m */; };
 		C968CC4417EA676F005CD5F4 /* GNInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C968CC4217EA676F005CD5F4 /* GNInfoViewController.m */; };
 		C968CC4517EA676F005CD5F4 /* GNInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C968CC4317EA676F005CD5F4 /* GNInfoViewController.xib */; };
 		C969821E17E54BC700AB44F6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C969821D17E54BC700AB44F6 /* QuartzCore.framework */; };
@@ -41,8 +40,6 @@
 		C91DBAEA180265A70007DC21 /* GNAlarmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNAlarmViewController.h; sourceTree = "<group>"; };
 		C91DBAEB180265A70007DC21 /* GNAlarmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNAlarmViewController.m; sourceTree = "<group>"; };
 		C91DBAEC180265A70007DC21 /* GNAlarmViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GNAlarmViewController.xib; sourceTree = "<group>"; };
-		C968CC3717E91711005CD5F4 /* MTZOutlineLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTZOutlineLayer.h; sourceTree = "<group>"; };
-		C968CC3817E91711005CD5F4 /* MTZOutlineLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTZOutlineLayer.m; sourceTree = "<group>"; };
 		C968CC4117EA676F005CD5F4 /* GNInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNInfoViewController.h; sourceTree = "<group>"; };
 		C968CC4217EA676F005CD5F4 /* GNInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNInfoViewController.m; sourceTree = "<group>"; };
 		C968CC4317EA676F005CD5F4 /* GNInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GNInfoViewController.xib; sourceTree = "<group>"; };
@@ -146,8 +143,6 @@
 				C969822017E54F6D00AB44F6 /* UIImage+BezierPath.m */,
 				C969822517E6C52C00AB44F6 /* MTZOutlinedButton.h */,
 				C969822617E6C52C00AB44F6 /* MTZOutlinedButton.m */,
-				C968CC3717E91711005CD5F4 /* MTZOutlineLayer.h */,
-				C968CC3817E91711005CD5F4 /* MTZOutlineLayer.m */,
 				C98E128317E7C279009AC0C6 /* MTZTriangleView.h */,
 				C98E128417E7C279009AC0C6 /* MTZTriangleView.m */,
 				C9E6CFD317E2326100E65CE9 /* Images.xcassets */,
@@ -252,7 +247,6 @@
 				C9857FD61808C81200F15A68 /* GNSleepReminderViewController.m in Sources */,
 				C98E128517E7C279009AC0C6 /* MTZTriangleView.m in Sources */,
 				C9F0677C17EBB1B9006E243F /* GNTimesViewController.m in Sources */,
-				C968CC3917E91711005CD5F4 /* MTZOutlineLayer.m in Sources */,
 				C9ED790C15549BCB002064B2 /* main.m in Sources */,
 				C9ED791015549BCB002064B2 /* GNAppDelegate.m in Sources */,
 				C9ED791815549BCB002064B2 /* GNViewController.m in Sources */,

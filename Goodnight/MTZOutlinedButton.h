@@ -6,7 +6,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MTZOutlineLayer.h"
 
 @interface MTZOutlinedButton : UIButton
 
