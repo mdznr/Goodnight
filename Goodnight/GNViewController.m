@@ -13,6 +13,7 @@
 #import "GNInfoViewController.h"
 #import "GNTimePickerViewController.h"
 #import "GNTimesViewController.h"
+#import "GNAlarm.h"
 
 @interface GNViewController () <UIScrollViewDelegate, GNTimePickerViewControllerDelegate, GNTimesViewControllerDelegate>
 
@@ -187,18 +188,21 @@
 
 - (void)timesViewControllerDidSetAlarm:(NSDate *)alarmTime
 {
+	[[GNAlarm sharedAlarm] setAlarm:alarmTime];
 	_scrollView.scrollEnabled = NO;
 	[self animateToDusk];
 }
 
 - (void)timesViewControllerDidSetSleepReminder:(NSDate *)reminderTime forWakeUpTime:(NSDate *)wakeTime;
 {
+	[[GNAlarm sharedAlarm] setReminder:reminderTime forWakeUpTime:wakeTime];
 	_scrollView.scrollEnabled = NO;
 	[self animateToDusk];
 }
 
 - (void)timesViewControllerDidCancelAlarm
 {
+	[[GNAlarm sharedAlarm] cancel];
 	switch ( _timesViewController.mode ) {
 		case GNTimesViewControllerModeSleepTimes:
 			[self animateToDusk];
@@ -213,6 +217,7 @@
 
 - (void)timesViewControllerDidCancelSleepReminder
 {
+	[[GNAlarm sharedAlarm] cancel];
 	switch ( _timesViewController.mode ) {
 		case GNTimesViewControllerModeSleepTimes:
 			[self animateToDusk];

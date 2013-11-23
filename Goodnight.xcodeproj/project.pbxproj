@@ -18,6 +18,11 @@
 		C969822717E6C52C00AB44F6 /* MTZOutlinedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C969822617E6C52C00AB44F6 /* MTZOutlinedButton.m */; };
 		C9857FD61808C81200F15A68 /* GNSleepReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9857FD41808C81200F15A68 /* GNSleepReminderViewController.m */; };
 		C9857FD71808C81200F15A68 /* GNSleepReminderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9857FD51808C81200F15A68 /* GNSleepReminderViewController.xib */; };
+		C98711E718404EC000E324EF /* GNAlarm.m in Sources */ = {isa = PBXBuildFile; fileRef = C98711E618404EC000E324EF /* GNAlarm.m */; };
+		C98711EC184054F600E324EF /* MTZAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = C98711E9184054F600E324EF /* MTZAlertView.m */; };
+		C98711ED184054F600E324EF /* UIAlertView+DelegateFix.m in Sources */ = {isa = PBXBuildFile; fileRef = C98711EB184054F600E324EF /* UIAlertView+DelegateFix.m */; };
+		C98711F0184125C400E324EF /* Goodnight.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C98711EE184125C400E324EF /* Goodnight.mp3 */; };
+		C98711F1184125C400E324EF /* Pendulum.m4a in Resources */ = {isa = PBXBuildFile; fileRef = C98711EF184125C400E324EF /* Pendulum.m4a */; };
 		C98E128517E7C279009AC0C6 /* MTZTriangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = C98E128417E7C279009AC0C6 /* MTZTriangleView.m */; };
 		C9E6CFD417E2326100E65CE9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9E6CFD317E2326100E65CE9 /* Images.xcassets */; };
 		C9ED790015549BCB002064B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9ED78FF15549BCB002064B2 /* UIKit.framework */; };
@@ -51,6 +56,14 @@
 		C9857FD31808C81200F15A68 /* GNSleepReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNSleepReminderViewController.h; sourceTree = "<group>"; };
 		C9857FD41808C81200F15A68 /* GNSleepReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNSleepReminderViewController.m; sourceTree = "<group>"; };
 		C9857FD51808C81200F15A68 /* GNSleepReminderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GNSleepReminderViewController.xib; sourceTree = "<group>"; };
+		C98711E518404EC000E324EF /* GNAlarm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNAlarm.h; sourceTree = "<group>"; };
+		C98711E618404EC000E324EF /* GNAlarm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GNAlarm.m; sourceTree = "<group>"; };
+		C98711E8184054F600E324EF /* MTZAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTZAlertView.h; sourceTree = "<group>"; };
+		C98711E9184054F600E324EF /* MTZAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTZAlertView.m; sourceTree = "<group>"; };
+		C98711EA184054F600E324EF /* UIAlertView+DelegateFix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+DelegateFix.h"; sourceTree = "<group>"; };
+		C98711EB184054F600E324EF /* UIAlertView+DelegateFix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+DelegateFix.m"; sourceTree = "<group>"; };
+		C98711EE184125C400E324EF /* Goodnight.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Goodnight.mp3; sourceTree = "<group>"; };
+		C98711EF184125C400E324EF /* Pendulum.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pendulum.m4a; sourceTree = "<group>"; };
 		C98E128317E7C279009AC0C6 /* MTZTriangleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTZTriangleView.h; sourceTree = "<group>"; };
 		C98E128417E7C279009AC0C6 /* MTZTriangleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTZTriangleView.m; sourceTree = "<group>"; };
 		C9E6CFD317E2326100E65CE9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -121,6 +134,8 @@
 			children = (
 				C9ED790E15549BCB002064B2 /* GNAppDelegate.h */,
 				C9ED790F15549BCB002064B2 /* GNAppDelegate.m */,
+				C98711E518404EC000E324EF /* GNAlarm.h */,
+				C98711E618404EC000E324EF /* GNAlarm.m */,
 				C9ED791615549BCB002064B2 /* GNViewController.h */,
 				C9ED791715549BCB002064B2 /* GNViewController.m */,
 				C9ED791315549BCB002064B2 /* MainStoryboard.storyboard */,
@@ -145,6 +160,12 @@
 				C969822617E6C52C00AB44F6 /* MTZOutlinedButton.m */,
 				C98E128317E7C279009AC0C6 /* MTZTriangleView.h */,
 				C98E128417E7C279009AC0C6 /* MTZTriangleView.m */,
+				C98711E8184054F600E324EF /* MTZAlertView.h */,
+				C98711E9184054F600E324EF /* MTZAlertView.m */,
+				C98711EA184054F600E324EF /* UIAlertView+DelegateFix.h */,
+				C98711EB184054F600E324EF /* UIAlertView+DelegateFix.m */,
+				C98711EE184125C400E324EF /* Goodnight.mp3 */,
+				C98711EF184125C400E324EF /* Pendulum.m4a */,
 				C9E6CFD317E2326100E65CE9 /* Images.xcassets */,
 				C9ED790615549BCB002064B2 /* Supporting Files */,
 			);
@@ -226,9 +247,11 @@
 				C91DBAEE180265A70007DC21 /* GNAlarmViewController.xib in Resources */,
 				C9ED791215549BCB002064B2 /* Goodnight.entitlements in Resources */,
 				C968CC4517EA676F005CD5F4 /* GNInfoViewController.xib in Resources */,
+				C98711F0184125C400E324EF /* Goodnight.mp3 in Resources */,
 				C9F0677D17EBB1B9006E243F /* GNTimesViewController.xib in Resources */,
 				C9ED791515549BCB002064B2 /* MainStoryboard.storyboard in Resources */,
 				C9857FD71808C81200F15A68 /* GNSleepReminderViewController.xib in Resources */,
+				C98711F1184125C400E324EF /* Pendulum.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,7 +264,9 @@
 			files = (
 				C969822717E6C52C00AB44F6 /* MTZOutlinedButton.m in Sources */,
 				C91DBAED180265A70007DC21 /* GNAlarmViewController.m in Sources */,
+				C98711E718404EC000E324EF /* GNAlarm.m in Sources */,
 				C968CC4417EA676F005CD5F4 /* GNInfoViewController.m in Sources */,
+				C98711ED184054F600E324EF /* UIAlertView+DelegateFix.m in Sources */,
 				C91DBA9F180093AD0007DC21 /* GNTimePickerViewController.m in Sources */,
 				C969822117E54F6D00AB44F6 /* UIImage+BezierPath.m in Sources */,
 				C9857FD61808C81200F15A68 /* GNSleepReminderViewController.m in Sources */,
@@ -250,6 +275,7 @@
 				C9ED790C15549BCB002064B2 /* main.m in Sources */,
 				C9ED791015549BCB002064B2 /* GNAppDelegate.m in Sources */,
 				C9ED791815549BCB002064B2 /* GNViewController.m in Sources */,
+				C98711EC184054F600E324EF /* MTZAlertView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

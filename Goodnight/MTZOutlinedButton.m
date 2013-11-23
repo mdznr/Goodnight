@@ -117,6 +117,16 @@
 	[self setNeedsDisplay];
 }
 
+- (void)setHighlighted:(BOOL)highlighted
+{
+	[super setHighlighted:highlighted];
+	if ( highlighted ) {
+		//NSLog(@"YES");
+	} else {
+		//NSLog(@"NO");
+	}
+}
+
 - (void)drawRect:(CGRect)rect
 {
 	[super drawRect:rect];

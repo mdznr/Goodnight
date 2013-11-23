@@ -24,15 +24,15 @@
 		var fadeScreenshotBackIn;
 		
 		function fadeScreenshotOut(duration) {
-			$("#iPhone").fadeOut(duration, "swing");
+			$("#iPhoneSS").fadeOut(duration, "swing");
 			clearTimeout(fadeScreenshotBackIn);	
 		}
 		
 		function fadeScreenshotIn(backgroundImage, duration) {
 			clearTimeout(fadeScreenshotBackIn);
 			fadeScreenshotBackIn = setTimeout(function() {
-				$("#iPhone").css({"background": "url(\"screenshots/"+backgroundImage+".png\") center right no-repeat"});
-				$("#iPhone").fadeIn(duration, "swing");
+				$("#iPhoneSS").css({"background": "url(\"screenshots/"+backgroundImage+".png\") center right no-repeat"});
+				$("#iPhoneSS").fadeIn(duration, "swing");
 			}, duration);
 		}
 		
@@ -53,10 +53,10 @@
 			if ( newScreenshotIndex != currentScreenshotIndex ) {
 				currentScreenshotIndex = newScreenshotIndex
 				switch ( currentScreenshotIndex ) {
-					case 0: backgroundImage = "alarm"; break;
-					case 1: backgroundImage = "picker"; break;
-					case 2: backgroundImage = "cycles"; break;
-					case 3: backgroundImage = "morning"; break;
+					case 0: backgroundImage = "alarm@2x"; break;
+					case 1: backgroundImage = "picker@2x"; break;
+					case 2: backgroundImage = "cycles@2x"; break;
+					case 3: backgroundImage = "morning@2x"; break;
 				}
 				var duration = 100;
 				fadeScreenshotOut(duration);
@@ -368,6 +368,22 @@
 			//background-color: #ff0000;
 		}
 		#iPhone {
+			position: absolute;
+			top: 0;
+			display: block;
+			background: url("screenshots/iPhone.png") no-repeat;
+			background-size: 492px, 327px;
+			background-position: 100% 52%;
+			width: 100%;
+			height: 100%;
+			max-width: 832px;
+			min-width: 800px;
+			margin: auto;
+			padding: 0 64px;
+		}
+		#iPhoneSS {
+			position: absolute;
+			top: 0;
 			display: block;
 			background: url("screenshots/alarm.png") no-repeat;
 			background-size: 492px, 327px;
@@ -446,7 +462,12 @@
 		only screen and (                min-resolution: 2dppx)
 		{ 
 			#iPhone {
-				background: url("screenshots/alarm@2x.png") no-repeat;
+				background: url("screenshots/iPhone@2x.png") no-repeat;
+				background-size: 492px, 327px;
+			}
+			
+			#iPhoneSS {
+				
 			}
 		}
 		
@@ -462,6 +483,7 @@
 	
 	<div id="centering">
 		<div id="iPhone"></div>
+		<div id="iPhoneSS"></div>
 	</div>
 	
 	<div class="section">
