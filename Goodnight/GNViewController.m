@@ -230,6 +230,12 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+	// Limit the offset (like Control Center)
+	CGPoint offsetPoint = _scrollView.contentOffset;
+	CGFloat limit = self.view.frame.size.height + 64;
+	offsetPoint.y = MIN(offsetPoint.y, limit);
+	[_scrollView setContentOffset:offsetPoint];
+	
 	CGFloat scrollOffset = _scrollView.contentOffset.y;
 	CGFloat scrollTotal = _scrollView.contentSize.height - _scrollView.frame.size.height;
 	CGFloat scrollFraction = scrollOffset / scrollTotal;
