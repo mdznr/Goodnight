@@ -152,7 +152,7 @@
 						  delay:0.0f
 		 usingSpringWithDamping:1.0f
 		  initialSpringVelocity:1.0f
-						options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionAllowUserInteraction
+						options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction
 					 animations:^{
 						 _scrollView.contentOffset = CGPointZero;
 					 }
@@ -175,7 +175,7 @@
 						  delay:0.0f
 		 usingSpringWithDamping:1.0f
 		  initialSpringVelocity:1.0f
-						options:UIViewAnimationOptionBeginFromCurrentState
+						options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction
 					 animations:^{
 						 _scrollView.contentOffset = (CGPoint){0,_scrollView.frame.size.height};
 					 }
@@ -413,7 +413,7 @@
 						  delay:0.0f
 		 usingSpringWithDamping:10.0f
 		  initialSpringVelocity:1.0f
-						options:UIViewAnimationOptionBeginFromCurrentState
+						options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction
 					 animations:^{
 						 CGFloat skyStart = -20 + (_sky.image.size.height/2);
 						 _sky.center = (CGPoint){_sky.image.size.width/2, skyStart};
@@ -439,7 +439,7 @@
 						  delay:0.0f
 		 usingSpringWithDamping:10.0f
 		  initialSpringVelocity:1.0f
-						options:UIViewAnimationOptionBeginFromCurrentState
+						options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction
 					 animations:^{
 						 CGFloat skyEnd = 20 + _scrollView.frame.size.height - (_sky.image.size.height/2);
 						 _sky.center = (CGPoint){_sky.image.size.width/2, skyEnd};
