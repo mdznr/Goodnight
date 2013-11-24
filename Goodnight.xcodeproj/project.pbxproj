@@ -23,6 +23,7 @@
 		C98711ED184054F600E324EF /* UIAlertView+DelegateFix.m in Sources */ = {isa = PBXBuildFile; fileRef = C98711EB184054F600E324EF /* UIAlertView+DelegateFix.m */; };
 		C98711F0184125C400E324EF /* Goodnight.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C98711EE184125C400E324EF /* Goodnight.mp3 */; };
 		C98711F1184125C400E324EF /* Pendulum.m4a in Resources */ = {isa = PBXBuildFile; fileRef = C98711EF184125C400E324EF /* Pendulum.m4a */; };
+		C98711F41842793500E324EF /* NSDate+Rounding.m in Sources */ = {isa = PBXBuildFile; fileRef = C98711F31842793500E324EF /* NSDate+Rounding.m */; };
 		C98E128517E7C279009AC0C6 /* MTZTriangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = C98E128417E7C279009AC0C6 /* MTZTriangleView.m */; };
 		C9E6CFD417E2326100E65CE9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9E6CFD317E2326100E65CE9 /* Images.xcassets */; };
 		C9ED790015549BCB002064B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9ED78FF15549BCB002064B2 /* UIKit.framework */; };
@@ -64,6 +65,8 @@
 		C98711EB184054F600E324EF /* UIAlertView+DelegateFix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+DelegateFix.m"; sourceTree = "<group>"; };
 		C98711EE184125C400E324EF /* Goodnight.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Goodnight.mp3; sourceTree = "<group>"; };
 		C98711EF184125C400E324EF /* Pendulum.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pendulum.m4a; sourceTree = "<group>"; };
+		C98711F21842793500E324EF /* NSDate+Rounding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Rounding.h"; sourceTree = "<group>"; };
+		C98711F31842793500E324EF /* NSDate+Rounding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Rounding.m"; sourceTree = "<group>"; };
 		C98E128317E7C279009AC0C6 /* MTZTriangleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTZTriangleView.h; sourceTree = "<group>"; };
 		C98E128417E7C279009AC0C6 /* MTZTriangleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTZTriangleView.m; sourceTree = "<group>"; };
 		C9E6CFD317E2326100E65CE9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -160,6 +163,8 @@
 				C969822617E6C52C00AB44F6 /* MTZOutlinedButton.m */,
 				C98E128317E7C279009AC0C6 /* MTZTriangleView.h */,
 				C98E128417E7C279009AC0C6 /* MTZTriangleView.m */,
+				C98711F21842793500E324EF /* NSDate+Rounding.h */,
+				C98711F31842793500E324EF /* NSDate+Rounding.m */,
 				C98711E8184054F600E324EF /* MTZAlertView.h */,
 				C98711E9184054F600E324EF /* MTZAlertView.m */,
 				C98711EA184054F600E324EF /* UIAlertView+DelegateFix.h */,
@@ -272,6 +277,7 @@
 				C9857FD61808C81200F15A68 /* GNSleepReminderViewController.m in Sources */,
 				C98E128517E7C279009AC0C6 /* MTZTriangleView.m in Sources */,
 				C9F0677C17EBB1B9006E243F /* GNTimesViewController.m in Sources */,
+				C98711F41842793500E324EF /* NSDate+Rounding.m in Sources */,
 				C9ED790C15549BCB002064B2 /* main.m in Sources */,
 				C9ED791015549BCB002064B2 /* GNAppDelegate.m in Sources */,
 				C9ED791815549BCB002064B2 /* GNViewController.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import "GNTimesViewController.h"
 #import <CoreText/CoreText.h>
+#import "NSDate+Rounding.h"
 
 #import "GNAlarmViewController.h"
 #import "GNSleepReminderViewController.h"
@@ -146,22 +147,22 @@
 - (void)setTimesForSleepMode
 {
 	// Times
-	_date1 = [_date dateByAddingTimeInterval:-(GREAT_SLEEP_TIME)];
+	_date1 = [[_date dateByAddingTimeInterval:-(GREAT_SLEEP_TIME)] dateByRoundingDownToNearestTimeInterval:NSTimeIntervalMinute];
 	[_time1 setTitle:[_dateFormatter stringFromDate:_date1]
 			forState:UIControlStateNormal];
 	_time1.alpha = GREAT_OPACITY;
 	
-	_date2 = [_date dateByAddingTimeInterval:-(GOOD_SLEEP_TIME)];
+	_date2 = [[_date dateByAddingTimeInterval:-(GOOD_SLEEP_TIME)] dateByRoundingDownToNearestTimeInterval:NSTimeIntervalMinute];
 	[_time2 setTitle:[_dateFormatter stringFromDate:_date2]
 			forState:UIControlStateNormal];
 	_time2.alpha = GOOD_OPACITY;
 	
-	_date3 = [_date dateByAddingTimeInterval:-(FINE_SLEEP_TIME)];
+	_date3 = [[_date dateByAddingTimeInterval:-(FINE_SLEEP_TIME)] dateByRoundingDownToNearestTimeInterval:NSTimeIntervalMinute];
 	[_time3 setTitle:[_dateFormatter stringFromDate:_date3]
 			forState:UIControlStateNormal];
 	_time3.alpha = FINE_OPACITY;
 	
-	_date4 = [_date dateByAddingTimeInterval:-(BAD_SLEEP_TIME)];
+	_date4 = [[_date dateByAddingTimeInterval:-(BAD_SLEEP_TIME)] dateByRoundingDownToNearestTimeInterval:NSTimeIntervalMinute];
 	[_time4 setTitle:[_dateFormatter stringFromDate:_date4]
 			forState:UIControlStateNormal];
 	_time4.alpha = BAD_OPACITY;
@@ -183,22 +184,22 @@
 - (void)setTimesForWakeMode
 {
 	// Times
-	_date1 = [_date dateByAddingTimeInterval:BAD_SLEEP_TIME];
+	_date1 = [[_date dateByAddingTimeInterval:BAD_SLEEP_TIME] dateByRoundingDownToNearestTimeInterval:NSTimeIntervalMinute];
 	[_time1 setTitle:[_dateFormatter stringFromDate:_date1]
 			forState:UIControlStateNormal];
 	_time1.alpha = BAD_OPACITY;
 	
-	_date2 = [_date dateByAddingTimeInterval:FINE_SLEEP_TIME];
+	_date2 = [[_date dateByAddingTimeInterval:FINE_SLEEP_TIME] dateByRoundingDownToNearestTimeInterval:NSTimeIntervalMinute];
 	[_time2 setTitle:[_dateFormatter stringFromDate:_date2]
 			forState:UIControlStateNormal];
 	_time2.alpha = FINE_OPACITY;
 	
-	_date3 = [_date dateByAddingTimeInterval:GOOD_SLEEP_TIME];
+	_date3 = [[_date dateByAddingTimeInterval:GOOD_SLEEP_TIME] dateByRoundingDownToNearestTimeInterval:NSTimeIntervalMinute];
 	[_time3 setTitle:[_dateFormatter stringFromDate:_date3]
 			forState:UIControlStateNormal];
 	_time3.alpha = GOOD_OPACITY;
 	
-	_date4 = [_date dateByAddingTimeInterval:GREAT_SLEEP_TIME];
+	_date4 = [[_date dateByAddingTimeInterval:GREAT_SLEEP_TIME] dateByRoundingDownToNearestTimeInterval:NSTimeIntervalMinute];
 	[_time4 setTitle:[_dateFormatter stringFromDate:_date4]
 			forState:UIControlStateNormal];
 	_time4.alpha = GREAT_OPACITY;
