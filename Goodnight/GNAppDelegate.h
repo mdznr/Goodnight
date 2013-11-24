@@ -12,6 +12,5 @@
 @interface GNAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) GNAlarm *alarm;
 
 @end

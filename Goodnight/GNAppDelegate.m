@@ -27,15 +27,14 @@
 		[[UIApplication sharedApplication] cancelAllLocalNotifications];
 	}
 	
-	// Get the alarm
-	_alarm = [GNAlarm sharedAlarm];
-	
     return YES;
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
 	if ( !notification ) return;
+	
+#warning this will still be called if the app didn't quit yet
 	
 	// Cancel all local notifications
 	[[UIApplication sharedApplication] cancelAllLocalNotifications];
@@ -50,8 +49,7 @@
 		{
 			alert = [[MTZAlertView alloc] initWithTitle:@"Bedtime Reminder"
 											 andMessage:@"Try falling alseep now"];
-			alert.cancelButtonTitle = @"OK";
-			[alert addButtonWithTitle:@"OKAY" andBlock:^{}];
+			alert.cancelButtonTitle = @"Dismiss";
 		} break;
 		case GNAlarmNotificationTypeWakeUp:
 		{
@@ -72,7 +70,7 @@
 
 - (void)alertViewDidTapCancelButton:(MTZAlertView *)alertView
 {
-#warning set another alarm for snooze
+#warning set another alarm for snooze (if it's a wake up alarm)
 	NSLog(@"TODO: SNOOZE");
 }
 
