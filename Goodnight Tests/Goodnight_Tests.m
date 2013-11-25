@@ -27,11 +27,6 @@
     [super tearDown];
 }
 
-- (void)testExample
-{
-    //XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-}
-
 - (void)testDateMinuteRounding
 {
 	NSDate *dateToBeRounded = [NSDate dateWithTimeIntervalSince1970:1385359548];
@@ -40,6 +35,26 @@
 	NSDate *date = [dateToBeRounded dateByRoundingToNearestTimeInterval:NSTimeIntervalMinute];
 	
 	XCTAssertTrue([date isEqualToDate:compareDate], @"Dates not being rounded properly.");
+}
+
+- (void)testDateMinuteRoundingDown
+{
+	NSDate *dateToBeRounded = [NSDate dateWithTimeIntervalSince1970:1385359548];
+	NSDate *compareDate = [NSDate dateWithTimeIntervalSince1970:1385359500];
+	
+	NSDate *date = [dateToBeRounded dateByRoundingDownToNearestTimeInterval:NSTimeIntervalMinute];
+	
+	XCTAssertTrue([date isEqualToDate:compareDate], @"Dates not being rounded down properly.");
+}
+
+- (void)testDateMinuteRoundingUp
+{
+	NSDate *dateToBeRounded = [NSDate dateWithTimeIntervalSince1970:1385359548];
+	NSDate *compareDate = [NSDate dateWithTimeIntervalSince1970:1385359560];
+	
+	NSDate *date = [dateToBeRounded dateByRoundingUpToNearestTimeInterval:NSTimeIntervalMinute];
+	
+	XCTAssertTrue([date isEqualToDate:compareDate], @"Dates not being rounded up properly.");
 }
 
 @end
