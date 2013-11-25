@@ -24,6 +24,11 @@
 		C98711F0184125C400E324EF /* Goodnight.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C98711EE184125C400E324EF /* Goodnight.mp3 */; };
 		C98711F1184125C400E324EF /* Pendulum.m4a in Resources */ = {isa = PBXBuildFile; fileRef = C98711EF184125C400E324EF /* Pendulum.m4a */; };
 		C98711F41842793500E324EF /* NSDate+Rounding.m in Sources */ = {isa = PBXBuildFile; fileRef = C98711F31842793500E324EF /* NSDate+Rounding.m */; };
+		C98711FB184316CA00E324EF /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C98711FA184316CA00E324EF /* XCTest.framework */; };
+		C98711FC184316CA00E324EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9ED790115549BCB002064B2 /* Foundation.framework */; };
+		C98711FD184316CA00E324EF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9ED78FF15549BCB002064B2 /* UIKit.framework */; };
+		C9871203184316CA00E324EF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C9871201184316CA00E324EF /* InfoPlist.strings */; };
+		C9871205184316CA00E324EF /* Goodnight_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9871204184316CA00E324EF /* Goodnight_Tests.m */; };
 		C98E128517E7C279009AC0C6 /* MTZTriangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = C98E128417E7C279009AC0C6 /* MTZTriangleView.m */; };
 		C9E6CFD417E2326100E65CE9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9E6CFD317E2326100E65CE9 /* Images.xcassets */; };
 		C9ED790015549BCB002064B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9ED78FF15549BCB002064B2 /* UIKit.framework */; };
@@ -38,6 +43,16 @@
 		C9F0677C17EBB1B9006E243F /* GNTimesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F0677A17EBB1B9006E243F /* GNTimesViewController.m */; };
 		C9F0677D17EBB1B9006E243F /* GNTimesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9F0677B17EBB1B9006E243F /* GNTimesViewController.xib */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C9871207184316CA00E324EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C9ED78F215549BCB002064B2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C9ED78FA15549BCB002064B2;
+			remoteInfo = Goodnight;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		C91DBA9C180093AD0007DC21 /* GNTimePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNTimePickerViewController.h; sourceTree = "<group>"; };
@@ -67,6 +82,12 @@
 		C98711EF184125C400E324EF /* Pendulum.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pendulum.m4a; sourceTree = "<group>"; };
 		C98711F21842793500E324EF /* NSDate+Rounding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Rounding.h"; sourceTree = "<group>"; };
 		C98711F31842793500E324EF /* NSDate+Rounding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Rounding.m"; sourceTree = "<group>"; };
+		C98711F9184316CA00E324EF /* Goodnight Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Goodnight Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C98711FA184316CA00E324EF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		C9871200184316CA00E324EF /* Goodnight Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Goodnight Tests-Info.plist"; sourceTree = "<group>"; };
+		C9871202184316CA00E324EF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C9871204184316CA00E324EF /* Goodnight_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Goodnight_Tests.m; sourceTree = "<group>"; };
+		C9871206184316CA00E324EF /* Goodnight Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Goodnight Tests-Prefix.pch"; sourceTree = "<group>"; };
 		C98E128317E7C279009AC0C6 /* MTZTriangleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTZTriangleView.h; sourceTree = "<group>"; };
 		C98E128417E7C279009AC0C6 /* MTZTriangleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTZTriangleView.m; sourceTree = "<group>"; };
 		C9E6CFD317E2326100E65CE9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -90,6 +111,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C98711F6184316CA00E324EF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C98711FB184316CA00E324EF /* XCTest.framework in Frameworks */,
+				C98711FD184316CA00E324EF /* UIKit.framework in Frameworks */,
+				C98711FC184316CA00E324EF /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C9ED78F815549BCB002064B2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -104,10 +135,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C98711FE184316CA00E324EF /* Goodnight Tests */ = {
+			isa = PBXGroup;
+			children = (
+				C9871204184316CA00E324EF /* Goodnight_Tests.m */,
+				C98711FF184316CA00E324EF /* Supporting Files */,
+			);
+			path = "Goodnight Tests";
+			sourceTree = "<group>";
+		};
+		C98711FF184316CA00E324EF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C9871200184316CA00E324EF /* Goodnight Tests-Info.plist */,
+				C9871201184316CA00E324EF /* InfoPlist.strings */,
+				C9871206184316CA00E324EF /* Goodnight Tests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		C9ED78F015549BCB002064B2 = {
 			isa = PBXGroup;
 			children = (
 				C9ED790515549BCB002064B2 /* Goodnight */,
+				C98711FE184316CA00E324EF /* Goodnight Tests */,
 				C9ED78FE15549BCB002064B2 /* Frameworks */,
 				C9ED78FC15549BCB002064B2 /* Products */,
 			);
@@ -117,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				C9ED78FB15549BCB002064B2 /* Goodnight.app */,
+				C98711F9184316CA00E324EF /* Goodnight Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -128,6 +180,7 @@
 				C9ED78FF15549BCB002064B2 /* UIKit.framework */,
 				C9ED790115549BCB002064B2 /* Foundation.framework */,
 				C9ED790315549BCB002064B2 /* CoreGraphics.framework */,
+				C98711FA184316CA00E324EF /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -192,6 +245,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		C98711F8184316CA00E324EF /* Goodnight Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C9871209184316CA00E324EF /* Build configuration list for PBXNativeTarget "Goodnight Tests" */;
+			buildPhases = (
+				C98711F5184316CA00E324EF /* Sources */,
+				C98711F6184316CA00E324EF /* Frameworks */,
+				C98711F7184316CA00E324EF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C9871208184316CA00E324EF /* PBXTargetDependency */,
+			);
+			name = "Goodnight Tests";
+			productName = "Goodnight Tests";
+			productReference = C98711F9184316CA00E324EF /* Goodnight Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		C9ED78FA15549BCB002064B2 /* Goodnight */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C9ED791B15549BCB002064B2 /* Build configuration list for PBXNativeTarget "Goodnight" */;
@@ -219,6 +290,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Matt;
 				TargetAttributes = {
+					C98711F8184316CA00E324EF = {
+						TestTargetID = C9ED78FA15549BCB002064B2;
+					};
 					C9ED78FA15549BCB002064B2 = {
 						DevelopmentTeam = 3SZ7MS7NXC;
 					};
@@ -237,11 +311,20 @@
 			projectRoot = "";
 			targets = (
 				C9ED78FA15549BCB002064B2 /* Goodnight */,
+				C98711F8184316CA00E324EF /* Goodnight Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		C98711F7184316CA00E324EF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9871203184316CA00E324EF /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C9ED78F915549BCB002064B2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -263,6 +346,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C98711F5184316CA00E324EF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9871205184316CA00E324EF /* Goodnight_Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C9ED78F715549BCB002064B2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -287,7 +378,23 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		C9871208184316CA00E324EF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C9ED78FA15549BCB002064B2 /* Goodnight */;
+			targetProxy = C9871207184316CA00E324EF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		C9871201184316CA00E324EF /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C9871202184316CA00E324EF /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		C9ED790815549BCB002064B2 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -307,6 +414,65 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		C987120A184316CA00E324EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Goodnight.app/Goodnight";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Goodnight Tests/Goodnight Tests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "Goodnight Tests/Goodnight Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		C987120B184316CA00E324EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Goodnight.app/Goodnight";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Goodnight Tests/Goodnight Tests-Prefix.pch";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "Goodnight Tests/Goodnight Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 		C9ED791915549BCB002064B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -410,6 +576,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C9871209184316CA00E324EF /* Build configuration list for PBXNativeTarget "Goodnight Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C987120A184316CA00E324EF /* Debug */,
+				C987120B184316CA00E324EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		C9ED78F515549BCB002064B2 /* Build configuration list for PBXProject "Goodnight" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
