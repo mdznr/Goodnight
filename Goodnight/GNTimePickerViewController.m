@@ -8,6 +8,7 @@
 
 #import "GNTimePickerViewController.h"
 
+#import "NSDate+Rounding.h"
 #import "MTZOutlinedButton.h"
 #import "MTZTriangleView.h"
 
@@ -182,7 +183,7 @@
 						 }
 						 completion:^(BOOL finished) {}];
 	} else {
-		[_datePicker setDate:[NSDate date] animated:YES];
+		[_datePicker setDate:[[NSDate date] dateByRoundingUpToNearestTimeInterval:5*NSTimeIntervalMinute] animated:YES];
 	}
 }
 
@@ -218,7 +219,7 @@
 						 }
 						 completion:^(BOOL finished) {}];
 	} else {
-		[_datePicker setDate:[NSDate date] animated:YES];
+		[_datePicker setDate:[[NSDate date] dateByRoundingUpToNearestTimeInterval:5*NSTimeIntervalMinute] animated:YES];
 	}
 }
 
