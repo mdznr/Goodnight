@@ -11,6 +11,7 @@
 #import "NSDate+Rounding.h"
 #import "MTZOutlinedButton.h"
 #import "MTZTriangleView.h"
+#import "GNAlarm.h"
 
 @interface GNTimePickerViewController ()
 
@@ -114,7 +115,9 @@
 
 - (void)tappedGoodnightButton:(id)sender
 {
-	[_delegate timePickerDidSayGoodnightWithSleepTime:_datePicker.date
+#warning Get appropriate date (always in the future)
+	NSDate *date = [GNAlarm appropriateAlarmTimeFromDate:_datePicker.date];
+	[_delegate timePickerDidSayGoodnightWithSleepTime:date
 											  forMode:_mode];
 }
 

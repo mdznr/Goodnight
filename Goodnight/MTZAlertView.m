@@ -203,13 +203,10 @@ typedef enum {
 		}
 	} else {
 		_cancelButtonOnBottom = NO;
-		// Make sure Cancel is on the left when only two buttons
 		if ( _cancelButtonTitle ) {
 			[_alertView addButtonWithTitle:_cancelButtonTitle];
 			_alertView.cancelButtonIndex = 0;
 		}
-		// Add the other button
-		[_alertView addButtonWithTitle:_buttonTitles[0]];
 	}
 	
 	return _alertView;
