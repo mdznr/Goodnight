@@ -183,7 +183,7 @@
 						 }
 						 completion:^(BOOL finished) {}];
 	} else {
-		[_datePicker setDate:[[NSDate date] dateByRoundingUpToNearestTimeInterval:5*NSTimeIntervalMinute] animated:YES];
+		[_datePicker setDate:[[NSDate date] dateByRoundingUpToNearestTimeInterval:SLEEP_MODE_DATE_PICKER_MINUTE_INTERVAL * NSTimeIntervalMinute] animated:YES];
 	}
 }
 
@@ -219,7 +219,7 @@
 						 }
 						 completion:^(BOOL finished) {}];
 	} else {
-		[_datePicker setDate:[[NSDate date] dateByRoundingUpToNearestTimeInterval:5*NSTimeIntervalMinute] animated:YES];
+		[_datePicker setDate:[[NSDate date] dateByRoundingUpToNearestTimeInterval:WAKE_MODE_DATE_PICKER_MINUTE_INTERVAL * NSTimeIntervalMinute] animated:YES];
 	}
 }
 
