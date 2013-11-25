@@ -29,6 +29,7 @@
 		C98711FD184316CA00E324EF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9ED78FF15549BCB002064B2 /* UIKit.framework */; };
 		C9871203184316CA00E324EF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C9871201184316CA00E324EF /* InfoPlist.strings */; };
 		C9871205184316CA00E324EF /* Goodnight_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9871204184316CA00E324EF /* Goodnight_Tests.m */; };
+		C987120D18432A1E00E324EF /* NSDateRoundingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C987120C18432A1E00E324EF /* NSDateRoundingTests.m */; };
 		C98E128517E7C279009AC0C6 /* MTZTriangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = C98E128417E7C279009AC0C6 /* MTZTriangleView.m */; };
 		C9E6CFD417E2326100E65CE9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9E6CFD317E2326100E65CE9 /* Images.xcassets */; };
 		C9ED790015549BCB002064B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9ED78FF15549BCB002064B2 /* UIKit.framework */; };
@@ -88,6 +89,7 @@
 		C9871202184316CA00E324EF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C9871204184316CA00E324EF /* Goodnight_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Goodnight_Tests.m; sourceTree = "<group>"; };
 		C9871206184316CA00E324EF /* Goodnight Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Goodnight Tests-Prefix.pch"; sourceTree = "<group>"; };
+		C987120C18432A1E00E324EF /* NSDateRoundingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateRoundingTests.m; sourceTree = "<group>"; };
 		C98E128317E7C279009AC0C6 /* MTZTriangleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTZTriangleView.h; sourceTree = "<group>"; };
 		C98E128417E7C279009AC0C6 /* MTZTriangleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTZTriangleView.m; sourceTree = "<group>"; };
 		C9E6CFD317E2326100E65CE9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 		C98711FE184316CA00E324EF /* Goodnight Tests */ = {
 			isa = PBXGroup;
 			children = (
+				C987120C18432A1E00E324EF /* NSDateRoundingTests.m */,
 				C9871204184316CA00E324EF /* Goodnight_Tests.m */,
 				C98711FF184316CA00E324EF /* Supporting Files */,
 			);
@@ -350,6 +353,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C987120D18432A1E00E324EF /* NSDateRoundingTests.m in Sources */,
 				C9871205184316CA00E324EF /* Goodnight_Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
