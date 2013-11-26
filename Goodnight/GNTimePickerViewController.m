@@ -116,7 +116,7 @@
 - (void)tappedGoodnightButton:(id)sender
 {
 #warning Get appropriate date (always in the future)
-	NSDate *date = [GNAlarm appropriateAlarmTimeFromDate:_datePicker.date];
+	NSDate *date = [self appropriateAlarmTimeFromDate:_datePicker.date];
 	[_delegate timePickerDidSayGoodnightWithSleepTime:date
 											  forMode:_mode];
 }
@@ -240,9 +240,22 @@
 	[_datePicker setDate:[NSDate date] animated:NO];
 }
 
-- (void)sleepPickerDidChange:(id)sender
+- (void)sleepPickerDidChange:(UIDatePicker *)sender
 {
+	NSDate *date = [self appropriateAlarmTimeFromDate:sender.date];
+	NSLog(@"%@", date);
+}
+
+/// Returns an NSDate object with the correct time for an alarm
+/// @param date An instance of NSDate with the correct time, but not necessarily the correct day.
+- (NSDate *)appropriateAlarmTimeFromDate:(NSDate *)date
+{
+	// If the difference in time is more than one interval in the datepicker.
+	if ( [date timeIntervalSinceNow] < -(_datePicker.minuteInterval * NSTimeIntervalMinute) ) {
+		return [date dateByAddingTimeInterval:NSTimeIntervalDay];
+	}
 	
+	return date;
 }
 
 

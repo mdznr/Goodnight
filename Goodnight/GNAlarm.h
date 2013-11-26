@@ -17,10 +17,6 @@ static NSString *kNotificationType = @"GNAlarmNotificationType";
 
 @interface GNAlarm : NSObject
 
-/// Returns an NSDate object with the correct time for an alarm
-/// @param date An instance of NSDate with the correct time, but not necessarily the correct date.
-+ (NSDate *)appropriateAlarmTimeFromDate:(NSDate *)date;
-
 /// Shared alarm singleton
 + (GNAlarm *)sharedAlarm;
 

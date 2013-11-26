@@ -11,8 +11,6 @@
 #define ALARM_TIME_INTERVAL 60
 #define NUMBER_OF_ALARMS 5
 
-#define NSTimeIntervalDay 60*60*24
-
 @interface GNAlarm ()
 
 @property (strong, nonatomic) NSDate *date;
@@ -79,14 +77,6 @@ static GNAlarm *_sharedAlarm = nil;
 #warning handle wake up time
 	
 	[[UIApplication sharedApplication] scheduleLocalNotification:_notification];
-}
-
-+ (NSDate *)appropriateAlarmTimeFromDate:(NSDate *)date
-{
-	if ( [date timeIntervalSinceNow] < 0 ) {
-		return [date dateByAddingTimeInterval:NSTimeIntervalDay];
-	}
-	return date;
 }
 
 @end
