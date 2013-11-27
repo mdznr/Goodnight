@@ -31,7 +31,8 @@
 		function fadeScreenshotIn(backgroundImage, duration) {
 			clearTimeout(fadeScreenshotBackIn);
 			fadeScreenshotBackIn = setTimeout(function() {
-				$("#iPhoneSS").css({"background": "url(\"screenshots/"+backgroundImage+".png\") center right no-repeat"});
+				console.log(backgroundImage);
+				$("#iPhoneSS").css({"background-image": "url(\"screenshots/"+backgroundImage+".png\") "});
 				$("#iPhoneSS").fadeIn(duration, "swing");
 			}, duration);
 		}
@@ -223,7 +224,7 @@
 		body {
 			background-color: #08002F;
 			color: #fff;
-			text-shadow: 0px 1px 3px rgba(0,0,0,0.2);
+			text-shadow: 0px 1px 3px rgba(0,0,0,0.05);
 			font-family: "MyriadPro-Light", "Myriad Pro", "Myriad Pro FontFace", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 			font-size: 24px;
 			font-weight: 100;
@@ -371,7 +372,8 @@
 			position: absolute;
 			top: 0;
 			display: block;
-			background: url("screenshots/iPhone.png") no-repeat;
+			background-image: url("screenshots/iPhone.png");
+			background-repeat: no-repeat;
 			background-size: 492px, 327px;
 			background-position: 100% 52%;
 			width: 100%;
@@ -385,7 +387,8 @@
 			position: absolute;
 			top: 0;
 			display: block;
-			background: url("screenshots/alarm.png") no-repeat;
+			background-image: url("screenshots/alarm.png");
+			background-repeat: no-repeat;
 			background-size: 492px, 327px;
 			background-position: 100% 52%;
 			width: 100%;
@@ -462,12 +465,11 @@
 		only screen and (                min-resolution: 2dppx)
 		{ 
 			#iPhone {
-				background: url("screenshots/iPhone@2x.png") no-repeat;
-				background-size: 492px, 327px;
+				background-image: url("screenshots/iPhone@2x.png");
 			}
 			
 			#iPhoneSS {
-				
+				background-image: url("screenshots/alarm@2x.png");
 			}
 		}
 		
