@@ -4,6 +4,8 @@
 	<title>Goodnight: A Sleep-Cycle Alarm Clock for iPhone/iPod touch</title>
 	<script type="text/javascript" src="jquery-2.0.3.min.js"></script>
 	<script type="text/javascript" src="jquery.transform-0.9.3.min.js"></script>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<meta name="viewport" content="width=device-width" />
 	<script>
 		
 		window.onload = function() {
@@ -242,7 +244,7 @@
 			max-width: 345px;
 			line-height: 32px;
 		}
-		.app-icon {
+		#app-icon {
 			float: left;
 		}
 		div.full {
@@ -338,6 +340,7 @@
 			clear: both;
 			padding: 28px;
 			width: 320px;
+			min-width: 264px;
 			margin-top: 16px;
 		}
 		#quote {
@@ -362,7 +365,7 @@
 			height: 100%;
 			width: 100%;
 			max-width: 960px;
-			min-width: 832px;
+			min-width: 768px;
 			margin: auto;
 			left: 0;
 			right: 0;
@@ -375,13 +378,12 @@
 			background-image: url("screenshots/iPhone.png");
 			background-repeat: no-repeat;
 			background-size: 492px, 327px;
-			background-position: 100% 52%;
+			background-position: center right;
 			width: 100%;
 			height: 100%;
-			max-width: 832px;
-			min-width: 800px;
+			max-width: 960px;
 			margin: auto;
-			padding: 0 64px;
+			//padding: 0 8px;
 		}
 		#iPhoneSS {
 			position: absolute;
@@ -390,13 +392,12 @@
 			background-image: url("screenshots/alarm.png");
 			background-repeat: no-repeat;
 			background-size: 492px, 327px;
-			background-position: 100% 52%;
+			background-position: center right;
 			width: 100%;
 			height: 100%;
-			max-width: 832px;
-			min-width: 800px;
+			max-width: 960px;
 			margin: auto;
-			padding: 0 64px;
+			//padding: 0 8px;
 		}
 		#ss2 {
 			content: url("screenshots/picker.png");
@@ -492,10 +493,108 @@
 			}
 		}
 		
+		@media only screen and (max-width: 900px) {
+			.section {
+				padding: 0 32px;
+			}
+			
+			h1 {
+				font-size: 38px;
+				line-height: 64px;
+			}
+			
+			h2 {
+				font-size: 48px;
+				line-height: 64px;
+			}
+			
+			p.subheader {
+				font-size: 24px;
+				max-width: 345px;
+				line-height: 32px;
+			}
+			
+			#testimonials {
+				padding: 10px;
+				width: 300px;
+			}
+			
+			#iPhone, #iPhoneSS {
+				background-size: 492px, 327px;
+				background-size: 400px, 266px;
+			}
+		}
+		
+		@media only screen and (max-width: 560px) {
+			/* Display inline screenshots instead */
+			#centering {
+				display: none;
+			}
+			
+			.bottom {
+				font-size: 14px;
+			}
+			
+			.bottom span, .bottom a {
+				margin: 0 8px;
+			}
+		}
+		
+		@media only screen and (max-width: 480px) {
+			.section {
+				padding: 0 24px;
+				//height: 65%;
+			}
+			
+			h1 {
+				font-size: 36px;
+				line-height: 48px;
+			}
+			
+			h2 {
+				font-size: 36px;
+			}
+			
+			p.subheader {
+				font-size: 22px;
+				line-height: 32px;
+			}
+			
+			.AppStoreDownload, .AppStoreDownload:hover {
+				background-size: 128px 38px;
+				width: 128px;
+				height: 38px;
+			}
+			
+			#app-icon {
+				width: 92px;
+				height: 92px;
+				padding-left: 0;
+			}
+			
+			#app-name {
+				height: auto;
+				padding-left: 4px;
+			}
+			
+			#testimonials {
+				padding: 0;
+				margin-top: 48px;
+				width: 272px;
+			}
+			
+			.bottom {
+				font-size: 11px;
+			}
+			
+			.bottom span, .bottom a {
+				margin: 0 2px;
+			}
+		}
+		
 	</style>
 </head>
 <body>
-	
 	<div id="skyBackground1" class="full dusk" style="opacity:1"></div>
 	<div id="skyBackground2" class="full midnight"></div>
 	<div id="skyBackground3" class="full early-morning"></div>
