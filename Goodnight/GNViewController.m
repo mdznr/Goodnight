@@ -386,7 +386,11 @@
 							 _scrollView.alpha = 1.0f;
 						 }
 						 completion:^(BOOL finished) {}];
-		_scrollView.scrollEnabled = [_timesViewController showingTimes];
+		if ( _timesViewController ) {
+			_scrollView.scrollEnabled = [_timesViewController isShowingTimes];
+		} else {
+			_scrollView.scrollEnabled = NO;
+		}
 	} else {
 		[UIView animateWithDuration:ANIMATION_DURATION
 							  delay:0.0f
@@ -397,7 +401,11 @@
 							 _scrollView.alpha = 1.0f;
 						 }
 						 completion:^(BOOL finished) {}];
-		_scrollView.scrollEnabled = [_timesViewController showingTimes];
+		if ( _timesViewController ) {
+			_scrollView.scrollEnabled = [_timesViewController isShowingTimes];
+		} else {
+			_scrollView.scrollEnabled = NO;
+		}
 	}
 }
 

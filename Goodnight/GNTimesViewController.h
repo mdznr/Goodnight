@@ -40,7 +40,7 @@ typedef enum {
 /// @discussion Times displayed in @c GNTimesViewControllerModeWakeTimes mode are added from the given time
 @property (strong, nonatomic) NSDate *date;
 
-@property (nonatomic) BOOL showingTimes;
+@property (nonatomic, readonly, getter = isShowingTimes) BOOL showingTimes;
 
 
 ///
