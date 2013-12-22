@@ -354,9 +354,10 @@
 			  initialSpringVelocity:1.0f
 							options:UIViewAnimationOptionBeginFromCurrentState
 						 animations:^{
-							 // Hide main UI
+							 _scrollView.alpha = 0.0f;
 						 }
 						 completion:^(BOOL finished) {}];
+		_scrollView.scrollEnabled = NO;
 	} else {
 		[UIView animateWithDuration:ANIMATION_DURATION
 							  delay:0.0f
@@ -382,9 +383,10 @@
 			  initialSpringVelocity:1.0f
 							options:UIViewAnimationOptionBeginFromCurrentState
 						 animations:^{
-							 // Bring back main UI
+							 _scrollView.alpha = 1.0f;
 						 }
 						 completion:^(BOOL finished) {}];
+		_scrollView.scrollEnabled = [_timesViewController showingTimes];
 	} else {
 		[UIView animateWithDuration:ANIMATION_DURATION
 							  delay:0.0f

@@ -250,7 +250,7 @@
 /// @param date An instance of NSDate with the correct time, but not necessarily the correct day.
 - (NSDate *)appropriateAlarmTimeFromDate:(NSDate *)date
 {
-	// If the difference in time is more than one interval in the datepicker.
+	// Difference in time is set back more than one interval in the datepicker compared to current time
 	if ( [date timeIntervalSinceNow] < -(_datePicker.minuteInterval * NSTimeIntervalMinute) ) {
 		return [date dateByAddingTimeInterval:NSTimeIntervalDay];
 	}
