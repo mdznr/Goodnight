@@ -143,23 +143,7 @@ typedef enum {
 
 #pragma mark Configuring Buttons
 
-- (void)addButtonWithTitle:(NSString *)title andSelector:(SEL)selector
-{
-	if ( title == nil ) {
-		NSLog(@"Button title must be non-nil");
-		return;
-	}
-	
-	// If the title already exists, change it's position and update it's selector
-	if ( [_actionsForButtonTitles objectForKey:title] ) {
-		[_buttonTitles removeObjectIdenticalTo:title];
-	}
-	
-	[_buttonTitles addObject:title];
-	[_actionsForButtonTitles setObject:NSStringFromSelector(selector) forKey:title];
-}
-#warning combine the shared code in these methods
-- (void)addButtonWithTitle:(NSString *)title andBlock:(Block)block
+- (void)addButtonWithTitle:(NSString *)title
 {
 	if ( title == nil ) {
 		NSLog(@"Button title must be non-nil");
@@ -172,6 +156,17 @@ typedef enum {
 	}
 	
 	[_buttonTitles addObject:title];
+}
+
+- (void)addButtonWithTitle:(NSString *)title andSelector:(SEL)selector
+{
+	[self addButtonWithTitle:title];
+	[_actionsForButtonTitles setObject:NSStringFromSelector(selector) forKey:title];
+}
+
+- (void)addButtonWithTitle:(NSString *)title andBlock:(MTZActionBlock)block
+{
+	[self addButtonWithTitle:title];
 	[_actionsForButtonTitles setObject:block forKey:title];
 }
 
@@ -229,7 +224,6 @@ typedef enum {
 	
 	NSInteger cancelButtonIndex = self.cancelButtonIndex;
 	if ( cancelButtonIndex == -1 ) {
-#warning would be nice if UIAlertView did have a API for cancelling
 		NSLog(@"Cannot cancel this alert view because it doesn't have a cancel button");
 		return;
 	}
@@ -271,8 +265,6 @@ typedef enum {
 - (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView
 {
 	NSLog(@"alertViewShouldEnableFirstOtherButton:");
-#warning should be more like this? (Called for each (non-cancel?) button
-//- (BOOL)alertView:(MTZAlertView *)alertView shouldEnableButtonWithTitle:(NSString *)buttonTitle;
 	for ( NSString *buttonTitle in _buttonTitles ) {
 		return [_delegate alertView:(MTZAlertView *)alertView shouldEnableButtonWithTitle:buttonTitle];
 	}
@@ -323,6 +315,7 @@ typedef enum {
 	NSString *buttonTitle = self.otherButtonTitles[otherButtonIndex];
 	
 	id action = _actionsForButtonTitles[buttonTitle];
+	
 	// Selector
 	if ( [(NSObject *)action isKindOfClass:NSString.class]  ) {
 		if ( !_delegate ) {
@@ -338,9 +331,10 @@ typedef enum {
 		}
 #pragma clang diagnostic pop
 	}
+	
 	// Block
 	else {
-		((Block)action)();
+		((MTZActionBlock)action)();
 	}
 }
 

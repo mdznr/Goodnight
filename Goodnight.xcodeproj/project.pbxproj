@@ -90,6 +90,7 @@
 		C9871204184316CA00E324EF /* Goodnight_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Goodnight_Tests.m; sourceTree = "<group>"; };
 		C9871206184316CA00E324EF /* Goodnight Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Goodnight Tests-Prefix.pch"; sourceTree = "<group>"; };
 		C987120C18432A1E00E324EF /* NSDateRoundingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateRoundingTests.m; sourceTree = "<group>"; };
+		C98A5F6C1867E9B7004EDC76 /* GNConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GNConstants.h; sourceTree = "<group>"; };
 		C98E128317E7C279009AC0C6 /* MTZTriangleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTZTriangleView.h; sourceTree = "<group>"; };
 		C98E128417E7C279009AC0C6 /* MTZTriangleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTZTriangleView.m; sourceTree = "<group>"; };
 		C9E6CFD317E2326100E65CE9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -193,6 +194,7 @@
 			children = (
 				C9ED790E15549BCB002064B2 /* GNAppDelegate.h */,
 				C9ED790F15549BCB002064B2 /* GNAppDelegate.m */,
+				C98A5F6C1867E9B7004EDC76 /* GNConstants.h */,
 				C98711E518404EC000E324EF /* GNAlarm.h */,
 				C98711E618404EC000E324EF /* GNAlarm.m */,
 				C9ED791615549BCB002064B2 /* GNViewController.h */,
@@ -587,6 +589,7 @@
 				C987120B184316CA00E324EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C9ED78F515549BCB002064B2 /* Build configuration list for PBXProject "Goodnight" */ = {
 			isa = XCConfigurationList;

@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum {
+#ifndef NS_ENUM
+#define NS_ENUM(_type, _name) enum _name : _type _name; enum _name : _type
+#endif
+
+typedef NS_ENUM(NSInteger, GNTimePickerMode) {
 	GNTimePickerModeSleep,
 	GNTimePickerModeWake
-} GNTimePickerMode;
+};
 
 @protocol GNTimePickerViewControllerDelegate <NSObject>
 

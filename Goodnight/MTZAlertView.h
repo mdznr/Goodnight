@@ -8,8 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#warning this typedef probably shouldn't be defined here. It should come from MTZAction?
-typedef void (^Block)();
+typedef void (^MTZActionBlock)();
 
 @protocol MTZAlertViewDelegate;
 
@@ -99,7 +98,7 @@ NS_CLASS_AVAILABLE_IOS(2_0) @interface MTZAlertView : NSObject
 /// Append a button to the alert and, when tapped, perform the corresponding block
 /// @param title The label that appears on the button
 /// @param selector The block to be performed when the button is tapped
-- (void)addButtonWithTitle:(NSString *)title andBlock:(Block)block;
+- (void)addButtonWithTitle:(NSString *)title andBlock:(MTZActionBlock)block;
 
 
 #pragma mark Presenting the Alert View

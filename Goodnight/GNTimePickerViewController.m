@@ -8,10 +8,11 @@
 
 #import "GNTimePickerViewController.h"
 
-#import "NSDate+Rounding.h"
+#import "GNAlarm.h"
+#import "GNConstants.h"
 #import "MTZOutlinedButton.h"
 #import "MTZTriangleView.h"
-#import "GNAlarm.h"
+#import "NSDate+Rounding.h"
 
 @interface GNTimePickerViewController ()
 
@@ -75,7 +76,6 @@
 	[_goodnightButton addTarget:self
 						 action:@selector(tappedGoodnightButton:)
 			   forControlEvents:UIControlEventTouchUpInside];
-
 	
 	// Add targets to buttons for events
 	[_sleepButton addTarget:self
@@ -90,14 +90,18 @@
 					action:@selector(sleepPickerDidChange:)
 		  forControlEvents:UIControlEventValueChanged];
 	
-	[self setMode:GNTimePickerModeSleep];
-	_mode = GNTimePickerModeSleep;
-	
 	_defaultColor = [UIColor colorWithWhite:1.0f alpha:0.5f];
 	_selectedColor = [UIColor colorWithWhite:1.0f alpha:1.0f];
 	
 	// Sleep button is selected by default
 	[_sleepButton setTitleColor:_selectedColor forState:UIControlStateNormal];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+	GNTimePickerMode mode = (GNTimePickerMode) ((NSNumber *)[[NSUserDefaults standardUserDefaults] objectForKey:kLastUsedTimePickerMode]).integerValue;
+	[self setMode:mode];
+	_mode = mode;
 }
 
 
@@ -115,7 +119,6 @@
 
 - (void)tappedGoodnightButton:(id)sender
 {
-#warning Get appropriate date (always in the future)
 	NSDate *date = [self appropriateAlarmTimeFromDate:_datePicker.date];
 	[_delegate timePickerDidSayGoodnightWithSleepTime:date
 											  forMode:_mode];
@@ -150,6 +153,7 @@
 	
 	if ( _mode != mode ) {
 		_mode = mode;
+		[[NSUserDefaults standardUserDefaults] setObject:@(mode) forKey:kLastUsedTimePickerMode];
 		[_delegate timePickerDidChangeToMode:mode];
 	}
 }
@@ -164,7 +168,6 @@
 			  initialSpringVelocity:1.0f
 							options:UIViewAnimationOptionBeginFromCurrentState
 						 animations:^{
-#warning UIButton does not animate between selected states
 							 [_sleepButton setTitleColor:_selectedColor
 												forState:UIControlStateNormal];
 							 [_wakeButton setTitleColor:_defaultColor
@@ -200,7 +203,6 @@
 			  initialSpringVelocity:1.0f
 							options:UIViewAnimationOptionBeginFromCurrentState
 						 animations:^{
-#warning UIButton does not animate between selected states
 							 [_wakeButton setTitleColor:_selectedColor
 											   forState:UIControlStateNormal];
 							 [_sleepButton setTitleColor:_defaultColor
