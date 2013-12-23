@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "StatusBarShadow.png"
+      "filename" : "StatusBarContentMask.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "StatusBarShadow@2x.png"
+      "filename" : "StatusBarContentMask@2x.png"
     }
   ],
   "info" : {

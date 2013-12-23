@@ -16,12 +16,12 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="AzU-lI-90h">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="AzU-lI-90h">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="99999" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="288" translatesAutoresizingMaskIntoConstraints="NO" id="fsK-89-0HI">
-                            <rect key="frame" x="16" y="60" width="288" height="2058"/>
+                            <rect key="frame" x="16" y="48" width="288" height="2058"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies a non tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut gravida lorem. Ut turpis felis, pulvinar a semper sed, adipiscing id dolor. Pellentesque auctor nisi id magna consequat sagittis. Curabitur dapibus enim sit amet elit pharetra tincidunt feugiat nisl imperdiet. Ut convallis libero in urna ultrices accumsan. Donec sed odio eros. Donec viverra mi quis quam pulvinar at malesuada arcu rhoncus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. In rutrum accumsan ultricies. Mauris vitae nisi at sem facilisis semper ac in est.
 
@@ -40,16 +40,12 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="fsK-89-0HI" secondAttribute="bottom" constant="20" symbolic="YES" id="DVg-Zn-S5z"/>
                         <constraint firstItem="fsK-89-0HI" firstAttribute="centerX" secondItem="AzU-lI-90h" secondAttribute="centerX" id="enU-ss-666"/>
-                        <constraint firstItem="fsK-89-0HI" firstAttribute="top" secondItem="AzU-lI-90h" secondAttribute="top" constant="60" id="jJX-He-5wL"/>
+                        <constraint firstItem="fsK-89-0HI" firstAttribute="top" secondItem="AzU-lI-90h" secondAttribute="top" constant="48" id="jJX-He-5wL"/>
                         <constraint firstAttribute="trailing" secondItem="fsK-89-0HI" secondAttribute="trailing" constant="16" id="n3C-jD-ANv"/>
                         <constraint firstItem="fsK-89-0HI" firstAttribute="leading" secondItem="AzU-lI-90h" secondAttribute="leading" constant="16" id="t0f-gY-9cb"/>
                     </constraints>
                     <inset key="scrollIndicatorInsets" minX="0.0" minY="24" maxX="0.0" maxY="0.0"/>
                 </scrollView>
-                <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="StatusBarShadow" translatesAutoresizingMaskIntoConstraints="NO" id="Nnm-ia-XgR" userLabel="Status Bar Shadow">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="37"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
@@ -62,7 +58,4 @@ Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
-    <resources>
-        <image name="StatusBarShadow" width="320" height="37"/>
-    </resources>
 </document>

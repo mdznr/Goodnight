@@ -43,7 +43,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+	
+	// Create mask layer
+	CALayer* maskLayer = [CALayer layer];
+	UIImage *maskImage = [UIImage imageNamed:@"StatusBarContentMask.png"];
+	maskLayer.frame = CGRectMake(0, 0, maskImage.size.width, maskImage.size.height);
+	maskLayer.contents = (id) maskImage.CGImage;
+	
+	// Apply the mask to the view's layer
+	self.view.layer.mask = maskLayer;
 }
 
 - (void)show
