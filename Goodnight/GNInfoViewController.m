@@ -8,7 +8,7 @@
 
 #import "GNInfoViewController.h"
 
-@interface GNInfoViewController ()
+@interface GNInfoViewController () <UIScrollViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UILabel *firstParagraph;
@@ -28,6 +28,8 @@
 												 selector:@selector(preferredContentSizeDidChange:)
 													 name:UIContentSizeCategoryDidChangeNotification
 												   object:nil];
+		
+		self.scrollView.delegate = self;
     }
     return self;
 }
@@ -45,7 +47,7 @@
     [super viewDidLoad];
 	
 	// Create mask layer
-	CALayer* maskLayer = [CALayer layer];
+	CALayer *maskLayer = [CALayer layer];
 	UIImage *maskImage = [UIImage imageNamed:@"StatusBarContentMask.png"];
 	maskLayer.frame = CGRectMake(0, 0, maskImage.size.width, maskImage.size.height);
 	maskLayer.contents = (id) maskImage.CGImage;
@@ -81,6 +83,22 @@
 						 [_scrollView scrollRectToVisible:CGRectZero animated:NO];
 					 }];
 }
+
+
+#pragma mark UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+#warning change opacity of "close button" when scrolling (Like Siri UI)
+}
+
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
+{
+	
+}
+
+
+#pragma mark UIViewController Misc.
 
 - (void)didReceiveMemoryWarning
 {
