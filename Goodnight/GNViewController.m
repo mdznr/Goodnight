@@ -285,10 +285,10 @@
 	}
 	yOffset = MAX(MIN(skyStart, yOffset), skyEnd);
 	_sky.center = (CGPoint){midSkyWidth, yOffset};
-	_timePickerViewController.tintColor = [UIColor colorWithRed:r
-														  green:g
-														   blue:b
-														  alpha:1.0f];
+	_timePickerViewController.view.tintColor = [UIColor colorWithRed:r
+															   green:g
+																blue:b
+															   alpha:1.0f];
 	
 	_timePickerViewController.sunpeak = scrollFraction;
 }
@@ -433,7 +433,7 @@
 														  green: 75.0f/255.0f
 														   blue:212.0f/255.0f
 														  alpha:1.0f];
-						 _timePickerViewController.tintColor = color;
+						 _timePickerViewController.view.tintColor = color;
 
 						 _stars.alpha = 0.7f;
 					 }
@@ -459,7 +459,7 @@
 														  green:172.0f/255.0f
 														   blue:245.0f/255.0f
 														  alpha:1.0f];
-						 _timePickerViewController.tintColor = color;
+						 _timePickerViewController.view.tintColor = color;
 						 
 						 _stars.alpha = 0.1f;
 					 }
