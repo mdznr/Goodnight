@@ -31,8 +31,6 @@ typedef NS_ENUM(NSInteger, GNTimePickerMode) {
 
 @property (nonatomic) GNTimePickerMode mode;
 
-@property (strong, nonatomic) UIColor *tintColor;
-
 /// The level at which the sun peaks out from behind the picker.
 @property (nonatomic) CGFloat sunpeak;
 

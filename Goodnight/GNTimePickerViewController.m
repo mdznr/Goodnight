@@ -231,12 +231,6 @@
 
 #pragma mark Misc.
 
-- (void)setTintColor:(UIColor *)tintColor
-{
-	_tintColor = tintColor;
-	_goodnightButton.tintColor = tintColor;
-}
-
 - (void)updateDatePicker
 {
 	[_datePicker setDate:[NSDate date] animated:NO];
